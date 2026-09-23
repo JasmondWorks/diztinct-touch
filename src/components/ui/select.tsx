@@ -12,10 +12,10 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       <div className="relative w-full">
         <select
           className={cn(
-            "flex h-11 w-full appearance-none rounded-xl border bg-white/[0.03] px-3.5 py-2 text-xs font-mono text-[#F9F6F0] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A84C] disabled:cursor-not-allowed disabled:opacity-50 pr-9 cursor-pointer",
+            "flex h-11 w-full appearance-none rounded-xl border bg-card px-3.5 py-2 text-xs font-mono text-foreground transition-all focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 pr-9 cursor-pointer",
             error
-              ? "border-red-500/50 focus-visible:ring-red-400"
-              : "border-white/10 hover:border-white/20 focus-visible:border-[#C9A84C]",
+              ? "border-destructive focus-visible:ring-destructive/30"
+              : "border-border/80 hover:border-border focus-visible:border-primary",
             className
           )}
           ref={ref}
@@ -23,7 +23,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         >
           {children}
         </select>
-        <div className="pointer-events-none absolute right-3 top-3.5 text-[#888]">
+        <div className="pointer-events-none absolute right-3 top-3.5 text-muted-foreground">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>

@@ -7,6 +7,7 @@ import { tokenStorage } from "@/lib/tokenStorage";
 import Link from "next/link";
 import { siteConfig } from "@/data/siteConfig";
 import { ShieldCheck, ArrowLeft } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export function AdminLoginKeypad() {
   const router = useRouter();
@@ -95,10 +96,10 @@ export function AdminLoginKeypad() {
             {siteConfig.monogram}
           </div>
         </Link>
-        <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-mono font-semibold text-primary mb-3">
+        <Badge variant="outline" className="gap-1.5 border-primary/20 bg-primary/5 text-primary mb-3">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>Security Verification</span>
-        </div>
+        </Badge>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
           Studio Access
         </h1>

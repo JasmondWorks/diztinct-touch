@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { Button } from "@/components/ui/button";
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard, exact: true },
@@ -91,13 +92,14 @@ export function AdminSidebar() {
         </Link>
 
         <form action={logoutAdminAction}>
-          <button
+          <Button
             type="submit"
-            className="w-full flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-destructive hover:bg-destructive/10 transition-all cursor-pointer"
+            variant="ghost"
+            className="w-full justify-start gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive transition-all"
           >
             <LogOut className="h-4 w-4" />
             <span>Lock Admin (Logout)</span>
-          </button>
+          </Button>
         </form>
       </div>
     </aside>

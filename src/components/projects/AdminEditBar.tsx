@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Project } from "@/types/project";
 import { togglePublishAction } from "@/actions/projects";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Edit3 } from "lucide-react";
 
 export function AdminEditBar({ project }: { project: Project }) {
   const router = useRouter();
@@ -23,48 +26,41 @@ export function AdminEditBar({ project }: { project: Project }) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 animate-slideUp">
-      <div className="bg-[#121212]/95 backdrop-blur-xl border border-[#C9A84C]/40 shadow-2xl rounded-2xl p-3 sm:px-4 sm:py-3 flex items-center gap-3 sm:gap-4 text-xs font-mono text-[#F9F6F0]">
-        <div className="flex items-center gap-2 pr-2 border-r border-white/10">
-          <span className="w-2 h-2 rounded-full bg-[#C9A84C] animate-pulse" />
-          <span className="font-semibold text-[#C9A84C] hidden sm:inline">
+      <div className="bg-card/95 backdrop-blur-xl border border-primary/40 shadow-2xl rounded-2xl p-2.5 sm:px-4 sm:py-2.5 flex items-center gap-3 text-xs font-mono text-foreground">
+        <div className="flex items-center gap-2 pr-2 border-r border-border/80">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="font-semibold text-primary hidden sm:inline">
             ADMIN VIEW
           </span>
-          <span className="text-[10px] text-[#888]">
+          <Badge variant="outline" className="text-[10px] font-mono border-primary/20 bg-primary/5 text-primary">
             {project.projectCode || "DT-PROJ"}
-          </span>
+          </Badge>
         </div>
 
-        <button
+        <Button
           type="button"
+          variant={project.isPublished ? "emerald" : "outline"}
+          size="sm"
           onClick={handleToggle}
           disabled={isPending}
-          className={`px-2.5 py-1 rounded text-[10px] uppercase font-mono transition-all ${
-            project.isPublished
-              ? "bg-emerald-950/80 text-emerald-300 border border-emerald-800/60 hover:bg-emerald-900"
-              : "bg-amber-950/80 text-amber-300 border border-amber-800/60 hover:bg-amber-900"
-          }`}
+          className="h-6 rounded-full text-[10px] uppercase font-mono px-2.5"
           title="Click to toggle publish status"
         >
           {project.isPublished ? "● Live (Visible)" : "○ Draft (Hidden)"}
-        </button>
+        </Button>
 
-        <Link
-          href={`/admin/projects/${project.id}/edit`}
-          className="bg-[#C9A84C] text-[#0A0A0A] font-semibold px-3 py-1 rounded-lg hover:bg-[#D4B55E] transition-colors flex items-center gap-1.5"
-        >
-          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-          </svg>
-          <span>Edit Project</span>
-        </Link>
+        <Button asChild size="sm" className="h-7 text-xs font-mono gap-1.5 shadow-xs">
+          <Link href={`/admin/projects/${project.id}/edit`}>
+            <Edit3 className="w-3.5 h-3.5" />
+            <span>Edit Project</span>
+          </Link>
+        </Button>
 
-        <Link
-          href="/admin"
-          className="text-[#888] hover:text-[#FFF] transition-colors hidden md:inline"
-          title="Go to Admin Dashboard"
-        >
-          Dashboard
-        </Link>
+        <Button variant="ghost" size="sm" asChild className="h-7 text-xs font-mono text-muted-foreground hover:text-foreground hidden md:inline-flex">
+          <Link href="/admin">
+            Dashboard
+          </Link>
+        </Button>
       </div>
     </div>
   );

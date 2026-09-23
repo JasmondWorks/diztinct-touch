@@ -3,24 +3,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-xs font-mono font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A84C] disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none cursor-pointer",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-xs font-mono font-medium transition-all focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary/20 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none cursor-pointer",
   {
     variants: {
       variant: {
         default:
-          "bg-[#C9A84C] text-[#0A0A0A] font-semibold hover:bg-[#D4B55E] shadow-sm",
+          "bg-primary text-primary-foreground font-semibold hover:bg-primary/90 shadow-sm",
         secondary:
-          "bg-white/5 text-[#F9F6F0] hover:bg-white/10 border border-white/10",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border",
         outline:
-          "border border-white/15 bg-transparent hover:border-[#C9A84C]/50 hover:text-[#C9A84C] text-[#DDD]",
+          "border border-border/80 bg-card/60 hover:border-primary/50 hover:text-primary text-foreground",
         ghost:
-          "hover:bg-white/5 hover:text-[#F9F6F0] text-[#8A8A8A]",
+          "hover:bg-muted/60 hover:text-foreground text-muted-foreground",
         destructive:
-          "bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/30",
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 border border-destructive/30",
         link:
-          "text-[#C9A84C] underline-offset-4 hover:underline p-0 h-auto",
+          "text-primary underline-offset-4 hover:underline p-0 h-auto",
         emerald:
-          "bg-[#25D366] text-black font-semibold hover:bg-[#20b858] shadow-sm",
+          "bg-emerald-500 text-white font-semibold hover:bg-emerald-600 shadow-sm",
       },
       size: {
         default: "h-10 px-4 py-2",

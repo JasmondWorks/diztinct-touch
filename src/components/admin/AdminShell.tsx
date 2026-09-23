@@ -25,6 +25,7 @@ import {
   PanelLeftOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard, exact: true },
@@ -109,28 +110,32 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
             {/* Desktop Collapse / Expand Button */}
             {!desktopCollapsed && (
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="icon"
                 onClick={toggleDesktopCollapse}
                 title="Collapse sidebar"
-                className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors cursor-pointer"
+                className="h-8 w-8 text-muted-foreground hover:text-foreground"
               >
                 <PanelLeftClose className="w-4 h-4" />
-              </button>
+              </Button>
             )}
           </div>
 
           {/* Collapsed Expand Toggle */}
           {desktopCollapsed && (
             <div className="flex justify-center">
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="icon"
                 onClick={toggleDesktopCollapse}
                 title="Expand sidebar"
-                className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors cursor-pointer"
+                className="h-8 w-8 text-muted-foreground hover:text-foreground"
               >
                 <PanelLeftOpen className="w-4 h-4 text-primary" />
-              </button>
+              </Button>
             </div>
           )}
 
@@ -195,17 +200,18 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
           {/* Logout button */}
           <form action={logoutAdminAction}>
-            <button
+            <Button
               type="submit"
+              variant="ghost"
               title={desktopCollapsed ? "Lock Admin" : undefined}
               className={cn(
-                "w-full flex items-center rounded-xl text-xs font-medium text-destructive hover:bg-destructive/10 transition-all cursor-pointer",
-                desktopCollapsed ? "justify-center p-2.5" : "gap-2.5 px-3.5 py-2"
+                "w-full text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive transition-all",
+                desktopCollapsed ? "justify-center p-2.5 h-10" : "justify-start gap-2.5 px-3.5 py-2"
               )}
             >
               <LogOut className="h-4 w-4 shrink-0" />
               {!desktopCollapsed && <span>Lock Admin</span>}
-            </button>
+            </Button>
           </form>
         </div>
       </aside>
@@ -241,14 +247,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                   </div>
                 </div>
 
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors cursor-pointer"
+                  className="h-9 w-9 text-muted-foreground hover:text-foreground"
                   aria-label="Close navigation"
                 >
                   <X className="w-5 h-5" />
-                </button>
+                </Button>
               </div>
 
               {/* Navigation Links */}
@@ -297,13 +305,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               </Link>
 
               <form action={logoutAdminAction}>
-                <button
+                <Button
                   type="submit"
-                  className="w-full flex items-center gap-2.5 rounded-xl px-4 py-2.5 text-xs font-medium text-destructive hover:bg-destructive/10 transition-all cursor-pointer"
+                  variant="ghost"
+                  className="w-full justify-start gap-2.5 px-4 py-2.5 text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Lock Admin</span>
-                </button>
+                </Button>
               </form>
             </div>
           </div>
@@ -319,14 +328,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           {/* Left section: Hamburger on mobile / Breadcrumbs on desktop */}
           <div className="flex items-center gap-3">
             {/* Mobile hamburger button */}
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="icon"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation menu"
-              className="md:hidden flex items-center justify-center h-9 w-9 rounded-xl border border-border bg-card/80 text-foreground hover:border-primary/40 transition-colors cursor-pointer"
+              className="md:hidden h-9 w-9"
             >
               <Menu className="w-5 h-5" />
-            </button>
+            </Button>
 
             {/* Mobile Brand indicator */}
             <div className="md:hidden flex items-center gap-2">

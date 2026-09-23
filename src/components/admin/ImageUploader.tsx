@@ -6,6 +6,8 @@ import { uploadProjectMediaAction } from "@/actions/upload";
 import { compressClientImage } from "@/lib/client-compress";
 import { Upload, X, Loader2, CheckCircle2, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 interface ImageUploaderProps {
   label: string;
@@ -90,12 +92,12 @@ export function ImageUploader({
           {label}
         </label>
         {stats && (
-          <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-mono text-emerald-400">
+          <Badge variant="success" className="gap-1 text-[10px] font-mono">
             <CheckCircle2 className="h-3 w-3" />
             <span>
               {stats.originalKb}KB ➔ {stats.optimizedKb}KB ({stats.savedPercent}% saved)
             </span>
-          </span>
+          </Badge>
         )}
       </div>
 
@@ -116,25 +118,31 @@ export function ImageUploader({
             className="object-cover"
           />
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-            <button
+            <Button
               type="button"
+              variant="secondary"
+              size="sm"
               onClick={() => fileInputRef.current?.click()}
-              className="rounded-xl bg-background/90 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-background"
+              className="bg-background/90 text-foreground hover:bg-background"
             >
               Replace Image
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="destructive"
+              size="sm"
               onClick={handleRemove}
-              className="rounded-xl bg-destructive px-3 py-1.5 text-xs font-semibold text-white hover:bg-destructive/90"
+              className="gap-1"
             >
-              <X className="h-3.5 w-3.5 inline mr-1" />
+              <X className="h-3.5 w-3.5" />
               Remove
-            </button>
+            </Button>
           </div>
-          <div className="absolute bottom-2 left-2 bg-black/70 backdrop-blur-md px-2 py-1 rounded-md text-[10px] font-mono text-white flex items-center gap-1">
-            <CheckCircle2 className="h-3 w-3 text-emerald-400" />
-            <span>Stored in Neon S3 (WebP)</span>
+          <div className="absolute bottom-2 left-2">
+            <Badge variant="secondary" className="gap-1 bg-black/70 backdrop-blur-md text-[10px] font-mono text-white border-white/10">
+              <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+              <span>Stored in Neon S3 (WebP)</span>
+            </Badge>
           </div>
         </div>
       ) : (
