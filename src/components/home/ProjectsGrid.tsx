@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { Project, ArchitecturalCategory } from "@/types/project";
 import { architecturalProjects } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { Search, X, Filter, SlidersHorizontal, Sparkles, Building2 } from "lucide-react";
+import { Search, X, Filter, SlidersHorizontal, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const CATEGORIES: ("All" | ArchitecturalCategory)[] = [

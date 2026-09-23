@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { uploadProjectMediaAction } from "@/actions/upload";
 import { compressClientImage } from "@/lib/client-compress";
-import { Upload, X, Loader2, Sparkles, CheckCircle2, Image as ImageIcon } from "lucide-react";
+import { Upload, X, Loader2, CheckCircle2, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ImageUploaderProps {
@@ -91,7 +91,7 @@ export function ImageUploader({
         </label>
         {stats && (
           <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-mono text-emerald-400">
-            <Sparkles className="h-3 w-3" />
+            <CheckCircle2 className="h-3 w-3" />
             <span>
               {stats.originalKb}KB ➔ {stats.optimizedKb}KB ({stats.savedPercent}% saved)
             </span>

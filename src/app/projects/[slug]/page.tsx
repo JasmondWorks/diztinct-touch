@@ -24,7 +24,6 @@ import {
   ExternalLink,
   ArrowRight,
   CheckCircle2,
-  Sparkles,
   Layers,
   ArrowUpRight,
   Share2,
@@ -301,7 +300,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {project.futureImprovements && project.futureImprovements.length > 0 && (
               <div className="rounded-2xl border border-border bg-card/60 p-6 space-y-4">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-primary" />
+                  <Layers className="h-4 w-4 text-primary" />
                   <h3 className="text-base font-bold uppercase tracking-wider text-foreground-heading">
                     Future Phases &amp; Planned Expansions
                   </h3>

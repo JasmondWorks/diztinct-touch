@@ -53,6 +53,7 @@ All agents, contributors, and developers working on this codebase must strictly 
   - **`Dialog` (`src/components/ui/dialog.tsx`)**: Accessible modal dialog powered by `@radix-ui/react-dialog`.
 - **Form Validation:** All form submissions must define and validate against a **Zod schema** (e.g., `leadSchema`) before dispatching Server Actions.
 - **Design Tokens:** Maintain the firm's luxury dark-architectural aesthetic: obsidian black (`#080808` / `#0A0A0A`), warm architectural gold (`#C9A84C`), elevated surfaces (`#121212`), muted borders (`border-white/5` to `border-white/15`), and ivory text (`#F9F6F0`).
+- **Zero Sparkles Icons Policy:** **Never use `Sparkles` or `Sparkle` icons anywhere in the application.** As a registered contemporary architectural practice (*"Remarkable design, long lasting"*), the portfolio must convey structural gravitas, tectonic precision, and professional credibility. Never use novelty or AI-trope sparkles. Always substitute with architectural iconography (`Compass`, `Building2`, `Layers`, `Ruler`, `HardHat`, `CheckCircle2`, `Activity`) or minimalist status dots.
 
 ### 4. Prisma ORM for Database Access
 - **Constraint:** All database operations against PostgreSQL (Neon) must use **Prisma ORM**.
@@ -99,5 +100,13 @@ All agents, contributors, and developers working on this codebase must strictly 
   - `src/services/analytics/`: Real-time page views, project views, and WhatsApp consultation telemetry.
   - `src/services/auth/`: Two-token session management, PIN verification, and silent regeneration.
   - `src/services/media/`: Neon S3 storage, client-side compression, and server-side Sharp WebP optimization.
+
+### 8. Strict Iconography & Brand Integrity (No Sparkles Icons)
+- **Constraint:** **Strict ban on all `Sparkles` / `Sparkle` icons.**
+  - Sparkles icons degrade the architectural gravitas of DIZTINCT TOUCH HOME DESIGN and make the practice look like a casual AI wrapper.
+  - Permitted visual metaphors:
+    - Structural & Drafting: `Compass`, `Ruler`, `Layers`, `Building2`, `HardHat`.
+    - Verification & Status: `CheckCircle2`, `ShieldCheck`, `Activity`, pulsing status dot indicators.
+    - Media & Interaction: `Camera`, `FileText`, `ArrowRight`, `Eye`.
 
 

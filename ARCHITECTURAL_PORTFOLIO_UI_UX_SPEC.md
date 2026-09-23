@@ -703,7 +703,6 @@ export function ProjectCard({ project }: { project: Project }) {
   ```tsx
   <div className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm">
     <span className="h-2 w-2 rounded-full bg-red-500 animate-status-pulse" />
-    <Sparkles className="h-3.5 w-3.5 opacity-70" />
     Available for Design & Masterplanning Commissions
   </div>
   ```

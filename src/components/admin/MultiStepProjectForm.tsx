@@ -9,7 +9,7 @@ import {
   Check,
   ChevronRight,
   ChevronLeft,
-  Sparkles,
+  CheckCircle2,
   Building2,
   FileText,
   Camera,
@@ -33,7 +33,7 @@ const STEPS = [
   { id: 2, title: "Design Statement & Scope", icon: FileText },
   { id: 3, title: "Media & Drawings", icon: Camera },
   { id: 4, title: "Metrics & Engineering", icon: Activity },
-  { id: 5, title: "Review & Publish", icon: Sparkles },
+  { id: 5, title: "Review & Publish", icon: CheckCircle2 },
 ];
 
 const CATEGORIES: ArchitecturalCategory[] = [

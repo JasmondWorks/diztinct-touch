@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/types/project";
 import { architecturalProjects } from "@/data/projects";
-import { ArrowRight, Star, ExternalLink, Compass, Camera, Sparkles, Building } from "lucide-react";
+import { ArrowRight, Star, ExternalLink, Compass, Camera, Building } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FeaturedProjects() {

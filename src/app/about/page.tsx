@@ -7,7 +7,6 @@ import {
   HardHat,
   ArrowRight,
   Layers,
-  Sparkles,
   PenTool,
   Eye,
   Building2,

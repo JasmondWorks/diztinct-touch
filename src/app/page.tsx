@@ -3,7 +3,7 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { ProjectsGrid } from "@/components/home/ProjectsGrid";
 import { AboutSection } from "@/components/home/AboutSection";
 import Link from "next/link";
-import { ArrowRight, Compass, Sparkles } from "lucide-react";
+import { ArrowRight, Compass } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function HomePage() {
       <section className="border-t border-border bg-card/60 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1 text-xs font-mono font-semibold text-primary">
-            <Sparkles className="h-3.5 w-3.5" />
+            <Compass className="h-3.5 w-3.5" />
             <span>Open for Commissions</span>
           </div>
 
