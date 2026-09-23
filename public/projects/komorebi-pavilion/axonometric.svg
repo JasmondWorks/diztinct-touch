@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8" />
+    </pattern>
+    <linearGradient id="carmineGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#cc2b43" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#db4d24" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background grid -->
+  <rect width="800" height="500" fill="url(#grid)" />
+
+  <!-- Drawing Title & Legend -->
+  <g font-family="monospace" font-size="11" fill="currentColor" opacity="0.6">
+    <text x="30" y="35" font-weight="bold" letter-spacing="1.5">FIG 01.1 // AXONOMETRIC EXPLODED STRUCTURAL SYSTEM</text>
+    <text x="30" y="52">SCALE: 1:100 @ A1 • RECIPROCAL VORONOI TIMBER LATTICE &amp; RAMMED EARTH</text>
+    <text x="730" y="35" text-anchor="end">REV. 04</text>
+  </g>
+
+  <!-- Ground Plane Grid -->
+  <g stroke="currentColor" stroke-opacity="0.2" stroke-width="1">
+    <polygon points="150,380 400,470 680,350 430,280" />
+    <line x1="280" y1="330" x2="540" y2="410" stroke-dasharray="4 4" />
+    <line x1="330" y1="420" x2="560" y2="310" stroke-dasharray="4 4" />
+  </g>
+
+  <!-- Rammed Earth Shear Pylons -->
+  <g stroke="#cc2b43" stroke-width="1.8" fill="#cc2b43" fill-opacity="0.08">
+    <!-- Pylon 1 -->
+    <polygon points="260,340 300,355 300,240 260,225" />
+    <polygon points="300,355 340,340 340,225 300,240" fill-opacity="0.15" />
+    <polygon points="260,225 300,240 340,225 300,210" fill-opacity="0.25" />
+
+    <!-- Pylon 2 -->
+    <polygon points="460,370 500,385 500,270 460,255" />
+    <polygon points="500,385 540,370 540,255 500,270" fill-opacity="0.15" />
+    <polygon points="460,255 500,270 540,255 500,240" fill-opacity="0.25" />
+
+    <!-- Pylon 3 (North) -->
+    <polygon points="380,290 410,300 410,200 380,190" stroke-opacity="0.5" />
+    <polygon points="410,300 440,290 440,190 410,200" stroke-opacity="0.5" fill-opacity="0.1" />
+
+    <!-- Pylon 4 (East) -->
+    <polygon points="520,310 550,320 550,220 520,210" stroke-opacity="0.5" />
+    <polygon points="550,320 580,310 580,210 550,220" stroke-opacity="0.5" fill-opacity="0.1" />
+  </g>
+
+  <!-- Exploded Reciprocal Voronoi Canopy (Hovering above) -->
+  <g stroke="currentColor" stroke-opacity="0.75" stroke-width="1.4">
+    <!-- Canopy perimeter polygon -->
+    <polygon points="180,180 390,260 650,150 440,80" fill="url(#carmineGrad)" fill-opacity="0.12" stroke="#cc2b43" stroke-width="2" />
+
+    <!-- Reciprocal Timber Grid Lines -->
+    <line x1="220" y1="165" x2="420" y2="190" />
+    <line x1="300" y1="225" x2="520" y2="135" />
+    <line x1="390" y1="260" x2="440" y2="80" stroke-dasharray="3 3" stroke-opacity="0.4" />
+    <line x1="270" y1="130" x2="570" y2="190" />
+    <line x1="340" y1="110" x2="480" y2="230" />
+    <line x1="230" y1="195" x2="590" y2="120" />
+
+    <!-- Oculus Center Ring -->
+    <ellipse cx="420" cy="170" rx="35" ry="18" fill="none" stroke="#db4d24" stroke-width="2" />
+    <circle cx="420" cy="170" r="3" fill="#db4d24" />
+  </g>
+
+  <!-- Exploded Axis Lines (connecting canopy to pylons) -->
+  <g stroke="#db4d24" stroke-dasharray="3 3" stroke-width="1.2" opacity="0.7">
+    <line x1="300" y1="210" x2="300" y2="180" />
+    <line x1="500" y1="240" x2="500" y2="175" />
+    <line x1="410" y1="190" x2="410" y2="140" />
+  </g>
+
+  <!-- Callout Labels & Dimensions -->
+  <g font-family="monospace" font-size="10" fill="currentColor">
+    <!-- Callout 1 -->
+    <line x1="420" y1="152" x2="420" y2="95" stroke="#cc2b43" stroke-width="1" />
+    <line x1="420" y1="95" x2="490" y2="95" stroke="#cc2b43" stroke-width="1" />
+    <circle cx="420" cy="152" r="3" fill="#cc2b43" />
+    <text x="498" y="92" font-weight="bold" fill="#cc2b43">01. OPERABLE OCULUS</text>
+    <text x="498" y="105" opacity="0.7">Automated stack ventilation zenith</text>
+
+    <!-- Callout 2 -->
+    <line x1="210" y1="170" x2="140" y2="170" stroke="currentColor" stroke-width="1" opacity="0.6" />
+    <line x1="140" y1="170" x2="140" y2="140" stroke="currentColor" stroke-width="1" opacity="0.6" />
+    <circle cx="210" cy="170" r="3" fill="#cc2b43" />
+    <text x="50" y="132" font-weight="bold">02. RECIPROCAL DLT LATTICE</text>
+    <text x="50" y="145" opacity="0.7">Felled Japanese Larch timber</text>
+
+    <!-- Callout 3 -->
+    <line x1="300" y1="290" x2="180" y2="290" stroke="currentColor" stroke-width="1" opacity="0.6" />
+    <circle cx="300" cy="290" r="3" fill="#cc2b43" />
+    <text x="50" y="285" font-weight="bold">03. RAMMED EARTH PYLON</text>
+    <text x="50" y="298" opacity="0.7">350mm thermal mass core (12h lag)</text>
+
+    <!-- Callout 4 -->
+    <line x1="520" y1="360" x2="620" y2="360" stroke="currentColor" stroke-width="1" opacity="0.6" />
+    <circle cx="520" cy="360" r="3" fill="#cc2b43" />
+    <text x="630" y="356" font-weight="bold">04. ELEVATED BEDROCK PAD</text>
+    <text x="630" y="369" opacity="0.7">Zero root disruption alpine foundation</text>
+  </g>
+</svg>

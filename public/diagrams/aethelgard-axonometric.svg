@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="gridTower" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#gridTower)" />
+
+  <g font-family="monospace" font-size="11" fill="currentColor" opacity="0.6">
+    <text x="30" y="35" font-weight="bold" letter-spacing="1.5">FIG 03.1 // HYBRID TIMBER DIAGRID &amp; CLT CORE AXONOMETRIC</text>
+    <text x="30" y="52">SCALE: 1:200 @ A1 • AETHELGARD COMMERCIAL HIGH-RISE (16 STOREYS)</text>
+    <text x="730" y="35" text-anchor="end">REV. 03</text>
+  </g>
+
+  <!-- Central CLT Shear Core -->
+  <g stroke="#cc2b43" stroke-width="2" fill="#cc2b43" fill-opacity="0.12">
+    <polygon points="360,420 440,450 440,110 360,80" />
+    <polygon points="440,450 500,425 500,85 440,110" fill-opacity="0.2" />
+    <polygon points="360,80 440,110 500,85 420,55" fill-opacity="0.3" />
+  </g>
+
+  <!-- High-Rise Floor Plates (CLT Slabs) -->
+  <g stroke="currentColor" stroke-opacity="0.3" stroke-width="1.2">
+    <!-- Level 16 -->
+    <polygon points="280,120 440,180 580,125 420,65" fill="currentColor" fill-opacity="0.05" />
+    <!-- Level 12 Sky Garden -->
+    <polygon points="280,200 440,260 580,205 420,145" fill="#db4d24" fill-opacity="0.15" stroke="#db4d24" stroke-width="1.5" />
+    <!-- Level 8 -->
+    <polygon points="280,280 440,340 580,285 420,225" fill="currentColor" fill-opacity="0.05" />
+    <!-- Level 4 Sky Garden -->
+    <polygon points="280,360 440,420 580,365 420,305" fill="#db4d24" fill-opacity="0.15" stroke="#db4d24" stroke-width="1.5" />
+    <!-- Ground Level -->
+    <polygon points="260,440 440,510 600,445 420,380" fill="currentColor" fill-opacity="0.08" stroke-width="1.8" />
+  </g>
+
+  <!-- Perimeter Glulam Columns & Diagrid -->
+  <g stroke="#cc2b43" stroke-width="1.6" opacity="0.8">
+    <line x1="280" y1="120" x2="280" y2="440" />
+    <line x1="360" y1="150" x2="360" y2="475" />
+    <line x1="440" y1="180" x2="440" y2="510" />
+    <line x1="510" y1="152" x2="510" y2="477" />
+    <line x1="580" y1="125" x2="580" y2="445" />
+
+    <!-- Diagrid cross braces -->
+    <line x1="280" y1="200" x2="360" y2="230" stroke-dasharray="3 3" />
+    <line x1="360" y1="230" x2="440" y2="200" stroke-dasharray="3 3" />
+    <line x1="440" y1="200" x2="510" y2="225" stroke-dasharray="3 3" />
+    <line x1="510" y1="225" x2="580" y2="205" stroke-dasharray="3 3" />
+  </g>
+
+  <!-- Callouts -->
+  <g font-family="monospace" font-size="10" fill="currentColor">
+    <line x1="440" y1="95" x2="620" y2="95" stroke="#cc2b43" stroke-width="1" />
+    <circle cx="440" cy="95" r="3" fill="#cc2b43" />
+    <text x="630" y="90" font-weight="bold" fill="#cc2b43">01. CONTINUOUS CLT SHEAR CORE</text>
+    <text x="630" y="104" opacity="0.7">16-Storey vertical egress &amp; elevator trunk</text>
+
+    <line x1="440" y1="260" x2="620" y2="260" stroke="#db4d24" stroke-width="1" />
+    <circle cx="440" cy="260" r="3" fill="#db4d24" />
+    <text x="630" y="255" font-weight="bold" fill="#db4d24">02. BIOPHILIC SKY GARDEN (L12)</text>
+    <text x="630" y="269" opacity="0.7">Natural thermal buffer &amp; vertical atrium</text>
+
+    <line x1="280" y1="320" x2="160" y2="320" stroke="currentColor" stroke-width="1" opacity="0.6" />
+    <circle cx="280" cy="320" r="3" fill="#cc2b43" />
+    <text x="30" y="315" font-weight="bold">03. GL32C GLULAM DIAGRID</text>
+    <text x="30" y="329" opacity="0.7">Baltic wind torsion moment frame</text>
+  </g>
+</svg>

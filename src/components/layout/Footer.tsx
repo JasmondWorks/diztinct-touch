@@ -1,0 +1,146 @@
+import Link from "next/link";
+import { siteConfig } from "@/data/siteConfig";
+import { ArrowUpRight, Compass, MapPin } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer className="border-t border-border bg-card/40 pt-16 pb-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:gap-12">
+          {/* Col 1: Studio Monogram & Identity */}
+          <div className="space-y-4 md:col-span-2">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-sm shadow-md">
+                {siteConfig.monogram}
+              </div>
+              <div>
+                <h3 className="text-base font-bold tracking-tight text-foreground-heading">
+                  {siteConfig.studioName}
+                </h3>
+                <p className="text-xs text-muted-foreground font-mono">
+                  {siteConfig.title}
+                </p>
+              </div>
+            </div>
+            <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
+              {siteConfig.bio}
+            </p>
+            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+              <MapPin className="h-3.5 w-3.5 text-primary" />
+              <span>{siteConfig.coordinates}</span>
+            </div>
+          </div>
+
+          {/* Col 2: Navigation Links */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-foreground-heading">
+              Index
+            </h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link
+                  href="/#featured"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Featured Projects
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#projects"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  All Projects
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/gallery"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Photo Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  About Our Practice
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Inquiries &amp; Consultations
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Inquiries & Offices */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-foreground-heading">
+              Office Locations
+            </h4>
+            <div className="space-y-2 text-xs text-muted-foreground">
+              <p>
+                <span className="font-semibold text-foreground">Studios:</span>{" "}
+                {siteConfig.location}
+              </p>
+              <p>
+                <span className="font-semibold text-foreground">Direct Email:</span>{" "}
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="hover:text-primary transition-colors underline decoration-dotted"
+                >
+                  {siteConfig.email}
+                </a>
+              </p>
+              <p>
+                <span className="font-semibold text-foreground">Phone:</span>{" "}
+                {siteConfig.phone}
+              </p>
+            </div>
+            <div className="pt-2 flex flex-wrap gap-2">
+              {siteConfig.socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-primary/40 hover:text-primary transition-all"
+                >
+                  <span>{social.name}</span>
+                  <ArrowUpRight className="h-3 w-3" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 flex flex-col gap-3 border-t border-border/80 pt-6 text-xs text-muted-foreground font-mono">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <p>
+              © {new Date().getFullYear()} {siteConfig.registeredBusinessName ?? siteConfig.studioName}
+              {siteConfig.registrationNumber && ` (Reg: ${siteConfig.registrationNumber})`}. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2">
+              <Compass className="h-3.5 w-3.5 text-primary" />
+              <span>Registered Architectural Practice</span>
+            </div>
+          </div>
+          {siteConfig.accreditations && siteConfig.accreditations.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-muted-foreground/80">
+              <span className="font-semibold text-foreground">Accreditations:</span>
+              {siteConfig.accreditations.join(" • ")}
+            </div>
+          )}
+        </div>
+      </div>
+    </footer>
+  );
+}

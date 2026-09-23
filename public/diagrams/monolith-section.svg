@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="gridMonolith" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="0.8" />
+    </pattern>
+    <linearGradient id="concreteGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#cc2b43" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#db4d24" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#gridMonolith)" />
+
+  <g font-family="monospace" font-size="11" fill="currentColor" opacity="0.6">
+    <text x="30" y="35" font-weight="bold" letter-spacing="1.5">FIG 02.1 // STRUCTURAL CLIFF SECTION &amp; POST-TENSION TENDONS</text>
+    <text x="30" y="52">SCALE: 1:75 @ A1 • 9.2M CANTILEVER MOMENT EQUILIBRIUM &amp; ROCK ANCHORS</text>
+    <text x="730" y="35" text-anchor="end">REV. 02</text>
+  </g>
+
+  <!-- Cliff Rock Profile -->
+  <path d="M 50,440 L 260,440 L 380,310 L 460,280 L 520,380 L 580,440 L 760,440" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="2 2" fill="none" />
+  <path d="M 50,440 L 260,440 L 380,310 L 460,280 L 520,380 L 580,440 L 760,440 L 760,470 L 50,470 Z" fill="currentColor" fill-opacity="0.03" />
+
+  <!-- Subterranean Rock Anchors -->
+  <g stroke="#db4d24" stroke-width="1.6" stroke-dasharray="4 3">
+    <line x1="280" y1="280" x2="210" y2="420" />
+    <line x1="330" y1="280" x2="270" y2="430" />
+    <line x1="380" y1="280" x2="350" y2="440" />
+  </g>
+
+  <!-- House Main Substructure -->
+  <polygon points="240,280 430,280 430,160 240,160" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.06" />
+
+  <!-- The 9.2m Post-Tensioned Cantilever Volume -->
+  <polygon points="430,250 670,250 670,160 430,160" stroke="#cc2b43" stroke-width="2.5" fill="url(#concreteGrad)" fill-opacity="0.1" />
+
+  <!-- Cantilever Dimension Line -->
+  <g stroke="#cc2b43" stroke-width="1">
+    <line x1="430" y1="130" x2="670" y2="130" />
+    <line x1="430" y1="120" x2="430" y2="140" />
+    <line x1="670" y1="120" x2="670" y2="140" />
+    <text x="550" y="122" font-family="monospace" font-size="11" font-weight="bold" fill="#cc2b43" text-anchor="middle">9.20 METERS CLEAR SPAN</text>
+  </g>
+
+  <!-- Tension Cable Path (Internal Parabolic Tendon) -->
+  <path d="M 260,260 Q 430,170 660,210" stroke="#cc2b43" stroke-width="2" stroke-dasharray="5 3" fill="none" />
+
+  <!-- Microclimate Internal Courtyard -->
+  <rect x="290" y="160" width="80" height="90" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 3" fill="none" />
+  <text x="330" y="210" font-family="monospace" font-size="9" text-anchor="middle" fill="currentColor" opacity="0.6">COURTYARD</text>
+
+  <!-- Callouts -->
+  <g font-family="monospace" font-size="10" fill="currentColor">
+    <line x1="620" y1="205" x2="710" y2="205" stroke="#cc2b43" stroke-width="1" />
+    <circle cx="620" cy="205" r="3" fill="#cc2b43" />
+    <text x="715" y="200" font-weight="bold" fill="#cc2b43">PARABOLIC TENDON</text>
+    <text x="715" y="214" opacity="0.7">Post-tensioned unbonded strands</text>
+
+    <line x1="240" y1="360" x2="160" y2="360" stroke="#db4d24" stroke-width="1" />
+    <circle cx="240" cy="360" r="3" fill="#db4d24" />
+    <text x="60" y="355" font-weight="bold" fill="#db4d24">DEEP ROCK ANCHORS</text>
+    <text x="60" y="370" opacity="0.7">32m prestressed basalt dowels</text>
+  </g>
+</svg>

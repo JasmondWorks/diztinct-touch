@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS – Architectural Carmine & Terracotta Palette
+   Option A (Venetian Carmine & Warm Terracotta)
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --background: 0 0% 100%; /* Pure white */
+  --foreground: 240 10% 12%; /* Charcoal/soft black for readable text */
+  --foreground-heading: 240 10% 8%; /* Deep black for headings */
+
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 12%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 12%;
+
+  /* Brand - Architectural Carmine & Terracotta (WCAG AAA compliant on white) */
+  --primary: 354 70% 48%; /* Deep Architectural Carmine / Venetian Red #cc2b43 */
+  --primary-foreground: 0 0% 100%; /* Pure white text on primary background */
+
+  --accent: 14 78% 50%; /* Architectural Terracotta / Burnt Sienna #db4d24 */
+  --accent-foreground: 240 10% 8%;
+
+  /* Neutrals */
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 10% 12%;
+
+  --muted: 240 5% 96%; /* Very soft grey */
+  --muted-foreground: 240 5% 35%; /* Darker soft grey for readable secondary text */
+
+  /* Semantic */
+  --destructive: 0 84% 45%;
+  --destructive-foreground: 0 0% 100%;
+
+  --success: 142 70% 35%;
+
+  /* Borders - Soft, visible but low contrast */
+  --border: 240 5% 90%; /* Visible light grey */
+  --input: 240 5% 90%;
+  --ring: 354 70% 48%;
+
+  /* Geometry */
+  --radius: 0.75rem; /* 12px rounded for modern premium feel */
+
+  /* Gradients - Deep Carmine to Venetian Red to Architectural Terracotta */
+  --gradient-1: #9f1239; /* rose-800 / deep garnet */
+  --gradient-2: #be123c; /* rose-700 / carmine crimson */
+  --gradient-3: #c2410c; /* orange-700 / terracotta rust */
+}
+
+.dark {
+  --background: 240 6% 4%; /* #09090b Obsidian */
+  --foreground: 240 5% 90%;
+  --foreground-heading: 0 0% 100%;
+
+  --card: 240 5% 9%; /* #141417 Elevated dark card */
+  --card-foreground: 240 5% 90%;
+
+  --popover: 240 5% 9%;
+  --popover-foreground: 240 5% 90%;
+
+  --primary: 354 84% 65%; /* Luminous Architectural Carmine-Rose #f25972 */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 240 4% 16%;
+  --secondary-foreground: 240 5% 90%;
+
+  --muted: 240 4% 12%;
+  --muted-foreground: 240 4% 60%;
+
+  --accent: 14 86% 65%; /* Luminous Terracotta Coral #f57b56 */
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 354 84% 65%;
+
+  /* Gradients - Luminous Rose-400 to Carmine-Red-400 to Warm Terracotta-400 */
+  --gradient-1: #fb7185; /* rose-400 */
+  --gradient-2: #f87171; /* red-400 */
+  --gradient-3: #fb923c; /* amber-orange-400 terracotta */
+}
+
+/* ============================================================
+   TAILWIND v4 THEME BRIDGE
+   Generates utility classes: bg-primary, text-foreground, etc.
+   ============================================================ */
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-heading: hsl(var(--foreground-heading));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* ============================================================
+   BASE RESETS & GLOBAL STYLES
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Selection */
+::selection {
+  background: hsl(354 84% 65% / 0.25);
+  color: white;
+}
+
+/* Focus Ring */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   SIGNATURE UTILITY CLASSES
+   ============================================================ */
+
+/* Static gradient text */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-1) 0%,
+    var(--gradient-2) 50%,
+    var(--gradient-3) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* Animated continuous gradient text */
+.gradient-text-animated {
+  background: linear-gradient(
+    90deg,
+    var(--gradient-1),
+    var(--gradient-2),
+    var(--gradient-3),
+    var(--gradient-2),
+    var(--gradient-1)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-x 6s linear infinite;
+  display: inline-block;
+}
+
+/* Glass surface */
+.glass {
+  background: hsl(var(--card) / 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid hsl(var(--border) / 0.7);
+}
+
+/* Hover glowing gradient border */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius) + 1px);
+  background: linear-gradient(135deg, #f87171, #fb923c, #fb7185);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Atmospheric Glow Orb */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Architectural Dot Grid Matrix */
+.dot-grid {
+  background-image: radial-gradient(
+    hsl(var(--border) / 0.6) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* Blueprint Grid */
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
