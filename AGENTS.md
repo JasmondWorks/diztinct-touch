@@ -1,45 +1,84 @@
-# AGENTS.md
+# AGENTS.md — DIZTINCT TOUCH HOME DESIGN
 
 ## Project Overview
 
-Briefly describe what this project does and the primary tech stack.
+**DIZTINCT TOUCH HOME DESIGN** is a registered contemporary architectural design and 3D visualization practice led by Mayowa. The portfolio web application showcases architectural projects (contemporary duplexes, bespoke villas, bungalows, commercial developments), interactive 3D virtual tours, 2D working drawings, client lead intake, construction site tracking, and an internal administrative management portal.
 
-- **Core Stack:** [e.g., Next.js 15, TypeScript, PostgreSQL, Tailwind]
-- **Package Manager:** [e.g., pnpm, npm, yarn]
+- **Core Stack:** Next.js 15 (App Router), React 19, TypeScript, Prisma ORM, Neon PostgreSQL, Neon S3 Storage, Sharp, Tailwind CSS v4, Class Variance Authority (CVA), Zod, Radix UI.
+- **Package Manager:** `npm`
+
+---
 
 ## Build & Test Commands
 
-Always use these commands to verify your changes. Do not guess commands.
+Always use these exact commands to verify changes:
 
-- **Install:** `pnpm install`
-- **Local Dev:** `pnpm dev`
-- **Run Tests:** `pnpm test`
-- **Lint & Fix:** `pnpm lint:fix`
-- **Build Project:** `pnpm build`
+- **Install:** `npm install`
+- **Prisma Client Generate:** `npx prisma generate`
+- **Prisma DB Sync:** `npx prisma db push`
+- **Type Check:** `npx tsc --noEmit`
+- **Build Project:** `npm run build`
+- **Dev Server:** `npm run dev`
 
-## Code Style & Architecture Guidelines
+---
 
-Follow these patterns strictly when writing or modifying code.
+## Critical Architectural Constraints & Guidelines
 
-- **Language:** TypeScript in strict mode. Prefer explicit types over `any`.
-- **Components:** Use functional components with named exports. Avoid default exports.
-- **State Management:** Use Zustand for global UI state; Server Actions for data fetching.
-- **Styling:** Use utility classes via Tailwind CSS. Do not write raw CSS files.
+All agents, contributors, and developers working on this codebase must strictly observe the following rules:
 
-## Testing Instructions
+### 1. 100% Server Components for All Top-Level Pages & Rich SEO Metadata
+- **Constraint:** Every top-level page (`src/app/**/page.tsx`) **must be a Server Component**.
+  - **NEVER** add `"use client"` to any `page.tsx` file.
+  - Page-level rendering must occur on the server for maximum SEO performance, OpenGraph social previews, and fast initial paint.
+- **Mandatory Metadata:**
+  - Every static page must export a descriptive `metadata: Metadata` object with `title`, `description`, `keywords`, and `openGraph`.
+  - Every dynamic page (e.g., `src/app/projects/[slug]/page.tsx`) must export `generateMetadata({ params }): Promise<Metadata>` that fetches data via Prisma and provides project-specific titles, descriptions, and cover render images.
+  - The root layout (`src/app/layout.tsx`) defines `metadataBase: new URL("https://diztincttouch.com")`.
 
-- **Location:** Place test files adjacent to the implementation file (e.g., `component.test.tsx`).
-- **Framework:** Use Vitest and React Testing Library.
-- **Coverage:** New features must include unit tests. Mock external API calls.
+### 2. Interactive UI Component Abstraction
+- **Constraint:** Any part of the UI requiring user interactivity (state, React hooks, event listeners, client animations, or browser APIs) **must be abstracted into its own descriptively named Client Component** (`"use client"`).
+- **Organization:**
+  - Place feature-specific interactive components in their dedicated directory under `src/components/<feature>/` (e.g. `src/components/contact/ContactForm.tsx`, `src/components/gallery/GalleryViewer.tsx`, `src/components/admin/AdminLoginKeypad.tsx`, `src/components/admin/ProjectsTable.tsx`, `src/components/admin/MultiStepProjectForm.tsx`).
+  - The Server Component page is solely responsible for server-side data fetching, metadata generation, and composing these interactive components.
 
-## Git & Commit Workflow
+### 3. Reusable UI Component System (`src/components/ui/`)
+- **Constraint:** **Primitive UI elements must never be duplicated or hardcoded inline.** Always import and reuse the centralized component primitives in `src/components/ui/`.
+- **Foundational Primitives:**
+  - **`Button` (`src/components/ui/button.tsx`)**: Built with `class-variance-authority` (CVA). Must use predefined variants (`default` gold, `secondary`, `outline`, `ghost`, `destructive`, `link`, `emerald`) and sizes (`sm`, `default`, `lg`, `icon`).
+  - **`InputField` (`src/components/ui/input-field.tsx`)**: Composite component featuring `<Label>` + `<Input>` + optional `<HelperText>` + `<ErrorMessage>`. Must support Zod schema validation errors.
+  - **`TextareaField` (`src/components/ui/textarea-field.tsx`)**: Multi-line field with integrated Zod error handling.
+  - **`SelectField` (`src/components/ui/select-field.tsx`)**: Form select with custom architectural chevron and Zod error state.
+  - **`Badge` (`src/components/ui/badge.tsx`)**: CVA-powered status badges (`default`, `gold`, `success`, `warning`, `destructive`, `outline`).
+  - **`Card` Family (`src/components/ui/card.tsx`)**: `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`.
+  - **`Dialog` (`src/components/ui/dialog.tsx`)**: Accessible modal dialog powered by `@radix-ui/react-dialog`.
+- **Form Validation:** All form submissions must define and validate against a **Zod schema** (e.g., `leadSchema`) before dispatching Server Actions.
+- **Design Tokens:** Maintain the firm's luxury dark-architectural aesthetic: obsidian black (`#080808` / `#0A0A0A`), warm architectural gold (`#C9A84C`), elevated surfaces (`#121212`), muted borders (`border-white/5` to `border-white/15`), and ivory text (`#F9F6F0`).
 
-- **Branching:** Base all feature branches on `main`.
-- **Commit Messages:** Follow Conventional Commits format (e.g., `feat(auth): add login validation`).
-- **PRs:** Ensure linting and tests pass locally before declaring a task finished.
+### 4. Prisma ORM for Database Access
+- **Constraint:** All database operations against PostgreSQL (Neon) must use **Prisma ORM**.
+  - Models are defined in `prisma/schema.prisma` (`Project`, `Lead`, `AnalyticsEvent`, `RefreshToken`).
+  - Always use the global singleton instance from `@/lib/prisma` to prevent connection exhaustion.
+  - **Never** write raw SQL queries when Prisma model methods (`prisma.<model>.findMany`, `create`, `update`, `delete`) are available.
+  - Keep `prisma/schema.prisma` synchronized with Neon via `npx prisma db push` and `npx prisma generate`.
 
-## Critical Boundaries & Constraints
+### 5. Two-Token Authentication Architecture
+- **Constraint:** Administrative security at `/admin` enforces a two-token session model:
+  1. **Refresh Token**:
+     - Lifespan: 7 days.
+     - Storage: Strictly in an `HttpOnly`, `Secure`, `SameSite=Lax`, `Path="/"` cookie (`dt_refresh_token`).
+     - Inaccessible to client JavaScript, protecting against XSS attacks.
+  2. **Access Token**:
+     - Lifespan: 15 minutes.
+     - Storage: Strictly in **client JavaScript memory** via `src/lib/tokenStorage.ts`.
+     - **NEVER** store access tokens in `localStorage` or `sessionStorage`.
+  3. **Silent Regeneration on Page Load/Reload**:
+     - When a user refreshes the page or opens a new tab, the client `<AdminAuthProvider>` checks in-memory token state. If missing, it immediately invokes `refreshAccessTokenAction()`.
+     - If the `HttpOnly` refresh cookie is valid and unrevoked, a new 15-minute access token is issued into memory without prompting Mayowa for his security PIN.
+     - Active sessions schedule silent background refreshes every 13 minutes.
+     - Logging out revokes the session in the database, deletes the cookie, and clears memory.
 
-- **Files to Avoid:** Never manually modify the `generated/` or `dist/` folders.
-- **API Versioning:** All new API routes must be structured under `/api/v2/`.
-- **Security:** Never hardcode secrets. Always read from `process.env`.
+### 6. Strict 100% Server Actions Architecture
+- **Constraint:** **No API routes (`/api/*`).**
+  - All mutations, uploads, data modifications, and telemetry tracking must be implemented as Next.js Server Actions (`"use server"`) in `src/actions/`.
+  - Server actions must perform input sanitization and authorization checks (`isAdminAuthenticated()`) where appropriate.
+  - File uploads to Neon S3 storage must go through `uploadProjectMediaAction` with client-side compression (`browser-image-compression`) and server-side WebP optimization (`sharp`) to respect the 512 MB free tier.
