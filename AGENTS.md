@@ -79,6 +79,22 @@ All agents, contributors, and developers working on this codebase must strictly 
 
 ### 6. Strict 100% Server Actions Architecture
 - **Constraint:** **No API routes (`/api/*`).**
-  - All mutations, uploads, data modifications, and telemetry tracking must be implemented as Next.js Server Actions (`"use server"`) in `src/actions/`.
+  - All mutations, uploads, data modifications, and telemetry tracking must be implemented as Next.js Server Actions (`"use server"`).
   - Server actions must perform input sanitization and authorization checks (`isAdminAuthenticated()`) where appropriate.
   - File uploads to Neon S3 storage must go through `uploadProjectMediaAction` with client-side compression (`browser-image-compression`) and server-side WebP optimization (`sharp`) to respect the 512 MB free tier.
+
+### 7. Services Modules Architecture & File Naming Conventions
+- **Constraint:** Business logic, data operations, Zod validation schemas, and hooks must be organized into domain-driven modules inside `src/services/<module_name>/`.
+- **Mandatory File Naming Convention:**
+  - `{module_name}.types.ts`: TypeScript interfaces, types, and model contracts.
+  - `{module_name}.schemas.ts`: Zod validation schemas for forms, mutations, and API boundaries.
+  - `{module_name}.actions.ts`: `"use server"` Server Actions for mutations and data fetching.
+  - `{module_name}.hooks.ts`: `"use client"` custom React hooks for state, client-side filtering, or mutations.
+  - `index.ts`: Barrel export aggregating types, schemas, actions, and hooks for clean public consumption.
+- **Defined Modules:**
+  - `src/services/projects/`: Architectural projects, blueprints, galleries, and publishing toggles.
+  - `src/services/leads/`: Prospective client intake, Zod validation, and CRM pipeline status tracking.
+  - `src/services/analytics/`: Real-time page views, project views, and WhatsApp consultation telemetry.
+  - `src/services/auth/`: Two-token session management, PIN verification, and silent regeneration.
+  - `src/services/media/`: Neon S3 storage, client-side compression, and server-side Sharp WebP optimization.
+

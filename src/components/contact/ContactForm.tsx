@@ -1,26 +1,16 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { z } from "zod";
-import { submitLeadAction } from "@/actions/leads";
-import { trackEventAction } from "@/actions/analytics";
+import { submitLeadAction } from "@/services/leads/leads.actions";
+import { leadSchema, LeadInput } from "@/services/leads/leads.schemas";
+import { trackEventAction } from "@/services/analytics/analytics.actions";
 import { InputField } from "@/components/ui/input-field";
 import { SelectField } from "@/components/ui/select-field";
 import { TextareaField } from "@/components/ui/textarea-field";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Send, Loader2 } from "lucide-react";
 
-const leadSchema = z.object({
-  name: z.string().min(2, "Please enter your full name (at least 2 characters)."),
-  email: z.string().email("Please enter a valid email address."),
-  phone: z.string().optional(),
-  typology: z.string().min(1, "Please select a building typology."),
-  location: z.string().optional(),
-  estimatedBudget: z.string().optional(),
-  message: z.string().min(10, "Please provide a brief message describing your site or project (at least 10 characters)."),
-});
-
-type LeadFormData = z.infer<typeof leadSchema>;
+type LeadFormData = LeadInput;
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
