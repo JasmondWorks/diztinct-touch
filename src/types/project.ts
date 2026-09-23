@@ -74,4 +74,10 @@ export interface Project {
   featured?: boolean;
   featuredRank?: number;
   dateStr: string; // ISO date string (YYYY-MM-DD) for chronological ordering
+  buildingType?: string; // e.g., "Fully-Detached Contemporary Duplex", "Terrace Duplex", "Commercial Plaza"
+  bedroomCount?: string; // e.g., "5 Bedrooms + BQ"
+  projectCode?: string; // e.g., "DT-25-01"
+  isPublished?: boolean; // Default true, false for private drafts
+  status?: "completed" | "in-progress"; // Construction or completion status
+  currentStage?: string; // e.g. "First Floor Level", "Decking Completed", "Finishing"
 }

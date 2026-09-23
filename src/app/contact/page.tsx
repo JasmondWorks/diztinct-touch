@@ -1,15 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { siteConfig } from "@/data/siteConfig";
-import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, Compass, MessageSquare } from "lucide-react";
+import { submitLeadAction } from "@/actions/leads";
+import { trackEventAction } from "@/actions/analytics";
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, Compass, MessageSquare, Loader2 } from "lucide-react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [isPending, startTransition] = useTransition();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    typology: "Contemporary Residential Duplex",
+    location: "",
+    estimatedBudget: "",
+    message: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError("");
+
+    startTransition(async () => {
+      const res = await submitLeadAction({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        typology: formData.typology,
+        location: formData.location || undefined,
+        estimatedBudget: formData.estimatedBudget || undefined,
+        message: formData.message,
+      });
+
+      if (res.success) {
+        setSubmitted(true);
+      } else {
+        setError(res.error || "Failed to submit inquiry. Please try WhatsApp directly.");
+      }
+    });
+  };
+
+  const handleWhatsAppClick = () => {
+    trackEventAction("whatsapp_click", "/contact", {
+      channel: "direct_button",
+    });
   };
 
   return (
@@ -104,6 +142,7 @@ export default function ContactPage() {
                   href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={handleWhatsAppClick}
                   className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 transition-all w-full"
                 >
                   <MessageSquare className="h-4 w-4" />
@@ -137,7 +176,18 @@ export default function ContactPage() {
                     Thank you for contacting DIZTINCT TOUCH HOME DESIGN. Mayowa and our team will review your project parameters and get in touch within 24 hours.
                   </p>
                   <button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({
+                        name: "",
+                        email: "",
+                        phone: "",
+                        typology: "Contemporary Residential Duplex",
+                        location: "",
+                        estimatedBudget: "",
+                        message: "",
+                      });
+                    }}
                     className="mt-4 rounded-xl border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
                   >
                     Send Another Inquiry
@@ -145,6 +195,12 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono">
+                      {error}
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono font-bold uppercase text-foreground">
@@ -153,6 +209,8 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Tunde Adeyemi"
                         className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                       />
@@ -165,7 +223,37 @@ export default function ContactPage() {
                       <input
                         type="email"
                         required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. tunde@example.com"
+                        className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono font-bold uppercase text-foreground">
+                        Phone / WhatsApp
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="e.g. 08012345678"
+                        className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono font-bold uppercase text-foreground">
+                        Site Location / City
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.location}
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        placeholder="e.g. Ibadan, Lagos, Abuja, or Diaspora"
                         className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                       />
                     </div>
@@ -176,7 +264,11 @@ export default function ContactPage() {
                       <label className="text-xs font-mono font-bold uppercase text-foreground">
                         Project Typology
                       </label>
-                      <select className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-primary focus:outline-hidden">
+                      <select
+                        value={formData.typology}
+                        onChange={(e) => setFormData({ ...formData, typology: e.target.value })}
+                        className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-primary focus:outline-hidden"
+                      >
                         <option>Contemporary Residential Duplex</option>
                         <option>Bespoke Private Villa / Residence</option>
                         <option>Executive Contemporary Bungalow</option>
@@ -189,11 +281,13 @@ export default function ContactPage() {
 
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono font-bold uppercase text-foreground">
-                        Site Location / City
+                        Estimated Budget Bracket
                       </label>
                       <input
                         type="text"
-                        placeholder="e.g. Ibadan, Lagos, Abuja, or Diaspora"
+                        value={formData.estimatedBudget}
+                        onChange={(e) => setFormData({ ...formData, estimatedBudget: e.target.value })}
+                        placeholder="e.g. ₦35M - ₦60M or Under discussion"
                         className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                       />
                     </div>
@@ -206,6 +300,8 @@ export default function ContactPage() {
                     <textarea
                       required
                       rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Describe your property, number of bedrooms, site status (land purchased, foundation, or planning), desired timeline, and scope needed..."
                       className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                     />
@@ -213,10 +309,20 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 text-xs font-bold text-white shadow-md hover:bg-primary/90 transition-all cursor-pointer"
+                    disabled={isPending}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 text-xs font-bold text-white shadow-md hover:bg-primary/90 transition-all cursor-pointer disabled:opacity-50"
                   >
-                    <Send className="h-4 w-4" />
-                    <span>Submit Project Inquiry to Mayowa</span>
+                    {isPending ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span>Sending to Mayowa...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" />
+                        <span>Submit Project Inquiry to Mayowa</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

@@ -3,6 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { architecturalProjects } from "@/data/projects";
+import { getProjectBySlugAction, getProjectsAction } from "@/actions/projects";
+import { isAdminAuthenticated } from "@/lib/auth-session";
+import { trackEventAction } from "@/actions/analytics";
+import { AdminEditBar } from "@/components/projects/AdminEditBar";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { MetricsGrid } from "@/components/projects/MetricsGrid";
@@ -38,7 +42,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = architecturalProjects.find((p) => p.slug === slug);
+  const project = await getProjectBySlugAction(slug);
   if (!project) return { title: "Project Not Found" };
 
   return {
@@ -49,25 +53,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const projectIndex = architecturalProjects.findIndex((p) => p.slug === slug);
-  const project = architecturalProjects[projectIndex];
+  const [project, allProjects, isAuth] = await Promise.all([
+    getProjectBySlugAction(slug),
+    getProjectsAction(false),
+    isAdminAuthenticated(),
+  ]);
 
   if (!project) {
     notFound();
   }
 
-  // Prev / Next project links
+  // If project is unpublished and visitor is not admin, hide it
+  if (project.isPublished === false && !isAuth) {
+    notFound();
+  }
+
+  // Fire-and-forget view telemetry
+  trackEventAction("project_view", `/projects/${slug}`, { title: project.title });
+
+  const projectIndex = allProjects.findIndex((p) => p.slug === slug);
   const prevProject =
     projectIndex > 0
-      ? architecturalProjects[projectIndex - 1]
-      : architecturalProjects[architecturalProjects.length - 1];
+      ? allProjects[projectIndex - 1]
+      : allProjects[allProjects.length - 1] || project;
   const nextProject =
-    projectIndex < architecturalProjects.length - 1
-      ? architecturalProjects[projectIndex + 1]
-      : architecturalProjects[0];
+    projectIndex < allProjects.length - 1
+      ? allProjects[projectIndex + 1]
+      : allProjects[0] || project;
 
   // Similar / Related projects
-  const relatedProjects = architecturalProjects
+  const relatedProjects = allProjects
     .filter((p) => p.id !== project.id)
     .slice(0, 2);
 
@@ -441,6 +456,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           </Link>
         </div>
+
+        {/* Floating Admin View Switcher Bar */}
+        {isAuth && <AdminEditBar project={project} />}
       </div>
     </div>
   );
