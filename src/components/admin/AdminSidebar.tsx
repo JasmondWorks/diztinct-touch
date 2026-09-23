@@ -15,6 +15,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard, exact: true },
@@ -73,8 +74,13 @@ export function AdminSidebar() {
         </nav>
       </div>
 
-      {/* Footer Navigation: Public View & Logout */}
+      {/* Footer Navigation: Theme Switcher, Public View & Logout */}
       <div className="pt-6 border-t border-border/80 space-y-2">
+        <div className="flex items-center justify-between rounded-xl border border-border bg-background/50 px-3.5 py-2 text-xs font-medium">
+          <span className="text-muted-foreground">Interface Theme</span>
+          <ThemeToggle />
+        </div>
+
         <Link
           href="/"
           target="_blank"

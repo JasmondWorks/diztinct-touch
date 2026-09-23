@@ -3,6 +3,7 @@ import { isAdminAuthenticated } from "@/lib/auth-session";
 import { redirect } from "next/navigation";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { AdminAuthProvider } from "@/components/admin/AdminAuthProvider";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import Link from "next/link";
 import { ArrowUpRight, Plus, ExternalLink } from "lucide-react";
 
@@ -45,6 +46,8 @@ export default async function AdminDashboardLayout({
             </div>
 
             <div className="flex items-center gap-3">
+              <ThemeToggle />
+
               <Link
                 href="/"
                 target="_blank"

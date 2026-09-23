@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { AdminLoginKeypad } from "@/components/admin/AdminLoginKeypad";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Admin Portal Access | DIZTINCT TOUCH HOME DESIGN",
@@ -13,6 +14,11 @@ export const metadata: Metadata = {
 export default function AdminLoginPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center p-6 relative overflow-hidden selection:bg-primary/20 selection:text-white">
+      {/* Top right theme switcher */}
+      <div className="absolute top-6 right-6 z-20">
+        <ThemeToggle />
+      </div>
+
       {/* Background Architectural Dot Grid */}
       <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
 
