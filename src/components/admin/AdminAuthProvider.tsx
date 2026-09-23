@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState, useCallback } fr
 import { useRouter, usePathname } from "next/navigation";
 import { refreshAccessTokenAction, logoutAdminAction } from "@/actions/auth";
 import { tokenStorage } from "@/lib/tokenStorage";
+import { AdminLoader } from "./AdminLoader";
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
@@ -86,17 +87,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   }, [handleRefresh, pathname, router]);
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center text-center p-6 selection:bg-[#C9A84C]/30">
-        <div className="w-10 h-10 rounded-full border-2 border-[#C9A84C]/20 border-t-[#C9A84C] animate-spin mb-4" />
-        <span className="text-xs font-mono tracking-widest text-[#C9A84C] uppercase">
-          Verifying Security Credentials...
-        </span>
-        <span className="text-[11px] font-mono text-[#555] mt-1">
-          DIZTINCT TOUCH HOME DESIGN
-        </span>
-      </div>
-    );
+    return <AdminLoader />;
   }
 
   return (
