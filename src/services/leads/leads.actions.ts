@@ -3,28 +3,22 @@
 import { prisma } from "@/lib/prisma";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 import { revalidatePath } from "next/cache";
-import { Lead, SubmitLeadInput } from "./leads.types";
+import { Lead } from "./leads.types";
+import { CreateLeadDto, UpdateLeadStatusDto, LeadResponseDto } from "./leads.dtos";
+import { LeadsService } from "./leads.service";
+import { leadSchema } from "./leads.schemas";
 
 export async function submitLeadAction(
-  data: SubmitLeadInput
-): Promise<{ success: boolean; error?: string }> {
+  data: CreateLeadDto
+): Promise<LeadResponseDto> {
   try {
-    if (!data.name || !data.email || !data.message) {
-      return { success: false, error: "Please fill in your name, email, and project message." };
+    const validated = leadSchema.safeParse(data);
+    if (!validated.success) {
+      const firstError = validated.error.issues[0]?.message || "Invalid submission details.";
+      return { success: false, error: firstError };
     }
 
-    await prisma.lead.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        typology: data.typology || "Residential Duplex",
-        location: data.location || null,
-        message: data.message,
-        estimatedBudget: data.estimatedBudget || null,
-        status: "new",
-      },
-    });
+    const lead = await LeadsService.create(data);
 
     // Track analytics event
     try {
@@ -42,9 +36,9 @@ export async function submitLeadAction(
     revalidatePath("/admin");
     revalidatePath("/admin/leads");
 
-    return { success: true };
+    return { success: true, id: lead.id, lead };
   } catch (err: any) {
-    console.error("Error submitting client inquiry via Prisma:", err);
+    console.error("Error submitting client inquiry via LeadsService:", err);
     return { success: false, error: "We could not save your inquiry. Please try WhatsApp directly." };
   }
 }
@@ -54,26 +48,9 @@ export async function getLeadsAction(): Promise<Lead[]> {
   if (!isAuth) return [];
 
   try {
-    const rows = await prisma.lead.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-
-    return rows.map((r) => ({
-      id: r.id,
-      name: r.name,
-      email: r.email,
-      phone: r.phone || undefined,
-      typology: r.typology || undefined,
-      location: r.location || undefined,
-      message: r.message,
-      estimatedBudget: r.estimatedBudget || undefined,
-      status: r.status as Lead["status"],
-      notes: r.notes || undefined,
-      createdAt: r.createdAt?.toISOString?.() || String(r.createdAt),
-      updatedAt: r.updatedAt?.toISOString?.() || String(r.updatedAt),
-    }));
+    return await LeadsService.getAll();
   } catch (err) {
-    console.error("Error fetching leads via Prisma:", err);
+    console.error("Error fetching leads via LeadsService:", err);
     return [];
   }
 }
@@ -82,22 +59,15 @@ export async function updateLeadStatusAction(
   id: number,
   status: Lead["status"],
   notes?: string
-): Promise<{ success: boolean; error?: string }> {
+): Promise<LeadResponseDto> {
   const isAuth = await isAdminAuthenticated();
   if (!isAuth) return { success: false, error: "Unauthorized." };
 
   try {
-    await prisma.lead.update({
-      where: { id },
-      data: {
-        status,
-        notes: notes !== undefined ? notes : undefined,
-      },
-    });
-
+    const updated = await LeadsService.updateStatus({ id, status, notes });
     revalidatePath("/admin");
     revalidatePath("/admin/leads");
-    return { success: true };
+    return { success: true, id: updated.id, lead: updated };
   } catch (err: any) {
     return { success: false, error: err.message };
   }
@@ -108,9 +78,7 @@ export async function deleteLeadAction(id: number): Promise<{ success: boolean }
   if (!isAuth) return { success: false };
 
   try {
-    await prisma.lead.delete({
-      where: { id },
-    });
+    await LeadsService.delete(id);
     revalidatePath("/admin");
     revalidatePath("/admin/leads");
     return { success: true };

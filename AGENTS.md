@@ -84,17 +84,20 @@ All agents, contributors, and developers working on this codebase must strictly 
   - File uploads to Neon S3 storage must go through `uploadProjectMediaAction` with client-side compression (`browser-image-compression`) and server-side WebP optimization (`sharp`) to respect the 512 MB free tier.
 
 ### 7. Services Modules Architecture & File Naming Conventions
-- **Constraint:** Business logic, data operations, Zod validation schemas, and hooks must be organized into domain-driven modules inside `src/services/<module_name>/`.
+- **Constraint:** Business logic, data operations, Zod validation schemas, DTOs, and hooks must be organized into domain-driven modules inside `src/services/<module_name>/` following a clean backend-oriented architecture.
 - **Mandatory File Naming Convention:**
-  - `{module_name}.types.ts`: TypeScript interfaces, types, and model contracts.
-  - `{module_name}.schemas.ts`: Zod validation schemas for forms, mutations, and API boundaries.
-  - `{module_name}.actions.ts`: `"use server"` Server Actions for mutations and data fetching.
+  - `{module_name}.types.ts`: Domain models, enums, entity interfaces, and internal types.
+  - `{module_name}.schemas.ts`: Zod validation schemas for forms, inputs, query filters, and mutations.
+  - `{module_name}.dtos.ts`: Data Transfer Objects (DTOs) for request inputs, response payloads, query filters, and data projections.
+  - `{module_name}.service.ts`: Backend domain service class encapsulating database operations (Prisma queries, S3, image optimization) decoupled from Next.js server action request/cache wrappers.
+  - `{module_name}.actions.ts`: `"use server"` Server Actions acting as controllers (session auth checks, Zod validation, calling domain services, revalidating cache, returning DTO responses).
   - `{module_name}.hooks.ts`: `"use client"` custom React hooks for state, client-side filtering, or mutations.
-  - `index.ts`: Barrel export aggregating types, schemas, actions, and hooks for clean public consumption.
+  - `index.ts`: Barrel export aggregating types, schemas, dtos, service, actions, and hooks for clean public consumption.
 - **Defined Modules:**
   - `src/services/projects/`: Architectural projects, blueprints, galleries, and publishing toggles.
   - `src/services/leads/`: Prospective client intake, Zod validation, and CRM pipeline status tracking.
   - `src/services/analytics/`: Real-time page views, project views, and WhatsApp consultation telemetry.
   - `src/services/auth/`: Two-token session management, PIN verification, and silent regeneration.
   - `src/services/media/`: Neon S3 storage, client-side compression, and server-side Sharp WebP optimization.
+
 
