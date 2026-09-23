@@ -3,6 +3,7 @@
 import React, { useState, useTransition } from "react";
 import { Lead, updateLeadStatusAction, deleteLeadAction } from "@/actions/leads";
 import { useRouter } from "next/navigation";
+import { Search, Mail, Trash2, MessageSquare, X } from "lucide-react";
 
 export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
   const router = useRouter();
@@ -59,22 +60,26 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
     if (!confirm(`Are you sure you want to remove lead from "${name}"?`)) return;
 
     startTransition(async () => {
-      setLeads((prev) => prev.filter((l) => l.id !== id));
-      if (selectedLead?.id === id) setSelectedLead(null);
-      await deleteLeadAction(id);
-      router.refresh();
+      const res = await deleteLeadAction(id);
+      if (res.success) {
+        setLeads((prev) => prev.filter((l) => l.id !== id));
+        if (selectedLead?.id === id) setSelectedLead(null);
+        router.refresh();
+      } else {
+        alert("Failed to delete lead.");
+      }
     });
   };
 
-  // WhatsApp quick response generator
   const getWhatsAppLink = (lead: Lead) => {
     if (!lead.phone) return null;
     const cleanPhone = lead.phone.replace(/[^0-9]/g, "");
-    const formattedPhone = cleanPhone.startsWith("0") ? "234" + cleanPhone.slice(1) : cleanPhone;
+    const formattedPhone = cleanPhone.startsWith("0")
+      ? "234" + cleanPhone.slice(1)
+      : cleanPhone;
+
     const message = encodeURIComponent(
-      `Hello ${lead.name}, this is Mayowa from DIZTINCT TOUCH HOME DESIGN. Thank you for your inquiry regarding your ${
-        lead.typology || "building"
-      } project. I would love to discuss your vision and schedule a site inspection.`
+      `Hello ${lead.name}, this is Mayowa from DIZTINCT TOUCH HOME DESIGN regarding your inquiry for the ${lead.typology || "architectural design"} project. Let us discuss your requirements.`
     );
     return `https://wa.me/${formattedPhone}?text=${message}`;
   };
@@ -90,16 +95,9 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
             placeholder="Search by client name, email, phone, location..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-2.5 pl-10 text-xs font-mono text-[#F9F6F0] placeholder:text-[#666] focus:outline-none focus:border-[#C9A84C]"
+            className="w-full bg-card border border-border/80 rounded-xl px-4 py-2.5 pl-10 text-xs font-mono text-foreground placeholder:text-muted-foreground focus:outline-hidden focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
           />
-          <svg
-            className="w-4 h-4 text-[#8A8A8A] absolute left-3.5 top-3"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+          <Search className="w-4 h-4 text-muted-foreground absolute left-3.5 top-3" />
         </div>
 
         {/* Filter Pills */}
@@ -110,10 +108,10 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                 key={status}
                 type="button"
                 onClick={() => setFilterStatus(status)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono capitalize transition-colors ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono capitalize transition-all cursor-pointer ${
                   filterStatus === status
-                    ? "bg-[#C9A84C] text-[#0A0A0A] font-semibold"
-                    : "bg-white/[0.03] text-[#8A8A8A] hover:text-[#F9F6F0] border border-white/5"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-xs"
+                    : "bg-card text-muted-foreground hover:text-foreground border border-border/80 hover:border-border"
                 }`}
               >
                 {status.replace("_", " ")}
@@ -124,11 +122,11 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
       </div>
 
       {/* Main Table */}
-      <div className="rounded-xl bg-white/[0.02] border border-white/5 overflow-hidden">
+      <div className="rounded-2xl bg-card/60 backdrop-blur-sm border border-border/80 overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
             <thead>
-              <tr className="border-b border-white/5 bg-white/[0.01] text-[#8A8A8A]">
+              <tr className="border-b border-border/80 bg-muted/40 text-muted-foreground">
                 <th className="py-3 px-4 font-normal">Client Info</th>
                 <th className="py-3 px-4 font-normal">Building Typology</th>
                 <th className="py-3 px-4 font-normal">Estimated Budget</th>
@@ -137,10 +135,10 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                 <th className="py-3 px-4 font-normal text-right">Quick Contact</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-border/60">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-[#666]">
+                  <td colSpan={6} className="py-12 text-center text-muted-foreground">
                     No client inquiries found matching your filter.
                   </td>
                 </tr>
@@ -150,7 +148,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                   return (
                     <tr
                       key={lead.id}
-                      className="hover:bg-white/[0.02] transition-colors cursor-pointer"
+                      className="hover:bg-muted/20 transition-colors cursor-pointer"
                       onClick={() => {
                         setSelectedLead(lead);
                         setLeadNotes(lead.notes || "");
@@ -158,27 +156,27 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                     >
                       {/* Name & Contact */}
                       <td className="py-3 px-4">
-                        <div className="font-sans font-medium text-[#F9F6F0] text-sm">
+                        <div className="font-sans font-semibold text-foreground-heading text-sm">
                           {lead.name}
                         </div>
-                        <div className="text-[11px] text-[#888]">{lead.email}</div>
+                        <div className="text-[11px] text-muted-foreground">{lead.email}</div>
                         {lead.phone && (
-                          <div className="text-[10px] text-[#C9A84C]">{lead.phone}</div>
+                          <div className="text-[10px] text-primary font-medium">{lead.phone}</div>
                         )}
                       </td>
 
                       {/* Typology & Location */}
                       <td className="py-3 px-4">
-                        <div className="text-[#AAA] font-medium">
+                        <div className="text-foreground font-medium">
                           {lead.typology || "Residential Duplex"}
                         </div>
                         {lead.location && (
-                          <div className="text-[10px] text-[#666]">{lead.location}</div>
+                          <div className="text-[10px] text-muted-foreground">{lead.location}</div>
                         )}
                       </td>
 
                       {/* Budget */}
-                      <td className="py-3 px-4 text-[#AAA]">
+                      <td className="py-3 px-4 text-muted-foreground">
                         {lead.estimatedBudget || "Not specified"}
                       </td>
 
@@ -190,16 +188,16 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                             handleStatusChange(lead.id, e.target.value as Lead["status"])
                           }
                           disabled={isPending}
-                          className={`px-2.5 py-1 rounded text-[10px] uppercase font-mono border focus:outline-none ${
+                          className={`px-3 py-1 rounded-full text-[10px] uppercase font-mono border focus:outline-hidden cursor-pointer ${
                             lead.status === "new"
-                              ? "bg-amber-950/50 text-amber-300 border-amber-800/60"
+                              ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
                               : lead.status === "contacted"
-                              ? "bg-blue-950/50 text-blue-300 border-blue-800/60"
+                              ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
                               : lead.status === "site_inspection"
-                              ? "bg-purple-950/50 text-purple-300 border-purple-800/60"
+                              ? "bg-purple-500/10 text-purple-400 border-purple-500/20"
                               : lead.status === "contract_signed"
-                              ? "bg-emerald-950/50 text-emerald-300 border-emerald-800/60"
-                              : "bg-zinc-900 text-zinc-400 border-zinc-700"
+                              ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                              : "bg-muted text-muted-foreground border-border"
                           }`}
                         >
                           <option value="new">New Inquiry</option>
@@ -211,7 +209,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                       </td>
 
                       {/* Received Date */}
-                      <td className="py-3 px-4 text-[#8A8A8A]">
+                      <td className="py-3 px-4 text-muted-foreground">
                         {new Date(lead.createdAt).toLocaleDateString("en-GB", {
                           day: "numeric",
                           month: "short",
@@ -227,34 +225,28 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                               href={waLink}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-1.5 rounded bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-colors"
+                              className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors border border-emerald-500/20"
                               title="Chat on WhatsApp"
                             >
-                              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.35.491 1.199.534 1.286.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.087-.179.182-.077.357.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.232-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z" />
-                              </svg>
+                              <MessageSquare className="w-3.5 h-3.5" />
                             </a>
                           )}
 
                           <a
                             href={`mailto:${lead.email}?subject=DIZTINCT TOUCH HOME DESIGN - Architectural Inquiry Response`}
-                            className="p-1.5 rounded bg-white/5 text-[#AAA] hover:text-[#F9F6F0] hover:bg-white/10 transition-colors"
+                            className="p-2 rounded-xl bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
                             title="Send Email"
                           >
-                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
+                            <Mail className="w-3.5 h-3.5" />
                           </a>
 
                           <button
                             type="button"
                             onClick={() => handleDelete(lead.id, lead.name)}
-                            className="p-1.5 rounded text-red-400 hover:text-red-300 hover:bg-red-950/30 transition-colors"
+                            className="p-2 rounded-xl text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
                             title="Delete Lead"
                           >
-                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </td>
@@ -269,78 +261,88 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
 
       {/* Slide-over or Detail Modal */}
       {selectedLead && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex justify-end">
-          <div className="w-full max-w-lg bg-[#0E0E0E] border-l border-white/10 h-full p-6 md:p-8 flex flex-col justify-between overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-md flex justify-end animate-fadeIn">
+          <div className="w-full max-w-lg bg-card border-l border-border h-full p-6 md:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-white/5">
+              <div className="flex items-center justify-between pb-4 border-b border-border/80">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-[#C9A84C] tracking-wider">
+                  <span className="text-[10px] font-mono uppercase text-primary tracking-wider font-semibold">
                     Client Details
                   </span>
-                  <h2 className="text-xl font-serif text-[#F9F6F0]">
+                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground-heading">
                     {selectedLead.name}
                   </h2>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSelectedLead(null)}
-                  className="text-xs font-mono text-[#8A8A8A] hover:text-[#F9F6F0]"
+                  className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors cursor-pointer"
                 >
-                  ✕ Close
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Inquiry Details */}
               <div className="mt-6 space-y-4 text-xs font-mono">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-3 rounded bg-white/[0.02] border border-white/5">
-                    <span className="text-[#666] block text-[10px]">Email Address</span>
-                    <a href={`mailto:${selectedLead.email}`} className="text-[#C9A84C] underline break-all">
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/80">
+                    <span className="text-muted-foreground block text-[10px] uppercase tracking-wider mb-1">
+                      Email Address
+                    </span>
+                    <a href={`mailto:${selectedLead.email}`} className="text-primary hover:underline break-all font-semibold">
                       {selectedLead.email}
                     </a>
                   </div>
-                  <div className="p-3 rounded bg-white/[0.02] border border-white/5">
-                    <span className="text-[#666] block text-[10px]">Phone Number</span>
-                    <span className="text-[#F9F6F0]">{selectedLead.phone || "None provided"}</span>
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/80">
+                    <span className="text-muted-foreground block text-[10px] uppercase tracking-wider mb-1">
+                      Phone Number
+                    </span>
+                    <span className="text-foreground font-semibold">{selectedLead.phone || "None provided"}</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-3 rounded bg-white/[0.02] border border-white/5">
-                    <span className="text-[#666] block text-[10px]">Building Typology</span>
-                    <span className="text-[#F9F6F0]">{selectedLead.typology || "Residential Duplex"}</span>
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/80">
+                    <span className="text-muted-foreground block text-[10px] uppercase tracking-wider mb-1">
+                      Building Typology
+                    </span>
+                    <span className="text-foreground font-semibold">{selectedLead.typology || "Residential Duplex"}</span>
                   </div>
-                  <div className="p-3 rounded bg-white/[0.02] border border-white/5">
-                    <span className="text-[#666] block text-[10px]">Site Location</span>
-                    <span className="text-[#F9F6F0]">{selectedLead.location || "Not specified"}</span>
+                  <div className="p-3.5 rounded-xl bg-muted/30 border border-border/80">
+                    <span className="text-muted-foreground block text-[10px] uppercase tracking-wider mb-1">
+                      Site Location
+                    </span>
+                    <span className="text-foreground font-semibold">{selectedLead.location || "Not specified"}</span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded bg-white/[0.02] border border-white/5">
-                  <span className="text-[#666] block text-[10px] mb-1">Inquiry Message</span>
-                  <p className="font-sans text-sm text-[#DDD] whitespace-pre-wrap leading-relaxed">
+                <div className="p-4 rounded-xl bg-muted/30 border border-border/80">
+                  <span className="text-muted-foreground block text-[10px] uppercase tracking-wider mb-1">
+                    Inquiry Message
+                  </span>
+                  <p className="font-sans text-sm text-foreground whitespace-pre-wrap leading-relaxed">
                     {selectedLead.message}
                   </p>
                 </div>
 
                 {/* Internal Architect Notes */}
                 <div className="space-y-2 pt-2">
-                  <label className="text-[11px] font-mono text-[#AAA]">
-                    Internal Notes (Mayowa & Team)
+                  <label className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
+                    Internal Notes (Mayowa &amp; Team)
                   </label>
                   <textarea
                     rows={4}
                     value={leadNotes}
                     onChange={(e) => setLeadNotes(e.target.value)}
                     placeholder="Add notes about client requirements, site visit date, quote status, or contract milestones..."
-                    className="w-full bg-white/[0.03] border border-white/10 rounded-lg p-3 text-xs font-mono text-[#F9F6F0] focus:outline-none focus:border-[#C9A84C]"
+                    className="w-full bg-card border border-border/80 rounded-xl p-3 text-xs font-mono text-foreground placeholder:text-muted-foreground focus:outline-hidden focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
                   />
                   <div className="flex justify-end">
                     <button
                       type="button"
                       onClick={handleSaveNotes}
                       disabled={isPending}
-                      className="px-4 py-2 rounded bg-[#C9A84C] text-[#0A0A0A] font-semibold text-xs hover:bg-[#D4B55E] transition-colors"
+                      className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-all shadow-sm cursor-pointer"
                     >
                       Save Internal Notes
                     </button>
@@ -350,22 +352,24 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
             </div>
 
             {/* Quick Actions Footer */}
-            <div className="pt-6 border-t border-white/5 flex items-center justify-between">
+            <div className="pt-6 border-t border-border/80 flex items-center justify-between gap-3">
               {getWhatsAppLink(selectedLead) && (
                 <a
                   href={getWhatsAppLink(selectedLead)!}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#25D366] text-black font-semibold text-xs px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-[#22bf5b] transition-colors"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all shadow-sm"
                 >
+                  <MessageSquare className="w-3.5 h-3.5" />
                   <span>Chat on WhatsApp</span>
                 </a>
               )}
               <a
                 href={`mailto:${selectedLead.email}`}
-                className="bg-white/10 text-[#F9F6F0] text-xs px-4 py-2 rounded-lg hover:bg-white/15 transition-colors"
+                className="bg-card border border-border hover:border-primary/40 text-foreground text-xs px-4 py-2.5 rounded-xl transition-all flex items-center gap-2"
               >
-                Send Email
+                <Mail className="w-3.5 h-3.5" />
+                <span>Send Email</span>
               </a>
             </div>
           </div>

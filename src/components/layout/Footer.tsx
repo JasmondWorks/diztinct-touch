@@ -1,8 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { ArrowUpRight, Compass, MapPin } from "lucide-react";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
   return (
     <footer className="border-t border-border bg-card/40 pt-16 pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -3,6 +3,7 @@ import { getProjectByIdAction } from "@/actions/projects";
 import { MultiStepProjectForm } from "@/components/admin/MultiStepProjectForm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ExternalLink, ArrowLeft } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -17,16 +18,19 @@ export default async function EditProjectPage({
   if (!project) {
     return (
       <div className="py-16 text-center space-y-4">
-        <h2 className="text-xl font-serif text-[#F9F6F0]">Project Not Found</h2>
-        <p className="text-xs font-mono text-[#8A8A8A]">
+        <h2 className="text-xl font-bold tracking-tight text-foreground-heading">
+          Project Not Found
+        </h2>
+        <p className="text-xs font-mono text-muted-foreground">
           No project matches identifier &ldquo;{id}&rdquo;.
         </p>
         <div>
           <Link
             href="/admin/projects"
-            className="text-xs font-mono text-[#C9A84C] hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:underline"
           >
-            ← Back to Projects Catalog
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Back to Projects Catalog</span>
           </Link>
         </div>
       </div>
@@ -35,29 +39,29 @@ export default async function EditProjectPage({
 
   return (
     <div className="space-y-6">
-      <div className="pb-4 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="pb-4 border-b border-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/60 border border-[#C9A84C]/30 text-[#C9A84C]">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/20 text-primary font-semibold">
               {project.projectCode || "DT-PROJ"}
             </span>
-            <span className="text-xs text-[#8A8A8A] font-mono">
+            <span className="text-xs text-muted-foreground font-mono">
               Editing: {project.title}
             </span>
           </div>
-          <h1 className="text-2xl font-serif text-[#F9F6F0]">Update Project</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
+            Update Project
+          </h1>
         </div>
 
         <div className="flex items-center gap-3">
           <Link
             href={`/projects/${project.slug}`}
             target="_blank"
-            className="text-xs font-mono text-[#8A8A8A] hover:text-[#F9F6F0] border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors"
+            className="text-xs font-mono text-muted-foreground hover:text-foreground border border-border px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors bg-card/40"
           >
             <span>Live Preview</span>
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+            <ExternalLink className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>

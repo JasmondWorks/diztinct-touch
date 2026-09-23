@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X, ArrowUpRight, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,6 +20,10 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <header

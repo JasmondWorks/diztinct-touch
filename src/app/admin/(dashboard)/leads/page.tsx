@@ -10,8 +10,10 @@ export default async function AdminLeadsPage() {
   return (
     <div className="space-y-6 animate-fadeIn">
       <div>
-        <h1 className="text-2xl font-serif text-[#F9F6F0]">Client Inquiries Pipeline</h1>
-        <p className="text-xs font-mono text-[#8A8A8A] mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
+          Client Inquiries Pipeline
+        </h1>
+        <p className="text-xs font-mono text-muted-foreground mt-1">
           Review, contact, and manage incoming leads from potential homeowners and commercial clients.
         </p>
       </div>

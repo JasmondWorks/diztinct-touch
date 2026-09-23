@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { verifyPinAction } from "@/actions/auth";
 import { tokenStorage } from "@/lib/tokenStorage";
 import Link from "next/link";
+import { siteConfig } from "@/data/siteConfig";
+import { ShieldCheck, ArrowLeft } from "lucide-react";
 
 export function AdminLoginKeypad() {
   const router = useRouter();
@@ -89,14 +91,18 @@ export function AdminLoginKeypad() {
       {/* Header */}
       <div className="text-center mb-8">
         <Link href="/" className="inline-block group mb-4">
-          <span className="text-xs font-mono tracking-[0.25em] text-[#C9A84C] uppercase border border-[#C9A84C]/30 px-3 py-1 rounded-full group-hover:border-[#C9A84C] transition-colors">
-            DIZTINCT TOUCH HOME DESIGN
-          </span>
+          <div className="flex h-12 w-12 mx-auto items-center justify-center rounded-2xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-base shadow-md group-hover:scale-105 transition-transform">
+            {siteConfig.monogram}
+          </div>
         </Link>
-        <h1 className="text-2xl font-serif tracking-tight text-[#F9F6F0]">
-          Internal Access Portal
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-mono font-semibold text-primary mb-3">
+          <ShieldCheck className="w-3.5 h-3.5" />
+          <span>Security Verification</span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
+          Studio Access
         </h1>
-        <p className="text-xs text-[#8A8A8A] mt-1 font-mono tracking-wider">
+        <p className="text-xs text-muted-foreground mt-1 font-mono tracking-wider">
           ENTER 4-DIGIT SECURITY PIN
         </p>
       </div>
@@ -108,8 +114,8 @@ export function AdminLoginKeypad() {
             key={i}
             className={`w-3.5 h-3.5 rounded-full border transition-all duration-200 ${
               i < pin.length
-                ? "bg-[#C9A84C] border-[#C9A84C] scale-110 shadow-[0_0_12px_rgba(201,168,76,0.6)]"
-                : "border-white/20 bg-white/5"
+                ? "bg-primary border-primary scale-110 shadow-[0_0_14px_rgba(242,89,114,0.6)]"
+                : "border-border bg-muted/40"
             }`}
           />
         ))}
@@ -117,7 +123,7 @@ export function AdminLoginKeypad() {
 
       {/* Error message */}
       {error && (
-        <div className="mb-6 p-3 rounded bg-red-950/40 border border-red-800/40 text-red-300 text-xs text-center font-mono animate-fadeIn">
+        <div className="mb-6 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs text-center font-mono animate-fadeIn">
           {error}
         </div>
       )}
@@ -130,7 +136,7 @@ export function AdminLoginKeypad() {
             type="button"
             onClick={() => handleDigit(num.toString())}
             disabled={loading}
-            className="h-16 rounded-xl bg-white/[0.03] hover:bg-[#C9A84C]/10 border border-white/10 hover:border-[#C9A84C]/40 text-xl font-mono text-[#F9F6F0] active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-sm cursor-pointer"
+            className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-xs cursor-pointer font-semibold"
           >
             {num}
           </button>
@@ -139,7 +145,7 @@ export function AdminLoginKeypad() {
           type="button"
           onClick={handleClear}
           disabled={loading}
-          className="h-16 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 text-xs font-mono uppercase tracking-wider text-[#8A8A8A] active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+          className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
         >
           Clear
         </button>
@@ -147,7 +153,7 @@ export function AdminLoginKeypad() {
           type="button"
           onClick={() => handleDigit("0")}
           disabled={loading}
-          className="h-16 rounded-xl bg-white/[0.03] hover:bg-[#C9A84C]/10 border border-white/10 hover:border-[#C9A84C]/40 text-xl font-mono text-[#F9F6F0] active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm cursor-pointer"
+          className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-xs cursor-pointer font-semibold"
         >
           0
         </button>
@@ -155,7 +161,7 @@ export function AdminLoginKeypad() {
           type="button"
           onClick={handleDelete}
           disabled={loading}
-          className="h-16 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 text-xs font-mono uppercase tracking-wider text-[#8A8A8A] active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+          className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
         >
           Del
         </button>
@@ -163,17 +169,13 @@ export function AdminLoginKeypad() {
 
       {/* Footer info */}
       <div className="text-center">
-        <p className="text-[11px] text-[#555] font-mono">
-          Default Master PIN: <span className="text-[#888]">2025</span> (Configured in .env.local)
-        </p>
-        <div className="mt-4">
-          <Link
-            href="/"
-            className="text-xs text-[#8A8A8A] hover:text-[#C9A84C] transition-colors underline underline-offset-4 font-mono"
-          >
-            ← Return to Public Portfolio
-          </Link>
-        </div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Return to Public Portfolio</span>
+        </Link>
       </div>
     </div>
   );
