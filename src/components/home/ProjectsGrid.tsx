@@ -18,14 +18,14 @@ const CATEGORIES: ("All" | ArchitecturalCategory)[] = [
 ];
 
 const COMMON_TAGS = [
-  "Mass Timber",
-  "Rammed Earth",
-  "Post-Tensioned Concrete",
-  "Corten Steel",
-  "CLT",
-  "Rhino 8",
-  "Grasshopper",
+  "2D Architectural Drawings",
+  "3D Visualization",
+  "Concrete Decking",
+  "Textured Brick",
+  "Cantilever Balcony",
   "Revit (BIM)",
+  "AutoCAD",
+  "Construction Oversight",
 ];
 
 export function ProjectsGrid() {
@@ -74,7 +74,7 @@ export function ProjectsGrid() {
             </h2>
           </div>
           <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
-            A portfolio of completed buildings, institutional facilities, and forward-looking masterplans with documented performance results.
+            A portfolio of contemporary residential duplexes, bespoke residences, and commercial projects designed with precision and lasting structural integrity.
           </p>
         </div>
 

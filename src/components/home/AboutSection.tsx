@@ -5,22 +5,22 @@ import { Compass, Layers, ShieldCheck, ArrowRight, CheckCircle2, Trees, HardHat 
 export function AboutSection() {
   const pillars = [
     {
-      title: "Structural Integrity & Honest Materials",
+      title: "Functional & Aesthetic Architectural Design",
       description:
-        "Every load-bearing beam, mass wall, and facade is engineered for maximum durability. We prioritize authentic materials that age gracefully and retain value over decades.",
+        "Careful consideration of the building's form, proportions, and spatial arrangement to create homes that are functional, comfortable, and visually striking.",
       icon: Layers,
     },
     {
-      title: "High Energy Efficiency & Low Carbon",
+      title: "Photorealistic 3D Modeling & Visualization",
       description:
-        "Targeting net-positive buildings through mass timber, pozzolanic low-carbon concrete, and intelligent insulation that dramatically lowers operational energy bills.",
-      icon: Trees,
+        "High-definition 3D rendering allowing clients to experience their home's materials, lighting, and volume before breaking ground on site.",
+      icon: Compass,
     },
     {
-      title: "Precision Digital Engineering",
+      title: "Construction-Stage Input & Oversight",
       description:
-        "From parametric solar optimization to CNC-prefabricated timber joinery, advanced digital modeling ensures on-time delivery with zero on-site material waste.",
-      icon: Compass,
+        "Active architectural involvement across all milestones—from foundation and suspended decking to first-floor blockwork and bespoke finishes.",
+      icon: HardHat,
     },
   ];
 
@@ -32,19 +32,19 @@ export function AboutSection() {
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
               <HardHat className="h-3.5 w-3.5" />
-              <span>Design Philosophy</span>
+              <span>DIZTINCT TOUCH HOME DESIGN</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground-heading leading-tight">
-              Architecture engineered for permanence and performance.
+              Remarkable design, long lasting.
             </h2>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Diztinct Touch was founded on the belief that enduring architecture is born from the intersection of rigorous engineering, functional efficiency, and durable materials.
+              Led by Mayowa, DIZTINCT TOUCH HOME DESIGN creates contemporary residential and commercial properties where functional spatial planning meets uncompromising structural durability.
             </p>
 
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Operating out of London, Zurich, and Lagos, our practice collaborates with commercial developers, cultural institutions, and private property owners on projects ranging from bespoke coastal villas to multi-hectare sustainable masterplans.
+              From our active duplex development in ARMITY Estate, Ejioku Village to custom private residences, we guide clients from initial 2D drawings and photorealistic 3D visualizations through to on-site construction delivery.
             </p>
 
             <div className="pt-2">
@@ -84,23 +84,23 @@ export function AboutSection() {
               })}
             </div>
 
-            {/* Software & Fabrication Stack Matrix */}
+            {/* Software & Construction Systems Matrix */}
             <div className="rounded-2xl border border-border bg-card/60 p-6 space-y-3">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
-                Technical Stack &amp; Fabrication Systems
+                Technical Systems &amp; Construction Methods
               </span>
               <div className="flex flex-wrap gap-2 pt-1">
                 {[
-                  "Rhino 8",
-                  "Grasshopper (Computational)",
-                  "Revit / Open-BIM",
-                  "Karamba3D (FEA)",
-                  "Ladybug & Honeybee (Microclimate)",
-                  "Enscape & V-Ray",
-                  "Mass Timber / CLT / DLT",
-                  "Pozzolanic Concrete",
-                  "Corten Steel",
-                  "Rammed Earth",
+                  "Architectural 2D Working Drawings",
+                  "Photorealistic 3D Modeling",
+                  "V-Ray & Lumion Visualization",
+                  "Revit (BIM) & AutoCAD",
+                  "Reinforced Concrete Columns",
+                  "Suspended Concrete Decking",
+                  "Cantilevered Balconies",
+                  "Textured Brick Facades",
+                  "Architectural Privacy Louvers",
+                  "On-Site Construction Oversight",
                 ].map((item) => (
                   <span
                     key={item}

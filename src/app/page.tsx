@@ -17,7 +17,7 @@ export default function HomePage() {
       {/* Complete Projects Catalog with Typology & Tectonic Filters */}
       <ProjectsGrid />
 
-      {/* Atelier Ethos & Computational Pillars */}
+      {/* Practice Ethos & Design Pillars */}
       <AboutSection />
 
       {/* Closing Call to Action Banner */}
@@ -29,11 +29,11 @@ export default function HomePage() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground-heading max-w-2xl mx-auto">
-            Ready to shape physical permanence together?
+            Ready to build a home of remarkable distinction?
           </h2>
 
           <p className="max-w-xl mx-auto text-sm text-muted-foreground leading-relaxed">
-            From alpine research retreats to high-density biophilic mass timber towers, we welcome challenging site briefs across the globe.
+            From bespoke contemporary duplexes to modern commercial spaces, Mayowa and the DIZTINCT TOUCH team guide your vision from initial 2D drawings and photorealistic 3D renders to flawless on-site construction delivery.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4">

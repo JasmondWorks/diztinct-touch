@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { siteConfig } from "@/data/siteConfig";
-import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, Compass } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, Compass, MessageSquare } from "lucide-react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,13 +19,13 @@ export default function ContactPage() {
         <div className="max-w-3xl space-y-4 border-b border-border/80 pb-8">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
             <Compass className="h-3.5 w-3.5" />
-            <span>Contact &amp; Consultations</span>
+            <span>Consultations &amp; Inquiries</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground-heading">
-            Start a Project Consultation
+            Start a Project with Mayowa
           </h1>
           <p className="text-base text-muted-foreground leading-relaxed">
-            We welcome commercial, institutional, and private inquiries. Our team is available to discuss site feasibility, planning permissions, construction budgets, and full architectural delivery.
+            We welcome residential, commercial, and private commissions across Nigeria and from international diaspora clients. Mayowa and our team are available to discuss site feasibility, 2D working drawings, 3D visualization, and on-site construction oversight.
           </p>
         </div>
 
@@ -34,7 +34,7 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-8">
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-6 shadow-xs">
               <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
-                Office Locations &amp; Direct Contact
+                Studio &amp; Direct Contact
               </h3>
 
               <div className="space-y-4 text-xs font-mono">
@@ -74,9 +74,22 @@ export default function ContactPage() {
                   <Clock className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-foreground block">Operating Hours</span>
-                    <span className="text-muted-foreground">Monday – Friday: 09:00 – 18:30 GMT</span>
+                    <span className="text-muted-foreground">Monday – Saturday: 08:30 – 18:30 WAT</span>
                   </div>
                 </div>
+              </div>
+
+              {/* WhatsApp Quick Consultation Button */}
+              <div className="pt-2 border-t border-border/70">
+                <a
+                  href={`https://wa.me/2348000000000?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 transition-all w-full"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  <span>Chat on WhatsApp Directly</span>
+                </a>
               </div>
             </div>
 
@@ -85,7 +98,7 @@ export default function ContactPage() {
                 Current Studio Capacity
               </span>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                We are actively reviewing RFP invitations for Q3/Q4 masterplanning and architectural commissions. Typical response turnaround for initial site feasibility queries is within 48 hours.
+                We are actively onboarding new residential duplexes, private residences, and commercial commissions. Initial design reviews and 3D concept consultations are scheduled within 24-48 hours.
               </p>
             </div>
           </div>
@@ -102,7 +115,7 @@ export default function ContactPage() {
                     Inquiry Received
                   </h3>
                   <p className="text-sm text-muted-foreground max-w-md">
-                    Thank you for contacting Diztinct Touch Architecture. A director will review your project parameters and get in touch within one business day.
+                    Thank you for contacting DIZTINCT TOUCH HOME DESIGN. Mayowa and our team will review your project parameters and get in touch within 24 hours.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -116,12 +129,12 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono font-bold uppercase text-foreground">
-                        Your Name *
+                        Your Full Name *
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="e.g. Elena Rostova"
+                        placeholder="e.g. Tunde Adeyemi"
                         className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                       />
                     </div>
@@ -133,7 +146,7 @@ export default function ContactPage() {
                       <input
                         type="email"
                         required
-                        placeholder="elena@company.com"
+                        placeholder="e.g. tunde@example.com"
                         className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                       />
                     </div>
@@ -145,12 +158,13 @@ export default function ContactPage() {
                         Project Typology
                       </label>
                       <select className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-primary focus:outline-hidden">
-                        <option>Bespoke Private Residence</option>
-                        <option>Commercial / Mass Timber Office</option>
-                        <option>Civic &amp; Cultural Building</option>
-                        <option>Adaptive Reuse &amp; Renovation</option>
-                        <option>Urban Masterplan &amp; Landscape</option>
-                        <option>Other Architectural Commission</option>
+                        <option>Contemporary Residential Duplex</option>
+                        <option>Bespoke Private Villa / Residence</option>
+                        <option>Executive Contemporary Bungalow</option>
+                        <option>Commercial / Office Development</option>
+                        <option>Photorealistic 3D Visualization Only</option>
+                        <option>2D Working Drawings &amp; Approvals</option>
+                        <option>Construction-Stage Site Oversight</option>
                       </select>
                     </div>
 
@@ -160,7 +174,7 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="text"
-                        placeholder="e.g. Zurich, Switzerland"
+                        placeholder="e.g. Ibadan, Lagos, Abuja, or Diaspora"
                         className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                       />
                     </div>
@@ -173,7 +187,7 @@ export default function ContactPage() {
                     <textarea
                       required
                       rows={5}
-                      placeholder="Outline your site conditions, estimated floor area, project timeline, and key requirements..."
+                      placeholder="Describe your property, number of bedrooms, site status (land purchased, foundation, or planning), desired timeline, and scope needed..."
                       className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden"
                     />
                   </div>
@@ -183,7 +197,7 @@ export default function ContactPage() {
                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 text-xs font-bold text-white shadow-md hover:bg-primary/90 transition-all cursor-pointer"
                   >
                     <Send className="h-4 w-4" />
-                    <span>Submit Project Inquiry</span>
+                    <span>Submit Project Inquiry to Mayowa</span>
                   </button>
                 </form>
               )}

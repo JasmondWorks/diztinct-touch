@@ -29,7 +29,7 @@ export function FeaturedProjects() {
             </h2>
           </div>
           <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
-            Flagship structural achievements combining algorithmic mass-timber, coastal post-tensioning, and low-carbon urban density.
+            Explore selected residential and commercial case studies by DIZTINCT TOUCH HOME DESIGN, led by Mayowa—featuring our active duplex build in ARMITY Estate.
           </p>
         </div>
 

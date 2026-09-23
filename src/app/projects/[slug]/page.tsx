@@ -197,7 +197,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <MetricsGrid metrics={project.metrics} />
         </div>
 
-        {/* Editorial 2:1 Asymmetrical Monograph Content Grid */}
+        {/* Detailed Project Case Study Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Main 8-Col Editorial Narrative */}
           <div className="lg:col-span-8 space-y-12">
