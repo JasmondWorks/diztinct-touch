@@ -8,19 +8,18 @@
 # PART A: REGISTERED PRACTICE & PROFESSIONAL IDENTITY
 
 ## 1. REGISTERED BUSINESS & BRAND IDENTITY
-- **Official Registered Company Name**: *(e.g., Diztinct Touch Architecture & Design Ltd)*
-- **Public Studio / Practice Name**: *(e.g., Diztinct Touch Architecture)*
-- **Company Registration Number**: *(Optional for footer / legal imprint, e.g., Companies House / Handelsregister / RC No.)*
-- **Professional Accreditations & Memberships**: *(e.g., RIBA Chartered Practice, ARB Registered, AIA, NIA, SIA)*
-- **Founding Year**: *(e.g., 2018)*
-- **Studio Monogram / Initials**: *(e.g., "DT")*
-- **Studio Tagline / Slogan**: *(e.g., "Designing structures where geometry meets material permanence.")*
+- **Official Registered Company Name**: DIZTINCT TOUCH HOME DESIGN
+- **Public Studio / Practice Name**: DIZTINCT TOUCH HOME DESIGN
+- **Company Registration Number**: *(e.g., Registered Architecture & Design Enterprise)*
+- **Professional Accreditations & Services**: Architectural Design, 2D Working Drawings, 3D Visualization, Construction Oversight
+- **Studio Monogram / Initials**: "DT"
+- **Studio Tagline / Slogan**: "Remarkable design, long lasting."
 
 ---
 
 ## 2. PRINCIPAL ARCHITECT / FOUNDER DETAILS
-- **Full Name**: *(e.g., Femi Thompson)*
-- **Professional Title**: *(e.g., Principal Architectural Designer & Computational Architect / Managing Director)*
+- **Full Name**: Mayowa
+- **Professional Title**: Design Lead & Principal Architect
 - **Short Bio / Professional Statement (1–2 paragraphs)**:  
   *Describe your background, design philosophy, materials/engineering ethos, and how your practice approaches clients and sites:*
   > **Your Answer:**  
@@ -29,19 +28,17 @@
 ---
 
 ## 3. STUDIO LOCATIONS & REGISTERED ADDRESS
-- **Primary Studio City & Country**: *(e.g., London, UK • Zurich, Switzerland • Lagos, Nigeria)*
-- **Registered Office Address / Geographic Coordinates**: *(e.g., 51°30'26"N 0°07'39"W)*
-- **Geographic Territories of Practice**: *(Where are you licensed or currently undertaking commissions? e.g., UK, EU, West Africa, Japan)*
+- **Principal Head Office (Ibadan)**: Suite 14, Lamlat House, Opp. Bovas Filling Station, New Gbagi Road, Ibadan, Oyo State
+- **Lagos Office Location**: 1, Church Street, Federal Low Cost Housing Estate, Mosan, Ipaja, Lagos
+- **Geographic Territories of Practice**: Nigeria (Nationwide), West Africa, International Diaspora Clients
 
 ---
 
 ## 4. CONTACT & BUSINESS COMMUNICATIONS
-- **Official Client Inquiry Email**: *(e.g., commissions@diztinct-touch.com)*
-- **Direct / Partner Email**: *(e.g., femi@diztinct-touch.com)*
-- **Press & Media Email**: *(Optional, e.g., press@diztinct-touch.com)*
-- **Business Telephone**: *(e.g., +44 (0) 20 7946 0912)*
-- **Studio Operating Hours**: *(e.g., Monday – Friday: 09:00 – 18:30 GMT)*
-- **Current Commission Status**: *(e.g., "Accepting Design & Masterplanning Commissions for 2026/2027")*
+- **Official Client Inquiry Email**: diztincttouch7@gmail.com
+- **Direct Business Telephone / WhatsApp**: +234 903 501 1649 (09035011649)
+- **Studio Operating Hours**: Mondays to Fridays: 8:30am – 5:00pm
+- **Current Commission Status**: "Available for Architectural Design, 3D Visualization & Construction Commissions"
 
 ---
 

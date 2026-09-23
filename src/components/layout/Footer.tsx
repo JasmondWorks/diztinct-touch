@@ -85,11 +85,15 @@ export function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-foreground-heading">
               Office Locations
             </h4>
-            <div className="space-y-2 text-xs text-muted-foreground">
-              <p>
-                <span className="font-semibold text-foreground">Studios:</span>{" "}
-                {siteConfig.location}
-              </p>
+            <div className="space-y-2.5 text-xs text-muted-foreground">
+              <div>
+                <span className="font-semibold text-foreground block">Head Office (Ibadan):</span>
+                <span className="text-[11px] leading-relaxed block mt-0.5">{siteConfig.ibadanOffice}</span>
+              </div>
+              <div>
+                <span className="font-semibold text-foreground block">Lagos Location:</span>
+                <span className="text-[11px] leading-relaxed block mt-0.5">{siteConfig.lagosOffice}</span>
+              </div>
               <p>
                 <span className="font-semibold text-foreground">Direct Email:</span>{" "}
                 <a
@@ -100,11 +104,28 @@ export function Footer() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-foreground">Phone:</span>{" "}
-                {siteConfig.phone}
+                <span className="font-semibold text-foreground">Phone / WhatsApp:</span>{" "}
+                <a
+                  href={`tel:${siteConfig.phoneRaw}`}
+                  className="hover:text-primary transition-colors font-medium text-foreground"
+                >
+                  {siteConfig.phone}
+                </a>
+              </p>
+              <p className="text-[11px] text-muted-foreground/80 font-mono">
+                Hours: {siteConfig.workingHours}
               </p>
             </div>
             <div className="pt-2 flex flex-wrap gap-2">
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 rounded-md border border-emerald-600/30 bg-emerald-600/10 px-2.5 py-1 text-[11px] font-medium text-emerald-500 hover:bg-emerald-600 hover:text-white transition-all"
+              >
+                <span>WhatsApp: {siteConfig.phoneRaw}</span>
+                <ArrowUpRight className="h-3 w-3" />
+              </a>
               {siteConfig.socials.map((social) => (
                 <a
                   key={social.name}

@@ -11,11 +11,16 @@ export interface SiteConfig {
   bio: string;
   coordinates: string;
   location: string;
+  ibadanOffice: string;
+  lagosOffice: string;
+  workingHours: string;
   registeredOffice?: string;
   territories?: string[];
   email: string;
   pressEmail?: string;
   phone: string;
+  phoneRaw: string;
+  whatsappUrl: string;
   status: string;
   services?: string[];
   stats: {
@@ -51,13 +56,18 @@ export const siteConfig: SiteConfig = {
   subheadline:
     "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN crafts functional, comfortable, and aesthetically appealing residential & commercial architecture—from 2D drawings and 3D visualization to active construction oversight.",
   bio: "DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization practice founded and led by Mayowa. Guided by our foundational philosophy—'Remarkable design, long lasting'—we specialize in crafting homes with careful consideration given to the building's form, proportions, spatial arrangement, and external appearance. From precision 2D working drawings and photorealistic 3D renders to on-site construction supervision (as seen in our flagship ARMITY Estate duplex), we bridge the gap between creative design and lasting structural reality.",
-  coordinates: "ARMITY Estate, Ejioku Village",
-  location: "ARMITY Estate • Ejioku • Oyo State & Lagos, Nigeria",
-  registeredOffice: "ARMITY Estate, Ejioku Village, Oyo State",
-  territories: ["Nigeria (Nationwide)", "West Africa", "International Diaspora Clients"],
-  email: "diztincttouch@gmail.com",
-  pressEmail: "diztincttouch@gmail.com",
-  phone: "+234 (0) 800 000 0000",
+  coordinates: "New Gbagi Road, Ibadan • Mosan Ipaja, Lagos",
+  location: "Ibadan (Head Office) & Lagos, Nigeria",
+  ibadanOffice: "Suite 14, Lamlat House, Opp. Bovas Filling Station, New Gbagi Road, Ibadan, Oyo State",
+  lagosOffice: "1, Church Street, Federal Low Cost Housing Estate, Mosan, Ipaja, Lagos",
+  workingHours: "Mondays to Fridays: 8:30am – 5:00pm",
+  registeredOffice: "Suite 14, Lamlat House, Opp. Bovas Filling Station, New Gbagi Road, Ibadan, Oyo State",
+  territories: ["Ibadan & Oyo State", "Lagos & Ogun State", "Nigeria (Nationwide)", "International Diaspora Clients"],
+  email: "diztincttouch7@gmail.com",
+  pressEmail: "diztincttouch7@gmail.com",
+  phone: "+234 903 501 1649",
+  phoneRaw: "09035011649",
+  whatsappUrl: "https://wa.me/2349035011649",
   status: "Available for Architectural Design, 3D Visualization & Construction Commissions",
   services: [
     "Architectural Concept & Spatial Design",
@@ -89,7 +99,7 @@ export const siteConfig: SiteConfig = {
     },
   ],
   socials: [
-    { name: "WhatsApp", url: "https://wa.me/2348000000000", label: "Direct Consultation" },
+    { name: "WhatsApp", url: "https://wa.me/2349035011649", label: "+234 903 501 1649" },
     { name: "Instagram", url: "https://instagram.com/diztincttouch", label: "@diztincttouch" },
     { name: "LinkedIn", url: "https://linkedin.com", label: "DIZTINCT TOUCH HOME DESIGN" },
     { name: "Portfolio", url: "#projects", label: "Selected Works" },

@@ -118,9 +118,10 @@ export default function AboutPage() {
                 Design Lead &amp; Principal • DIZTINCT TOUCH HOME DESIGN
               </p>
               <div className="pt-2 text-xs font-mono text-muted-foreground space-y-1">
-                <p>• Registered Architecture &amp; Design Practice</p>
-                <p>• Specialization: Contemporary Residential Duplexes &amp; 3D Modeling</p>
-                <p>• Location: Oyo State &amp; Lagos, Nigeria</p>
+                <p>• Registered Architecture &amp; 3D Visualization Practice</p>
+                <p>• Principal Office: New Gbagi Road, Ibadan, Oyo State</p>
+                <p>• Lagos Office: Mosan, Ipaja, Lagos</p>
+                <p>• Direct: +234 903 501 1649 • diztincttouch7@gmail.com</p>
               </div>
             </div>
 
@@ -141,13 +142,13 @@ export default function AboutPage() {
 
               <div className="pt-2 flex flex-wrap gap-3">
                 <a
-                  href={`https://wa.me/2348000000000?text=${encodeURIComponent("Hello Mayowa, I would like to consult on an architectural project with DIZTINCT TOUCH HOME DESIGN.")}`}
+                  href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I would like to consult on an architectural project with DIZTINCT TOUCH HOME DESIGN.")}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 transition-all"
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
-                  <span>Chat with Mayowa on WhatsApp</span>
+                  <span>Chat with Mayowa on WhatsApp (+234 903 501 1649)</span>
                 </a>
                 <Link
                   href="/contact"
@@ -388,13 +389,13 @@ export default function AboutPage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href={`https://wa.me/2348000000000?text=${encodeURIComponent("Hello Mayowa, I'd like to discuss a project with DIZTINCT TOUCH HOME DESIGN.")}`}
+              href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to discuss a project with DIZTINCT TOUCH HOME DESIGN.")}`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3.5 text-xs font-semibold text-foreground hover:border-primary/40 transition-all"
             >
               <MessageSquare className="h-4 w-4 text-emerald-500" />
-              <span>Chat Directly on WhatsApp</span>
+              <span>Chat Directly on WhatsApp (+234 903 501 1649)</span>
             </a>
           </div>
         </div>

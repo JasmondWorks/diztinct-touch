@@ -34,21 +34,33 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-8">
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-6 shadow-xs">
               <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
-                Studio &amp; Direct Contact
+                Office Locations &amp; Direct Contact
               </h3>
 
               <div className="space-y-4 text-xs font-mono">
+                {/* Ibadan Head Office */}
                 <div className="flex items-start gap-3">
                   <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-foreground block">Locations</span>
-                    <span className="text-muted-foreground">{siteConfig.location}</span>
-                    <span className="text-[10px] text-muted-foreground block mt-1">
-                      {siteConfig.coordinates}
+                    <span className="font-bold text-foreground block">Principal Head Office (Ibadan)</span>
+                    <span className="text-muted-foreground leading-relaxed block mt-0.5">
+                      {siteConfig.ibadanOffice}
                     </span>
                   </div>
                 </div>
 
+                {/* Lagos Office */}
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-foreground block">Lagos Office Location</span>
+                    <span className="text-muted-foreground leading-relaxed block mt-0.5">
+                      {siteConfig.lagosOffice}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Email */}
                 <div className="flex items-start gap-3">
                   <Mail className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                   <div>
@@ -62,19 +74,26 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* Phone */}
                 <div className="flex items-start gap-3">
                   <Phone className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-foreground block">Studio Telephone</span>
-                    <span className="text-muted-foreground">{siteConfig.phone}</span>
+                    <span className="font-bold text-foreground block">Studio Telephone / WhatsApp</span>
+                    <a
+                      href={`tel:${siteConfig.phoneRaw}`}
+                      className="text-foreground hover:text-primary transition-colors font-semibold"
+                    >
+                      {siteConfig.phone} ({siteConfig.phoneRaw})
+                    </a>
                   </div>
                 </div>
 
+                {/* Working Hours */}
                 <div className="flex items-start gap-3">
                   <Clock className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-foreground block">Operating Hours</span>
-                    <span className="text-muted-foreground">Monday – Saturday: 08:30 – 18:30 WAT</span>
+                    <span className="font-bold text-foreground block">Working Hours</span>
+                    <span className="text-muted-foreground">{siteConfig.workingHours}</span>
                   </div>
                 </div>
               </div>
@@ -82,13 +101,13 @@ export default function ContactPage() {
               {/* WhatsApp Quick Consultation Button */}
               <div className="pt-2 border-t border-border/70">
                 <a
-                  href={`https://wa.me/2348000000000?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
+                  href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 transition-all w-full"
                 >
                   <MessageSquare className="h-4 w-4" />
-                  <span>Chat on WhatsApp Directly</span>
+                  <span>Chat on WhatsApp Directly (+234 903 501 1649)</span>
                 </a>
               </div>
             </div>
