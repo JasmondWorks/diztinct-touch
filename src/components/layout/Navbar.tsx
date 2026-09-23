@@ -7,6 +7,7 @@ import { siteConfig } from "@/data/siteConfig";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X, ArrowUpRight, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -65,26 +66,27 @@ export function Navbar() {
 
         {/* Right Actions: Commission Status & Theme Toggle */}
         <div className="hidden sm:flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-1.5 rounded-lg border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-white"
-          >
-            <span>Start a Project</span>
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          <Button asChild size="sm" className="gap-1.5 h-8 text-xs font-semibold shadow-xs">
+            <Link href="/contact">
+              <span>Start a Project</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          </Button>
           <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex sm:hidden items-center gap-2">
           <ThemeToggle />
-          <button
+          <Button
+            variant="outline"
+            size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-lg border border-border bg-card/70 p-2 text-muted-foreground hover:text-foreground"
+            className="h-9 w-9 text-muted-foreground hover:text-foreground"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -104,14 +106,15 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-3 border-t border-border">
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-lg bg-primary py-2.5 text-sm font-semibold text-white shadow-sm"
-              >
-                <span>Start a Project</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              <Button asChild className="w-full gap-2 shadow-sm">
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>Start a Project</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </nav>
         </div>

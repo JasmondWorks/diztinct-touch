@@ -4,6 +4,8 @@ import Link from "next/link";
 import { siteConfig } from "@/data/siteConfig";
 import { ArrowDown, ArrowRight, Building2, Layers, Award } from "lucide-react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export function Hero() {
   return (
@@ -27,13 +29,14 @@ export function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary backdrop-blur-md"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-            </span>
-            <span>{siteConfig.status}</span>
+            <Badge variant="outline" className="gap-2.5 rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+              </span>
+              <span>{siteConfig.status}</span>
+            </Badge>
           </motion.div>
 
           {/* Main Editorial Headline */}
@@ -64,28 +67,25 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap items-center gap-4 pt-2"
           >
-            <Link
-              href="#featured"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span>Explore Featured Works</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild size="lg" className="rounded-xl shadow-lg shadow-primary/20 gap-2">
+              <Link href="#featured">
+                <span>Explore Featured Works</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
 
-            <Link
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/80 px-6 py-3.5 text-sm font-semibold text-foreground backdrop-blur-md transition-all duration-200 hover:border-primary/40 hover:bg-card hover:text-primary"
-            >
-              <span>Browse All Projects</span>
-            </Link>
+            <Button asChild variant="outline" size="lg" className="rounded-xl backdrop-blur-md gap-2">
+              <Link href="#projects">
+                <span>Browse All Projects</span>
+              </Link>
+            </Button>
 
-            <Link
-              href="/gallery"
-              className="inline-flex items-center gap-2 rounded-xl border border-transparent px-4 py-3.5 text-sm font-semibold text-muted-foreground transition-all duration-200 hover:text-foreground"
-            >
-              <Layers className="h-4 w-4 text-primary" />
-              <span>Visual Gallery</span>
-            </Link>
+            <Button asChild variant="ghost" size="lg" className="rounded-xl gap-2 text-muted-foreground hover:text-foreground">
+              <Link href="/gallery">
+                <Layers className="h-4 w-4 text-primary" />
+                <span>Visual Gallery</span>
+              </Link>
+            </Button>
           </motion.div>
         </div>
 

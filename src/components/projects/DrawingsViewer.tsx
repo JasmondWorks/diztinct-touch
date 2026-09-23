@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ArchitecturalDrawing } from "@/types/project";
-import { Compass, Maximize2, FileText, ChevronRight, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Compass, Maximize2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Modal } from "@/components/ui/modal";
 
 interface DrawingsViewerProps {
   drawings?: ArchitecturalDrawing[];
@@ -42,9 +43,9 @@ export function DrawingsViewer({
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
               Primary Axonometric Section
             </span>
-            <span className="rounded-md border border-border px-2 py-0.5 text-[10px] font-mono text-muted-foreground">
+            <Badge variant="outline" className="text-[10px] font-mono">
               SVG Vector Drawing
-            </span>
+            </Badge>
           </div>
 
           <div
@@ -53,6 +54,7 @@ export function DrawingsViewer({
           >
             {/* Embedded SVG image */}
             <div className="relative h-full w-full flex items-center justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={axonometricUrl}
                 alt="Axonometric Blueprint Diagram"
@@ -94,9 +96,9 @@ export function DrawingsViewer({
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute top-2 left-2">
-                  <span className="rounded-md border border-white/20 bg-black/60 px-2 py-0.5 text-[9px] font-mono font-bold uppercase tracking-wider text-white backdrop-blur-md">
+                  <Badge variant="secondary" className="bg-black/60 text-white backdrop-blur-md uppercase text-[9px] font-mono">
                     {drawing.type} • {drawing.scale ?? "NTS"}
-                  </span>
+                  </Badge>
                 </div>
               </div>
 
@@ -115,33 +117,28 @@ export function DrawingsViewer({
         </div>
       )}
 
-      {/* Zoom Modal for Drawings */}
-      {activeDrawing && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex flex-col bg-black/95 backdrop-blur-md p-4 sm:p-8 animate-in fade-in"
-        >
-          <div className="flex items-center justify-between pb-4 text-white">
-            <span className="font-mono text-xs uppercase tracking-wider text-primary font-bold">
-              Architectural Technical Drawing Inspection
-            </span>
-            <button
-              onClick={() => setActiveDrawing(null)}
-              className="rounded-lg border border-white/20 bg-white/10 p-2 text-white hover:bg-white/20"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-          <div className="relative flex-1 flex items-center justify-center overflow-hidden">
+      {/* Zoom Reusable Modal for Drawings */}
+      <Modal
+        isOpen={!!activeDrawing}
+        setIsOpen={(open) => !open && setActiveDrawing(null)}
+        size="2xl"
+        title={
+          <span className="font-mono text-xs uppercase tracking-wider text-primary font-bold">
+            Architectural Technical Drawing Inspection
+          </span>
+        }
+      >
+        {activeDrawing && (
+          <div className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-background/50 rounded-xl p-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={activeDrawing}
               alt="Expanded Architectural Drawing"
               className="max-h-full max-w-full object-contain"
             />
           </div>
-        </div>
-      )}
+        )}
+      </Modal>
     </div>
   );
 }

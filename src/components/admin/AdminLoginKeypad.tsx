@@ -8,6 +8,7 @@ import Link from "next/link";
 import { siteConfig } from "@/data/siteConfig";
 import { ShieldCheck, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export function AdminLoginKeypad() {
   const router = useRouter();
@@ -132,40 +133,44 @@ export function AdminLoginKeypad() {
       {/* Tactile Keypad */}
       <div className="grid grid-cols-3 gap-3 mb-8">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-          <button
+          <Button
             key={num}
             type="button"
+            variant="ghost"
             onClick={() => handleDigit(num.toString())}
             disabled={loading}
             className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-xs cursor-pointer font-semibold"
           >
             {num}
-          </button>
+          </Button>
         ))}
-        <button
+        <Button
           type="button"
+          variant="ghost"
           onClick={handleClear}
           disabled={loading}
           className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
         >
           Clear
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="ghost"
           onClick={() => handleDigit("0")}
           disabled={loading}
           className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-xs cursor-pointer font-semibold"
         >
           0
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="ghost"
           onClick={handleDelete}
           disabled={loading}
           className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
         >
           Del
-        </button>
+        </Button>
       </div>
 
       {/* Footer info */}

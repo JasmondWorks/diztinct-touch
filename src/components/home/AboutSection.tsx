@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { siteConfig } from "@/data/siteConfig";
-import { Compass, Layers, ShieldCheck, ArrowRight, CheckCircle2, Trees, HardHat } from "lucide-react";
+import { Compass, Layers, ArrowRight, HardHat } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
 export function AboutSection() {
   const pillars = [
@@ -48,13 +51,12 @@ export function AboutSection() {
             </p>
 
             <div className="pt-2">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-bold text-primary hover:bg-primary hover:text-white transition-all"
-              >
-                <span>Learn More About Our Practice</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <Button asChild variant="outline" className="gap-2 text-xs font-bold text-primary border-primary/30 bg-primary/10 hover:bg-primary hover:text-white">
+                <Link href="/about">
+                  <span>Learn More About Our Practice</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
             </div>
           </div>
 
@@ -64,9 +66,9 @@ export function AboutSection() {
               {pillars.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
-                  <div
+                  <Card
                     key={pillar.title}
-                    className="flex flex-col sm:flex-row items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-xs transition-all hover:border-primary/40"
+                    className="flex flex-col sm:flex-row items-start gap-4 p-6 shadow-xs transition-all hover:border-primary/40"
                   >
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
@@ -79,13 +81,13 @@ export function AboutSection() {
                         {pillar.description}
                       </p>
                     </div>
-                  </div>
+                  </Card>
                 );
               })}
             </div>
 
             {/* Software & Construction Systems Matrix */}
-            <div className="rounded-2xl border border-border bg-card/60 p-6 space-y-3">
+            <Card className="p-6 space-y-3">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
                 Technical Systems &amp; Construction Methods
               </span>
@@ -102,15 +104,16 @@ export function AboutSection() {
                   "Architectural Privacy Louvers",
                   "On-Site Construction Oversight",
                 ].map((item) => (
-                  <span
+                  <Badge
                     key={item}
-                    className="rounded-lg border border-border bg-background px-3 py-1 text-xs font-mono font-medium text-foreground"
+                    variant="outline"
+                    className="text-xs font-mono font-medium text-foreground bg-background"
                   >
                     {item}
-                  </span>
+                  </Badge>
                 ))}
               </div>
-            </div>
+            </Card>
           </div>
         </div>
       </div>

@@ -4,8 +4,11 @@ import { useState, useMemo } from "react";
 import { Project, ArchitecturalCategory } from "@/types/project";
 import { architecturalProjects } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { Search, X, Filter, SlidersHorizontal, Building2 } from "lucide-react";
+import { Search, X, SlidersHorizontal, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const CATEGORIES: ("All" | ArchitecturalCategory)[] = [
   "All",
@@ -45,14 +48,16 @@ export function ProjectsGrid() {
         return false;
       }
 
-      // Search query
+      // Search Query filter (matches title, location, category, techStack, etc.)
       if (searchQuery.trim()) {
-        const query = searchQuery.toLowerCase();
+        const query = searchQuery.toLowerCase().trim();
         const matchesTitle = project.title.toLowerCase().includes(query);
+        const matchesCategory = project.category.toLowerCase().includes(query);
         const matchesLocation = project.location?.toLowerCase().includes(query) ?? false;
-        const matchesShort = project.shortDescription.toLowerCase().includes(query);
+        const matchesDescription = project.shortDescription.toLowerCase().includes(query);
         const matchesTech = project.techStack.some((t) => t.toLowerCase().includes(query));
-        return matchesTitle || matchesLocation || matchesShort || matchesTech;
+
+        return matchesTitle || matchesCategory || matchesLocation || matchesDescription || matchesTech;
       }
 
       return true;
@@ -60,10 +65,10 @@ export function ProjectsGrid() {
   }, [selectedCategory, selectedTag, searchQuery]);
 
   return (
-    <section id="projects" className="relative scroll-mt-24 py-20 sm:py-28 bg-muted/20 border-t border-border">
+    <section id="projects" className="relative scroll-mt-24 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-8 border-b border-border/80">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
               <Building2 className="h-3.5 w-3.5" />
@@ -83,37 +88,41 @@ export function ProjectsGrid() {
           <div className="flex flex-col sm:flex-row items-center gap-3">
             {/* Search Input */}
             <div className="relative w-full sm:max-w-md">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+              <Input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by typology, material, location, or software..."
-                className="w-full rounded-xl border border-border bg-card py-2.5 pl-10 pr-9 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-hidden transition-colors"
+                className="pl-10 pr-9 text-xs"
               />
               {searchQuery && (
-                <button
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground hover:text-foreground"
                 >
                   <X className="h-3.5 w-3.5" />
-                </button>
+                </Button>
               )}
             </div>
 
             {/* Tag Reset if active */}
             {(selectedTag || selectedCategory !== "All" || searchQuery) && (
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => {
                   setSelectedCategory("All");
                   setSelectedTag(null);
                   setSearchQuery("");
                 }}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-destructive/20 bg-destructive/10 px-3.5 py-2.5 text-xs font-semibold text-destructive hover:bg-destructive/20 transition-colors"
+                className="gap-1.5 text-xs text-destructive border-destructive/20 bg-destructive/10 hover:bg-destructive/20 hover:text-destructive"
               >
                 <X className="h-3.5 w-3.5" />
                 <span>Reset Filters</span>
-              </button>
+              </Button>
             )}
           </div>
 
@@ -125,29 +134,24 @@ export function ProjectsGrid() {
                   ? architecturalProjects.length
                   : architecturalProjects.filter((p) => p.category === cat).length;
 
+              const isSelected = selectedCategory === cat;
+
               return (
-                <button
+                <Button
                   key={cat}
+                  variant={isSelected ? "default" : "outline"}
+                  size="sm"
                   onClick={() => setSelectedCategory(cat)}
-                  className={cn(
-                    "inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap",
-                    selectedCategory === cat
-                      ? "bg-primary text-white shadow-sm"
-                      : "border border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                  )}
+                  className="gap-1.5 h-8 text-xs font-semibold whitespace-nowrap"
                 >
                   <span>{cat}</span>
-                  <span
-                    className={cn(
-                      "rounded-full px-1.5 py-0.2 text-[10px] font-mono",
-                      selectedCategory === cat
-                        ? "bg-white/20 text-white"
-                        : "bg-muted text-muted-foreground"
-                    )}
+                  <Badge
+                    variant={isSelected ? "secondary" : "outline"}
+                    className="px-1.5 py-0 text-[10px] font-mono h-4 min-w-4 justify-center"
                   >
                     {count}
-                  </span>
-                </button>
+                  </Badge>
+                </Button>
               );
             })}
           </div>
@@ -158,20 +162,20 @@ export function ProjectsGrid() {
               <SlidersHorizontal className="h-3 w-3" />
               Materials &amp; Systems:
             </span>
-            {COMMON_TAGS.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-                className={cn(
-                  "rounded-md px-2.5 py-1 text-[11px] font-semibold transition-colors cursor-pointer",
-                  selectedTag === tag
-                    ? "border border-accent bg-accent text-white"
-                    : "border border-border/80 bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                )}
-              >
-                {tag}
-              </button>
-            ))}
+            {COMMON_TAGS.map((tag) => {
+              const isSelected = selectedTag === tag;
+              return (
+                <Button
+                  key={tag}
+                  variant={isSelected ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedTag(isSelected ? null : tag)}
+                  className="h-6 px-2.5 text-[11px] font-medium rounded-full"
+                >
+                  {tag}
+                </Button>
+              );
+            })}
           </div>
 
           {/* Results Count Banner */}
@@ -202,16 +206,16 @@ export function ProjectsGrid() {
             <p className="mt-1 text-xs text-muted-foreground">
               Try selecting a different typology category or resetting your search query.
             </p>
-            <button
+            <Button
               onClick={() => {
                 setSelectedCategory("All");
                 setSelectedTag(null);
                 setSearchQuery("");
               }}
-              className="mt-4 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-white"
+              className="mt-4"
             >
               Clear All Filters
-            </button>
+            </Button>
           </div>
         )}
       </div>

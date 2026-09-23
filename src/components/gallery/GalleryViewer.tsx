@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ZoomIn, ArrowUpRight, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ZoomIn, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Modal } from "@/components/ui/modal";
 
 export interface GalleryPlate {
   url: string;
@@ -34,23 +36,23 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
             { id: "exterior", label: "Exterior" },
             { id: "interior", label: "Interior Spaces" },
             { id: "detail", label: "Construction Details" },
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={cn(
-                "rounded-lg px-4 py-2 text-xs font-mono font-semibold transition-all cursor-pointer",
-                selectedCategory === cat.id
-                  ? "bg-[#C9A84C] text-[#0A0A0A] shadow-xs"
-                  : "border border-white/10 bg-white/[0.02] text-[#8A8A8A] hover:border-[#C9A84C]/40 hover:text-[#F9F6F0]"
-              )}
-            >
-              {cat.label}
-            </button>
-          ))}
+          ].map((cat) => {
+            const isSelected = selectedCategory === cat.id;
+            return (
+              <Button
+                key={cat.id}
+                variant={isSelected ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(cat.id)}
+                className="h-8 font-mono text-xs font-semibold"
+              >
+                {cat.label}
+              </Button>
+            );
+          })}
         </div>
 
-        <div className="text-xs font-mono text-[#8A8A8A]">
+        <div className="text-xs font-mono text-muted-foreground">
           Displaying {filteredPlates.length} photos
         </div>
       </div>
@@ -60,11 +62,11 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
         {filteredPlates.map((plate, index) => (
           <div
             key={plate.url + index}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] shadow-xs hover:border-[#C9A84C]/50 transition-all duration-300"
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 shadow-xs hover:border-primary/50 transition-all duration-300"
           >
             <div
               onClick={() => setLightboxData(plate)}
-              className="relative aspect-4/3 overflow-hidden bg-white/5 cursor-pointer"
+              className="relative aspect-4/3 overflow-hidden bg-muted cursor-pointer"
             >
               <Image
                 src={plate.url}
@@ -76,13 +78,13 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="absolute top-3 left-3">
-                <span className="rounded-md border border-white/20 bg-black/60 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-white backdrop-blur-md">
+                <Badge variant="secondary" className="bg-black/60 text-white backdrop-blur-md uppercase text-[9px] font-mono">
                   {plate.category}
-                </span>
+                </Badge>
               </div>
 
               <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#C9A84C] text-[#0A0A0A] shadow-md">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md">
                   <ZoomIn className="h-4 w-4" />
                 </div>
               </div>
@@ -90,20 +92,20 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
 
             {/* Caption & Project Link */}
             <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
-              <p className="text-xs text-[#F9F6F0] font-medium line-clamp-2 leading-relaxed">
+              <p className="text-xs text-foreground font-medium line-clamp-2 leading-relaxed">
                 {plate.caption}
               </p>
 
-              <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs">
+              <div className="pt-2 border-t border-border/80 flex items-center justify-between text-xs">
                 <Link
                   href={`/projects/${plate.projectSlug}`}
-                  className="font-mono text-[11px] font-bold text-[#C9A84C] hover:underline inline-flex items-center gap-1"
+                  className="font-mono text-[11px] font-bold text-primary hover:underline inline-flex items-center gap-1"
                 >
                   <span>{plate.projectTitle}</span>
                   <ArrowUpRight className="h-3 w-3" />
                 </Link>
 
-                <span className="text-[10px] font-mono text-[#8A8A8A]">
+                <span className="text-[10px] font-mono text-muted-foreground">
                   {plate.projectLocation}
                 </span>
               </div>
@@ -112,57 +114,49 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
         ))}
       </div>
 
-      {/* Lightbox Modal */}
-      {lightboxData && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex flex-col bg-black/95 backdrop-blur-md animate-in fade-in"
-        >
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 text-white">
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#C9A84C] font-bold">
-                {lightboxData.projectTitle}
-              </span>
-              <p className="text-xs text-white/70">{lightboxData.category} view</p>
+      {/* Lightbox Reusable Modal */}
+      <Modal
+        isOpen={!!lightboxData}
+        setIsOpen={(open) => !open && setLightboxData(null)}
+        size="2xl"
+        title={
+          lightboxData && (
+            <div className="flex items-center justify-between w-full pr-8">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-primary font-bold">
+                  {lightboxData.projectTitle}
+                </span>
+                <p className="text-xs text-muted-foreground font-normal">{lightboxData.category} view</p>
+              </div>
+              <Button asChild size="sm" variant="outline" className="gap-1.5 text-xs text-primary border-primary/30">
+                <Link href={`/projects/${lightboxData.projectSlug}`}>
+                  <span>View Case Study</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
             </div>
-
-            <div className="flex items-center gap-3">
-              <Link
-                href={`/projects/${lightboxData.projectSlug}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-[#C9A84C]/40 bg-[#C9A84C]/20 px-3 py-1.5 text-xs font-semibold text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-colors"
-              >
-                <span>View Project Case Study</span>
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
-              <button
-                onClick={() => setLightboxData(null)}
-                className="rounded-lg border border-white/20 bg-white/10 p-2 text-white hover:bg-white/20 cursor-pointer"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
-
-          <div className="relative flex-1 flex items-center justify-center p-4 sm:p-8">
-            <div className="relative h-full w-full max-w-6xl max-h-[75vh]">
-              <Image
-                src={lightboxData.url}
-                alt={lightboxData.caption}
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 bg-black/80 px-6 py-4 text-center">
-            <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto font-medium">
+          )
+        }
+        footer={
+          lightboxData && (
+            <p className="text-center text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto font-medium">
               {lightboxData.caption}
             </p>
+          )
+        }
+      >
+        {lightboxData && (
+          <div className="relative aspect-16/10 w-full overflow-hidden rounded-xl bg-muted/30">
+            <Image
+              src={lightboxData.url}
+              alt={lightboxData.caption}
+              fill
+              priority
+              className="object-contain"
+            />
           </div>
-        </div>
-      )}
+        )}
+      </Modal>
     </div>
   );
 }
