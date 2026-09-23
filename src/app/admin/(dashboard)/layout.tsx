@@ -2,6 +2,7 @@ import React from "react";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 import { redirect } from "next/navigation";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { AdminAuthProvider } from "@/components/admin/AdminAuthProvider";
 import Link from "next/link";
 
 export const metadata = {
@@ -23,7 +24,8 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F9F6F0] flex flex-col md:flex-row font-sans selection:bg-[#C9A84C]/30">
+    <AdminAuthProvider>
+      <div className="min-h-screen bg-[#0A0A0A] text-[#F9F6F0] flex flex-col md:flex-row font-sans selection:bg-[#C9A84C]/30">
       {/* Sidebar navigation */}
       <AdminSidebar />
 
@@ -69,5 +71,6 @@ export default async function AdminDashboardLayout({
         </main>
       </div>
     </div>
+    </AdminAuthProvider>
   );
 }

@@ -1,6 +1,6 @@
 "use server";
 
-import { sql, initDatabase } from "@/db";
+import { prisma } from "@/lib/prisma";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 import { revalidatePath } from "next/cache";
 
@@ -29,39 +29,42 @@ export async function submitLeadAction(data: {
   estimatedBudget?: string;
 }): Promise<{ success: boolean; error?: string }> {
   try {
-    await initDatabase();
-
     if (!data.name || !data.email || !data.message) {
       return { success: false, error: "Please fill in your name, email, and project message." };
     }
 
-    await sql`
-      INSERT INTO leads (
-        name, email, phone, typology, location, message, estimated_budget, status
-      ) VALUES (
-        ${data.name},
-        ${data.email},
-        ${data.phone || null},
-        ${data.typology || "Residential Duplex"},
-        ${data.location || null},
-        ${data.message},
-        ${data.estimatedBudget || null},
-        'new'
-      );
-    `;
+    await prisma.lead.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone || null,
+        typology: data.typology || "Residential Duplex",
+        location: data.location || null,
+        message: data.message,
+        estimatedBudget: data.estimatedBudget || null,
+        status: "new",
+      },
+    });
 
     // Also track analytics event
-    await sql`
-      INSERT INTO analytics_events (event_type, path, metadata)
-      VALUES ('inquiry_submit', '/contact', ${JSON.stringify({ typology: data.typology, location: data.location })});
-    `;
+    try {
+      await prisma.analyticsEvent.create({
+        data: {
+          eventType: "inquiry_submit",
+          path: "/contact",
+          metadata: { typology: data.typology, location: data.location },
+        },
+      });
+    } catch {
+      // Ignore telemetry failure
+    }
 
     revalidatePath("/admin");
     revalidatePath("/admin/leads");
 
     return { success: true };
   } catch (err: any) {
-    console.error("Error submitting client inquiry:", err);
+    console.error("Error submitting client inquiry via Prisma:", err);
     return { success: false, error: "We could not save your inquiry. Please try WhatsApp directly." };
   }
 }
@@ -71,10 +74,11 @@ export async function getLeadsAction(): Promise<Lead[]> {
   if (!isAuth) return [];
 
   try {
-    await initDatabase();
-    const rows = await sql`SELECT * FROM leads ORDER BY created_at DESC`;
+    const rows = await prisma.lead.findMany({
+      orderBy: { createdAt: "desc" },
+    });
 
-    return rows.map((r: any) => ({
+    return rows.map((r) => ({
       id: r.id,
       name: r.name,
       email: r.email,
@@ -82,14 +86,14 @@ export async function getLeadsAction(): Promise<Lead[]> {
       typology: r.typology || undefined,
       location: r.location || undefined,
       message: r.message,
-      estimatedBudget: r.estimated_budget || undefined,
-      status: r.status,
+      estimatedBudget: r.estimatedBudget || undefined,
+      status: r.status as Lead["status"],
       notes: r.notes || undefined,
-      createdAt: r.created_at?.toISOString?.() || String(r.created_at),
-      updatedAt: r.updated_at?.toISOString?.() || String(r.updated_at),
+      createdAt: r.createdAt?.toISOString?.() || String(r.createdAt),
+      updatedAt: r.updatedAt?.toISOString?.() || String(r.updatedAt),
     }));
   } catch (err) {
-    console.error("Error fetching leads:", err);
+    console.error("Error fetching leads via Prisma:", err);
     return [];
   }
 }
@@ -103,14 +107,13 @@ export async function updateLeadStatusAction(
   if (!isAuth) return { success: false, error: "Unauthorized." };
 
   try {
-    await initDatabase();
-    await sql`
-      UPDATE leads SET
-        status = ${status},
-        notes = COALESCE(${notes ?? null}, notes),
-        updated_at = NOW()
-      WHERE id = ${id};
-    `;
+    await prisma.lead.update({
+      where: { id },
+      data: {
+        status,
+        notes: notes !== undefined ? notes : undefined,
+      },
+    });
 
     revalidatePath("/admin");
     revalidatePath("/admin/leads");
@@ -125,8 +128,9 @@ export async function deleteLeadAction(id: number): Promise<{ success: boolean }
   if (!isAuth) return { success: false };
 
   try {
-    await initDatabase();
-    await sql`DELETE FROM leads WHERE id = ${id}`;
+    await prisma.lead.delete({
+      where: { id },
+    });
     revalidatePath("/admin");
     revalidatePath("/admin/leads");
     return { success: true };

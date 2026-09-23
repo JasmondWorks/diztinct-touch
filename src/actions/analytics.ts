@@ -1,6 +1,6 @@
 "use server";
 
-import { sql, initDatabase } from "@/db";
+import { prisma } from "@/lib/prisma";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 
 export interface AnalyticsSummary {
@@ -24,14 +24,16 @@ export async function trackEventAction(
   metadata?: Record<string, any>
 ): Promise<void> {
   try {
-    await initDatabase();
-    await sql`
-      INSERT INTO analytics_events (event_type, path, metadata)
-      VALUES (${eventType}, ${path}, ${JSON.stringify(metadata || {})});
-    `;
+    await prisma.analyticsEvent.create({
+      data: {
+        eventType,
+        path,
+        metadata: metadata || {},
+      },
+    });
   } catch (err) {
     // Fail silently so client UX is never interrupted
-    console.error("Analytics track error:", err);
+    console.error("Analytics track error via Prisma:", err);
   }
 }
 
@@ -50,61 +52,56 @@ export async function getAnalyticsSummaryAction(): Promise<AnalyticsSummary> {
   }
 
   try {
-    await initDatabase();
+    const [totalViews, totalWA, totalInquiries, totalProjects, recentEvents] =
+      await Promise.all([
+        prisma.analyticsEvent.count({
+          where: { eventType: { in: ["page_view", "project_view"] } },
+        }),
+        prisma.analyticsEvent.count({
+          where: { eventType: "whatsapp_click" },
+        }),
+        prisma.lead.count(),
+        prisma.project.count(),
+        prisma.analyticsEvent.findMany({
+          orderBy: { createdAt: "desc" },
+          take: 12,
+        }),
+      ]);
 
-    const [viewsRes] = await sql`
-      SELECT count(*)::int as count FROM analytics_events WHERE event_type IN ('page_view', 'project_view');
-    `;
-    const [waRes] = await sql`
-      SELECT count(*)::int as count FROM analytics_events WHERE event_type = 'whatsapp_click';
-    `;
-    const [inqRes] = await sql`
-      SELECT count(*)::int as count FROM leads;
-    `;
-    const [projRes] = await sql`
-      SELECT count(*)::int as count FROM projects;
-    `;
+    // Grouping top views by path
+    const topPathsRaw = await prisma.analyticsEvent.groupBy({
+      by: ["path"],
+      where: { eventType: { in: ["page_view", "project_view"] } },
+      _count: { path: true },
+      orderBy: { _count: { path: "desc" } },
+      take: 8,
+    });
 
-    const topPaths = await sql`
-      SELECT path, count(*)::int as count
-      FROM analytics_events
-      WHERE event_type IN ('page_view', 'project_view')
-      GROUP BY path
-      ORDER BY count DESC
-      LIMIT 8;
-    `;
-
-    const recent = await sql`
-      SELECT id, event_type, path, created_at
-      FROM analytics_events
-      ORDER BY created_at DESC
-      LIMIT 12;
-    `;
-
-    const totalViews = viewsRes?.count || 0;
-    const totalWA = waRes?.count || 0;
-    const totalInquiries = inqRes?.count || 0;
     const totalInteractions = totalWA + totalInquiries;
-    const conversionRate = totalViews > 0 
-      ? ((totalInteractions / totalViews) * 100).toFixed(1) + "%" 
-      : "0.0%";
+    const conversionRate =
+      totalViews > 0
+        ? ((totalInteractions / totalViews) * 100).toFixed(1) + "%"
+        : "0.0%";
 
     return {
       totalPageViews: totalViews,
       totalWhatsAppClicks: totalWA,
       totalInquiries,
-      totalProjects: projRes?.count || 0,
+      totalProjects,
       conversionRate,
-      viewsByPath: topPaths.map((p: any) => ({ path: p.path, count: p.count })),
-      recentEvents: recent.map((r: any) => ({
+      viewsByPath: topPathsRaw.map((p) => ({
+        path: p.path,
+        count: p._count.path,
+      })),
+      recentEvents: recentEvents.map((r) => ({
         id: r.id,
-        eventType: r.event_type,
+        eventType: r.eventType,
         path: r.path,
-        createdAt: r.created_at?.toISOString?.() || String(r.created_at),
+        createdAt: r.createdAt?.toISOString?.() || String(r.createdAt),
       })),
     };
   } catch (err) {
-    console.error("Error generating analytics summary:", err);
+    console.error("Error generating analytics summary via Prisma:", err);
     return {
       totalPageViews: 0,
       totalWhatsAppClicks: 0,

@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://diztincttouch.com"),
   title: "DIZTINCT TOUCH HOME DESIGN — Architectural Design & 3D Visualization",
   description:
     "Contemporary residential & commercial architectural design, 2D drawings, photorealistic 3D visualization, and construction-stage oversight. Remarkable design, long lasting.",

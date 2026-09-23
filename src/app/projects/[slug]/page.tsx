@@ -43,11 +43,23 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectBySlugAction(slug);
-  if (!project) return { title: "Project Not Found" };
+  if (!project) return { title: "Project Not Found | DIZTINCT TOUCH" };
 
   return {
-    title: `${project.title} — Diztinct Touch Architecture`,
+    title: `${project.title} | DIZTINCT TOUCH HOME DESIGN`,
     description: project.shortDescription,
+    keywords: [
+      project.title,
+      project.buildingType || project.category,
+      project.location || "Nigeria",
+      "DIZTINCT TOUCH HOME DESIGN",
+      "Mayowa architect",
+    ],
+    openGraph: {
+      title: `${project.title} — DIZTINCT TOUCH HOME DESIGN`,
+      description: project.shortDescription,
+      images: project.coverImage ? [{ url: project.coverImage }] : [],
+    },
   };
 }
 

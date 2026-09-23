@@ -4,6 +4,32 @@ import { ProjectsGrid } from "@/components/home/ProjectsGrid";
 import { AboutSection } from "@/components/home/AboutSection";
 import Link from "next/link";
 import { ArrowRight, Compass, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DIZTINCT TOUCH HOME DESIGN | Contemporary Architecture & 3D Visualization",
+  description:
+    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a premier registered architectural practice delivering bespoke contemporary residential duplexes, 3D visualization, working drawings, and on-site construction oversight across Nigeria.",
+  keywords: [
+    "contemporary duplex design",
+    "architect in Ibadan",
+    "architect in Lagos",
+    "Nigerian residential architecture",
+    "3D architectural visualization Nigeria",
+    "DIZTINCT TOUCH HOME DESIGN",
+    "Mayowa architect",
+    "duplex construction Ibadan",
+    "modern residential duplex",
+  ],
+  openGraph: {
+    title: "DIZTINCT TOUCH HOME DESIGN — Remarkable Design, Long Lasting",
+    description:
+      "Bespoke contemporary residential duplexes, architectural working drawings, 3D photorealistic visualization, and construction-stage site delivery.",
+    url: "https://diztincttouch.com",
+    siteName: "DIZTINCT TOUCH HOME DESIGN",
+    type: "website",
+  },
+};
 
 export default function HomePage() {
   return (

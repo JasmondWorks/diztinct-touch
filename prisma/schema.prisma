@@ -1,0 +1,85 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Project {
+  id                   String    @id
+  title                String
+  slug                 String    @unique
+  category             String
+  location             String?
+  yearCompleted        String?   @map("year_completed")
+  client               String?
+  siteArea             String?   @map("site_area")
+  gfa                  String?
+  budget               String?
+  shortDescription     String    @map("short_description")
+  longDescription      String    @map("long_description")
+  fullCaseStudy        Json?     @map("full_case_study")
+  techStack            String[]  @default([]) @map("tech_stack")
+  coverImage           String    @map("cover_image")
+  gallery              Json      @default("[]")
+  drawings             Json?     @default("[]")
+  demoVideo            String?   @map("demo_video")
+  githubUrl            String?   @map("github_url")
+  liveUrl              String?   @map("live_url")
+  architecture         Json?
+  engineeringDecisions Json?     @default("[]") @map("engineering_decisions")
+  metrics              Json?     @default("[]")
+  futureImprovements   String[]  @default([]) @map("future_improvements")
+  featured             Boolean?  @default(false)
+  featuredRank         Int?      @map("featured_rank")
+  dateStr              String    @map("date_str")
+  buildingType         String?   @map("building_type")
+  bedroomCount         String?   @map("bedroom_count")
+  projectCode          String?   @map("project_code")
+  isPublished          Boolean?  @default(true) @map("is_published")
+  status               String?   @default("completed")
+  currentStage         String?   @map("current_stage")
+  createdAt            DateTime? @default(now()) @map("created_at")
+  updatedAt            DateTime? @default(now()) @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model Lead {
+  id              Int       @id @default(autoincrement())
+  name            String
+  email           String
+  phone           String?
+  typology        String?
+  location        String?
+  message         String
+  estimatedBudget String?   @map("estimated_budget")
+  status          String    @default("new")
+  notes           String?
+  createdAt       DateTime? @default(now()) @map("created_at")
+  updatedAt       DateTime? @default(now()) @updatedAt @map("updated_at")
+
+  @@map("leads")
+}
+
+model AnalyticsEvent {
+  id        Int       @id @default(autoincrement())
+  eventType String    @map("event_type")
+  path      String
+  metadata  Json?     @default("{}")
+  createdAt DateTime? @default(now()) @map("created_at")
+
+  @@map("analytics_events")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique @map("token_hash")
+  revoked   Boolean  @default(false)
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("refresh_tokens")
+}
