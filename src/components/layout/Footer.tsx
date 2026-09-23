@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
+import { Button, Badge } from "@/components/ui";
 import { ArrowUpRight, Compass, MapPin } from "lucide-react";
 
 export function Footer() {
@@ -125,26 +126,27 @@ export function Footer() {
               </p>
             </div>
             <div className="pt-2 flex flex-wrap gap-2">
-              <a
-                href={siteConfig.whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 rounded-md border border-emerald-600/30 bg-emerald-600/10 px-2.5 py-1 text-[11px] font-medium text-emerald-500 hover:bg-emerald-600 hover:text-white transition-all"
-              >
-                <span>WhatsApp: {siteConfig.phoneRaw}</span>
-                <ArrowUpRight className="h-3 w-3" />
-              </a>
-              {siteConfig.socials.map((social) => (
+              <Button asChild variant="emerald" size="sm" className="h-7 text-[11px] px-2.5">
                 <a
-                  key={social.name}
-                  href={social.url}
+                  href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-primary/40 hover:text-primary transition-all"
                 >
-                  <span>{social.name}</span>
+                  <span>WhatsApp: {siteConfig.phoneRaw}</span>
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
+              </Button>
+              {siteConfig.socials.map((social) => (
+                <Button key={social.name} asChild variant="outline" size="sm" className="h-7 text-[11px] px-2.5">
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>{social.name}</span>
+                    <ArrowUpRight className="h-3 w-3" />
+                  </a>
+                </Button>
               ))}
             </div>
           </div>
@@ -157,10 +159,10 @@ export function Footer() {
               © {new Date().getFullYear()} {siteConfig.registeredBusinessName ?? siteConfig.studioName}
               {siteConfig.registrationNumber && ` (Reg: ${siteConfig.registrationNumber})`}. All rights reserved.
             </p>
-            <div className="flex items-center gap-2">
+            <Badge variant="outline" className="gap-2 text-[11px] py-1 px-2.5 font-normal">
               <Compass className="h-3.5 w-3.5 text-primary" />
               <span>Registered Architectural Practice</span>
-            </div>
+            </Badge>
           </div>
           {siteConfig.accreditations && siteConfig.accreditations.length > 0 && (
             <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-muted-foreground/80">

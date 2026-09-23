@@ -12,6 +12,7 @@ import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { MetricsGrid } from "@/components/projects/MetricsGrid";
 import { DecisionsBento } from "@/components/projects/DecisionsBento";
 import { DrawingsViewer } from "@/components/projects/DrawingsViewer";
+import { Button, Badge, Card } from "@/components/ui";
 import {
   ChevronRight,
   ChevronLeft,
@@ -118,13 +119,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         {/* Project Hero Header */}
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-lg border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+            <Badge variant="gold" className="text-xs py-1 px-3">
               {project.category}
-            </span>
+            </Badge>
             {project.featured && (
-              <span className="rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-500">
+              <Badge variant="warning" className="text-xs py-1 px-3">
                 Featured Project
-              </span>
+              </Badge>
             )}
             <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 text-primary" />
@@ -147,36 +148,37 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
             {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-primary/90 transition-all"
-              >
-                <Compass className="h-4 w-4" />
-                <span>Launch Interactive 3D Model Tour</span>
-              </a>
+              <Button asChild variant="default">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Compass className="h-4 w-4" />
+                  <span>Launch Interactive 3D Model Tour</span>
+                </a>
+              </Button>
             )}
 
             {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-all"
-              >
-                <FileText className="h-4 w-4" />
-                <span>Download Drawing Sheets (PDF/BIM)</span>
-              </a>
+              <Button asChild variant="outline">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>Download Drawing Sheets (PDF/BIM)</span>
+                </a>
+              </Button>
             )}
 
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-all"
-            >
-              <span>Inquire Commission</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </Link>
+            <Button asChild variant="outline">
+              <Link href="/contact">
+                <span>Inquire Commission</span>
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -205,14 +207,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             <div className="flex items-center gap-3">
               {project.gfa && (
-                <span className="rounded-lg bg-black/60 backdrop-blur-md border border-white/20 px-3 py-1 text-xs font-mono">
+                <Badge variant="outline" className="bg-black/60 backdrop-blur-md border-white/20 text-white font-mono text-xs">
                   GFA: {project.gfa}
-                </span>
+                </Badge>
               )}
               {project.budget && (
-                <span className="rounded-lg bg-black/60 backdrop-blur-md border border-white/20 px-3 py-1 text-xs font-mono">
+                <Badge variant="outline" className="bg-black/60 backdrop-blur-md border-white/20 text-white font-mono text-xs">
                   Budget: {project.budget}
-                </span>
+                </Badge>
               )}
             </div>
           </div>
@@ -298,7 +300,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             {/* Future Phases / Planned Expansions */}
             {project.futureImprovements && project.futureImprovements.length > 0 && (
-              <div className="rounded-2xl border border-border bg-card/60 p-6 space-y-4">
+              <Card className="p-6 space-y-4">
                 <div className="flex items-center gap-2">
                   <Layers className="h-4 w-4 text-primary" />
                   <h3 className="text-base font-bold uppercase tracking-wider text-foreground-heading">
@@ -313,14 +315,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             )}
           </div>
 
           {/* Sidebar 4-Col Specifications */}
           <div className="lg:col-span-4 space-y-6 sticky top-24">
             {/* Project Specifications Card */}
-            <div className="rounded-2xl border border-border bg-card p-6 space-y-5 shadow-xs">
+            <Card className="p-6 space-y-5 shadow-xs">
               <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
                 Project Overview &amp; Specifications
               </h3>
@@ -371,30 +373,30 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {project.techStack.map((tech) => (
-                    <span
+                    <Badge
                       key={tech}
-                      className="rounded-md border border-border bg-muted/40 px-2 py-0.5 text-[10px] font-mono text-muted-foreground font-semibold"
+                      variant="outline"
+                      className="text-[10px] bg-muted/40 font-semibold"
                     >
                       {tech}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
               </div>
 
               {/* Direct Inquiry CTA */}
               <div className="pt-4 border-t border-border">
-                <Link
-                  href="/contact"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-2.5 text-xs font-bold text-white shadow-sm hover:bg-primary/90 transition-all"
-                >
-                  <span>Inquire Regarding Similar Site</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
+                <Button asChild variant="default" className="w-full">
+                  <Link href="/contact">
+                    <span>Inquire Regarding Similar Site</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </Button>
               </div>
-            </div>
+            </Card>
 
             {/* Related Typology Works */}
-            <div className="rounded-2xl border border-border bg-card p-6 space-y-4 shadow-xs">
+            <Card className="p-6 space-y-4 shadow-xs">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-foreground-heading">
                 Related Architectural Works
               </h4>
@@ -427,7 +429,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   </Link>
                 ))}
               </div>
-            </div>
+            </Card>
           </div>
         </div>
 

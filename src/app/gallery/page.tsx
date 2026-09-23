@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { getProjectsAction } from "@/actions/projects";
 import { GalleryViewer, GalleryPlate } from "@/components/gallery/GalleryViewer";
+import { Badge } from "@/components/ui";
 import { Camera } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -43,10 +44,10 @@ export default async function GalleryPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Header */}
         <div className="space-y-4 max-w-3xl border-b border-border/80 pb-8">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
-            <Camera className="h-3.5 w-3.5" />
+          <Badge variant="outline" className="gap-2 text-xs py-1 px-3">
+            <Camera className="h-3.5 w-3.5 text-primary" />
             <span>Visual Project Gallery</span>
-          </div>
+          </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground-heading">
             Architectural Photography &amp; Project Views
           </h1>

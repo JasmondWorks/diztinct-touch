@@ -1,5 +1,6 @@
 import { ProjectMetric } from "@/types/project";
-import { TrendingDown, Activity, Award, BarChart3, CheckCircle2 } from "lucide-react";
+import { Activity } from "lucide-react";
+import { Card, Badge } from "@/components/ui";
 
 interface MetricsGridProps {
   metrics: ProjectMetric[];
@@ -17,18 +18,18 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {metrics.map((metric) => (
-          <div
+          <Card
             key={metric.label}
-            className="flex flex-col justify-between rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/40 shadow-xs"
+            className="flex flex-col justify-between p-4 transition-all hover:border-primary/40 shadow-xs"
           >
             <div className="flex items-center justify-between gap-2">
               <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
                 {metric.label}
               </span>
               {metric.changeBadge && (
-                <span className="rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
+                <Badge variant="gold" className="text-[10px] font-bold">
                   {metric.changeBadge}
-                </span>
+                </Badge>
               )}
             </div>
 
@@ -41,7 +42,7 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
                 {metric.description}
               </p>
             )}
-          </div>
+          </Card>
         ))}
       </div>
     </div>

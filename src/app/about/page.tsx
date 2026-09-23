@@ -1,6 +1,7 @@
 import { siteConfig } from "@/data/siteConfig";
 import Image from "next/image";
 import Link from "next/link";
+import { Button, Badge, Card } from "@/components/ui";
 import {
   Compass,
   CheckCircle2,
@@ -90,10 +91,10 @@ export default function AboutPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
         {/* Header Banner */}
         <div className="max-w-3xl space-y-4 border-b border-border/80 pb-8">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
-            <ShieldCheck className="h-3.5 w-3.5" />
+          <Badge variant="outline" className="gap-2 text-xs py-1 px-3">
+            <ShieldCheck className="h-3.5 w-3.5 text-primary" />
             <span>Registered Architectural Practice • Design Lead: Mayowa</span>
-          </div>
+          </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground-heading leading-tight">
             Remarkable design, long lasting.
           </h1>
@@ -103,13 +104,13 @@ export default function AboutPage() {
         </div>
 
         {/* Section 1: Meet Mayowa — Principal & Design Lead */}
-        <div className="rounded-3xl border border-border bg-card p-8 sm:p-12 shadow-sm">
+        <Card className="rounded-3xl p-8 sm:p-12 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-4 space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-xs font-mono font-bold text-primary">
+              <Badge variant="gold" className="gap-2 px-3.5 py-1.5 text-xs font-mono font-bold">
                 <User className="h-3.5 w-3.5" />
                 <span>The Designer Behind The Work</span>
-              </div>
+              </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-foreground-heading">
                 Mayowa
               </h2>
@@ -140,26 +141,26 @@ export default function AboutPage() {
               </p>
 
               <div className="pt-2 flex flex-wrap gap-3">
-                <a
-                  href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I would like to consult on an architectural project with DIZTINCT TOUCH HOME DESIGN.")}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 transition-all"
-                >
-                  <MessageSquare className="h-3.5 w-3.5" />
-                  <span>Chat with Mayowa on WhatsApp (+234 903 501 1649)</span>
-                </a>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-2.5 text-xs font-semibold text-foreground hover:border-primary/40 transition-all"
-                >
-                  <Phone className="h-3.5 w-3.5 text-primary" />
-                  <span>Request Full Project Consultation</span>
-                </Link>
+                <Button asChild variant="emerald" size="sm">
+                  <a
+                    href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I would like to consult on an architectural project with DIZTINCT TOUCH HOME DESIGN.")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5" />
+                    <span>Chat with Mayowa on WhatsApp (+234 903 501 1649)</span>
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="sm">
+                  <Link href="/contact">
+                    <Phone className="h-3.5 w-3.5 text-primary" />
+                    <span>Request Full Project Consultation</span>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Section 2: Active Project Spotlight — ARMITY Estate Duplex */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -173,9 +174,9 @@ export default function AboutPage() {
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 text-white font-mono text-xs space-y-1.5">
-              <span className="inline-block rounded-md bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+              <Badge variant="primary" className="text-[10px] font-bold">
                 Active Construction Spotlight
-              </span>
+              </Badge>
               <p className="text-base font-bold text-white">
                 The ARMITY Contemporary Duplex
               </p>
@@ -186,10 +187,10 @@ export default function AboutPage() {
           </div>
 
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
-              <HardHat className="h-3.5 w-3.5" />
+            <Badge variant="outline" className="gap-2 text-xs py-1 px-3">
+              <HardHat className="h-3.5 w-3.5 text-primary" />
               <span>Real Project Intake Verification</span>
-            </div>
+            </Badge>
 
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading leading-snug">
               Bridging 3D visualization and physical site execution.
@@ -200,7 +201,7 @@ export default function AboutPage() {
             </p>
 
             {/* Construction Progress Breakdown */}
-            <div className="rounded-2xl border border-border bg-card p-5 space-y-3 font-mono text-xs">
+            <Card className="p-5 space-y-3 font-mono text-xs">
               <div className="font-bold text-foreground uppercase tracking-wider text-[11px] pb-1 border-b border-border/70 flex items-center justify-between">
                 <span>Verified Construction Milestones</span>
                 <span className="text-primary">Current Stage: First Floor</span>
@@ -224,16 +225,15 @@ export default function AboutPage() {
                   <span>Finishing &amp; Glazing: <strong>Pending</strong></span>
                 </div>
               </div>
-            </div>
+            </Card>
 
             <div className="pt-1 flex flex-wrap items-center gap-3">
-              <Link
-                href="/projects/armity-duplex"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-primary/90 transition-all"
-              >
-                <span>View The ARMITY Duplex Case Study</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <Button asChild variant="default">
+                <Link href="/projects/armity-duplex">
+                  <span>View The ARMITY Duplex Case Study</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -242,10 +242,10 @@ export default function AboutPage() {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border/80 pb-4">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
-                <Building2 className="h-3.5 w-3.5" />
+              <Badge variant="outline" className="gap-2 text-xs py-1 px-3">
+                <Building2 className="h-3.5 w-3.5 text-primary" />
                 <span>Our Professional Scope</span>
-              </div>
+              </Badge>
               <h3 className="text-2xl sm:text-3xl font-bold text-foreground-heading">
                 Comprehensive Architectural &amp; 3D Services
               </h3>
@@ -259,9 +259,9 @@ export default function AboutPage() {
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <div
+                <Card
                   key={service.title}
-                  className="flex flex-col sm:flex-row items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-xs hover:border-primary/40 transition-all"
+                  className="flex flex-col sm:flex-row items-start gap-4 p-6 hover:border-primary/40 transition-all"
                 >
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" />
@@ -274,14 +274,14 @@ export default function AboutPage() {
                       {service.description}
                     </p>
                   </div>
-                </div>
+                </Card>
               );
             })}
           </div>
         </div>
 
         {/* Section 4: The 5-Stage Project Journey */}
-        <div className="rounded-3xl border border-border bg-card/60 p-8 sm:p-10 space-y-8">
+        <Card className="rounded-3xl p-8 sm:p-10 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/80 pb-6">
             <div className="space-y-1">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
@@ -291,16 +291,16 @@ export default function AboutPage() {
                 Our 5-Stage Project Delivery Framework
               </h3>
             </div>
-            <span className="rounded-xl border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-xs font-mono text-primary font-bold">
+            <Badge variant="gold" className="text-xs font-mono font-bold py-1.5 px-3.5">
               GUARANTEED CLARITY
-            </span>
+            </Badge>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {steps.map((step) => (
-              <div
+              <Card
                 key={step.number}
-                className="rounded-2xl border border-border/70 bg-background/60 p-5 space-y-2.5 flex flex-col justify-between"
+                className="p-5 space-y-2.5 flex flex-col justify-between bg-background/60"
               >
                 <div className="font-mono text-2xl font-black text-primary">
                   {step.number}
@@ -313,13 +313,13 @@ export default function AboutPage() {
                     {step.description}
                   </p>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* Section 5: Why Clients Choose DIZTINCT TOUCH HOME DESIGN */}
-        <div className="rounded-3xl border border-border bg-card p-8 sm:p-10 space-y-6">
+        <Card className="rounded-3xl p-8 sm:p-10 space-y-6">
           <div className="space-y-1 border-b border-border/80 pb-4">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
               The DIZTINCT Difference
@@ -330,7 +330,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="space-y-2 rounded-xl border border-border/70 bg-background/50 p-5">
+            <Card className="space-y-2 bg-background/50 p-5">
               <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
                 <FileCheck2 className="h-4 w-4" />
                 <span>Registered Business</span>
@@ -341,9 +341,9 @@ export default function AboutPage() {
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Positioned as a registered business with clear project milestones, transparent staging, and accountable project delivery.
               </p>
-            </div>
+            </Card>
 
-            <div className="space-y-2 rounded-xl border border-border/70 bg-background/50 p-5">
+            <Card className="space-y-2 bg-background/50 p-5">
               <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
                 <CheckCircle2 className="h-4 w-4" />
                 <span>3D-to-Site Match</span>
@@ -354,9 +354,9 @@ export default function AboutPage() {
               <p className="text-xs text-muted-foreground leading-relaxed">
                 What you approve in our 3D visualizations is what our 2D working drawings specify and what is constructed on your site.
               </p>
-            </div>
+            </Card>
 
-            <div className="space-y-2 rounded-xl border border-border/70 bg-background/50 p-5">
+            <Card className="space-y-2 bg-background/50 p-5">
               <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Diaspora Peace of Mind</span>
@@ -367,12 +367,12 @@ export default function AboutPage() {
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Regular photo/video construction updates at every milestone (foundation, decking, masonry, roof) for clients building from abroad.
               </p>
-            </div>
+            </Card>
           </div>
-        </div>
+        </Card>
 
         {/* Closing CTA */}
-        <div className="rounded-3xl border border-primary/20 bg-linear-to-r from-primary/10 via-card to-background p-8 sm:p-12 text-center space-y-6">
+        <Card className="rounded-3xl border-primary/20 bg-linear-to-r from-primary/10 via-card to-background p-8 sm:p-12 text-center space-y-6">
           <h3 className="text-2xl sm:text-3xl font-bold text-foreground-heading">
             Ready to design your next home with Mayowa?
           </h3>
@@ -380,24 +380,24 @@ export default function AboutPage() {
             Whether you are planning a contemporary duplex, a family bungalow, or require 3D modeling and 2D working drawings, we are available to guide your vision.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-xs font-bold text-white shadow-md hover:bg-primary/90 transition-all hover:scale-[1.02]"
-            >
-              <span>Schedule a Project Consultation</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to discuss a project with DIZTINCT TOUCH HOME DESIGN.")}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3.5 text-xs font-semibold text-foreground hover:border-primary/40 transition-all"
-            >
-              <MessageSquare className="h-4 w-4 text-emerald-500" />
-              <span>Chat Directly on WhatsApp (+234 903 501 1649)</span>
-            </a>
+            <Button asChild variant="default" size="lg" className="hover:scale-[1.02]">
+              <Link href="/contact">
+                <span>Schedule a Project Consultation</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a
+                href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to discuss a project with DIZTINCT TOUCH HOME DESIGN.")}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageSquare className="h-4 w-4 text-emerald-500" />
+                <span>Chat Directly on WhatsApp (+234 903 501 1649)</span>
+              </a>
+            </Button>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );

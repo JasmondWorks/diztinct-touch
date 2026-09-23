@@ -5,6 +5,8 @@ import { AboutSection } from "@/components/home/AboutSection";
 import Link from "next/link";
 import { ArrowRight, Compass } from "lucide-react";
 import type { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "DIZTINCT TOUCH HOME DESIGN | Contemporary Architecture & 3D Visualization",
@@ -49,10 +51,10 @@ export default function HomePage() {
       {/* Closing Call to Action Banner */}
       <section className="border-t border-border bg-card/60 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1 text-xs font-mono font-semibold text-primary">
+          <Badge variant="outline" className="gap-2 px-4 py-1 text-xs font-mono font-semibold text-primary border-primary/20 bg-primary/5">
             <Compass className="h-3.5 w-3.5" />
             <span>Open for Commissions</span>
-          </div>
+          </Badge>
 
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground-heading max-w-2xl mx-auto">
             Ready to build a home of remarkable distinction?
@@ -63,20 +65,18 @@ export default function HomePage() {
           </p>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-xs font-bold text-white shadow-md hover:bg-primary/90 transition-all hover:scale-[1.02]"
-            >
-              <span>Initiate Project Consultation</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild size="lg" className="rounded-xl gap-2 shadow-md">
+              <Link href="/contact">
+                <span>Initiate Project Consultation</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
 
-            <Link
-              href="/gallery"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3.5 text-xs font-semibold text-foreground hover:border-primary/40 transition-all"
-            >
-              <span>Explore Visual Archive</span>
-            </Link>
+            <Button asChild variant="outline" size="lg" className="rounded-xl">
+              <Link href="/gallery">
+                <span>Explore Visual Archive</span>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

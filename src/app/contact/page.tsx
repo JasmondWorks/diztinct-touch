@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { Button, Badge, Card } from "@/components/ui";
 import { Mail, Phone, MapPin, Clock, Compass, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -30,10 +31,10 @@ export default function ContactPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="max-w-3xl space-y-4 border-b border-border/80 pb-8">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
-            <Compass className="h-3.5 w-3.5" />
+          <Badge variant="outline" className="gap-2 text-xs py-1 px-3">
+            <Compass className="h-3.5 w-3.5 text-primary" />
             <span>Consultations &amp; Inquiries</span>
-          </div>
+          </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground-heading">
             Start a Project with Mayowa
           </h1>
@@ -45,7 +46,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Details & Office Coordinates */}
           <div className="lg:col-span-5 space-y-8">
-            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-6 shadow-xs">
+            <Card className="p-6 sm:p-8 space-y-6 shadow-xs">
               <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
                 Office Locations &amp; Direct Contact
               </h3>
@@ -113,33 +114,34 @@ export default function ContactPage() {
 
               {/* WhatsApp Quick Consultation Button */}
               <div className="pt-2 border-t border-border/70">
-                <a
-                  href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 transition-all w-full"
-                >
-                  <MessageSquare className="h-4 w-4" />
-                  <span>Chat on WhatsApp Directly (+234 903 501 1649)</span>
-                </a>
+                <Button asChild variant="emerald" className="w-full">
+                  <a
+                    href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                    <span>Chat on WhatsApp Directly (+234 903 501 1649)</span>
+                  </a>
+                </Button>
               </div>
-            </div>
+            </Card>
 
-            <div className="rounded-2xl border border-border bg-card/60 p-6 space-y-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+            <Card className="p-6 space-y-2 bg-card/60">
+              <Badge variant="gold" className="text-xs font-mono font-bold">
                 Current Studio Capacity
-              </span>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              </Badge>
+              <p className="text-xs text-muted-foreground leading-relaxed pt-1">
                 We are actively onboarding new residential duplexes, private residences, and commercial commissions. Initial design reviews and 3D concept consultations are scheduled within 24-48 hours.
               </p>
-            </div>
+            </Card>
           </div>
 
           {/* Form Container */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-border bg-card p-6 sm:p-10 shadow-sm">
+            <Card className="p-6 sm:p-10 shadow-sm">
               <ContactForm />
-            </div>
+            </Card>
           </div>
         </div>
       </div>

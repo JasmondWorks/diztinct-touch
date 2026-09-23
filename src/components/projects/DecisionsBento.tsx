@@ -1,5 +1,6 @@
 import { ProjectDecision } from "@/types/project";
 import { Check, HelpCircle, AlertTriangle, Cpu } from "lucide-react";
+import { Card } from "@/components/ui";
 
 interface DecisionsBentoProps {
   decisions: ProjectDecision[];
@@ -17,9 +18,9 @@ export function DecisionsBento({ decisions }: DecisionsBentoProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {decisions.map((decision, idx) => (
-          <div
+          <Card
             key={decision.topic}
-            className="flex flex-col rounded-xl border border-border bg-card p-5 space-y-4 shadow-xs hover:border-primary/40 transition-colors"
+            className="flex flex-col p-5 space-y-4 shadow-xs hover:border-primary/40 transition-colors"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
@@ -61,7 +62,7 @@ export function DecisionsBento({ decisions }: DecisionsBentoProps) {
                 </p>
               </div>
             )}
-          </div>
+          </Card>
         ))}
       </div>
     </div>
