@@ -28,15 +28,30 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const NAV_ITEMS = [
-  { label: "Dashboard", href: "/admin", icon: LayoutDashboard, exact: true },
+  { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Projects", href: "/admin/projects", icon: FolderKanban },
   { label: "New Project", href: "/admin/projects/new", icon: PlusCircle },
   { label: "Client Leads (CRM)", href: "/admin/leads", icon: Users },
   { label: "Analytics", href: "/admin/analytics", icon: BarChart3 },
 ];
 
+function getActiveNavHref(pathname: string, navItems: typeof NAV_ITEMS): string {
+  // If exact match exists, pick it
+  const exactMatch = navItems.find((item) => item.href === pathname);
+  if (exactMatch) return exactMatch.href;
+
+  // Otherwise, find items where pathname starts with item.href + "/"
+  // Sort by href length descending so the most specific match wins (e.g. /admin/projects/new before /admin/projects)
+  const prefixMatches = navItems
+    .filter((item) => pathname.startsWith(item.href + "/"))
+    .sort((a, b) => b.href.length - a.href.length);
+
+  return prefixMatches[0]?.href ?? "";
+}
+
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const activeNavHref = getActiveNavHref(pathname, NAV_ITEMS);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopCollapsed, setDesktopCollapsed] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -143,9 +158,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <nav className="space-y-1">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
-              const isActive = item.exact
-                ? pathname === item.href
-                : pathname.startsWith(item.href);
+              const isActive = item.href === activeNavHref;
 
               return (
                 <Link
@@ -263,9 +276,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               <nav className="space-y-1.5">
                 {NAV_ITEMS.map((item) => {
                   const Icon = item.icon;
-                  const isActive = item.exact
-                    ? pathname === item.href
-                    : pathname.startsWith(item.href);
+                  const isActive = item.href === activeNavHref;
 
                   return (
                     <Link
