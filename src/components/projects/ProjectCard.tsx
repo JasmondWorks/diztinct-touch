@@ -10,13 +10,13 @@ import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const CATEGORY_STYLES: Record<ArchitecturalCategory, string> = {
-  Residential: "bg-red-500/10 text-red-500 border-red-500/20",
-  Commercial: "bg-amber-500/10 text-amber-500 border-amber-500/20",
-  "Civic & Cultural": "bg-rose-500/10 text-rose-500 border-rose-500/20",
-  "Adaptive Reuse": "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
-  "Urban & Masterplan": "bg-blue-500/10 text-blue-500 border-blue-500/20",
-  Competitions: "bg-purple-500/10 text-purple-500 border-purple-500/20",
+const CATEGORY_DOTS: Record<ArchitecturalCategory, string> = {
+  Residential: "bg-primary",
+  Commercial: "bg-amber-400",
+  "Civic & Cultural": "bg-accent",
+  "Adaptive Reuse": "bg-emerald-400",
+  "Urban & Masterplan": "bg-sky-400",
+  Competitions: "bg-purple-400",
 };
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -76,7 +76,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-muted/40 font-mono text-xs text-muted-foreground uppercase">
+              <div className="flex h-full w-full items-center justify-center bg-muted/40 text-xs text-muted-foreground uppercase">
                 Architectural Rendering
               </div>
             )}
@@ -100,12 +100,13 @@ export function ProjectCard({ project }: { project: Project }) {
 
           {/* Top Left: Category Badge */}
           <div className="absolute top-3 left-3 z-20 flex items-center gap-2 pointer-events-none">
-            <span
-              className={cn(
-                "rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md bg-background/85",
-                CATEGORY_STYLES[project.category]
-              )}
-            >
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/20 bg-neutral-950/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md shadow-xs">
+              <span
+                className={cn(
+                  "h-1.5 w-1.5 rounded-full shrink-0",
+                  CATEGORY_DOTS[project.category] || "bg-primary"
+                )}
+              />
               {project.category}
             </span>
           </div>
@@ -113,15 +114,15 @@ export function ProjectCard({ project }: { project: Project }) {
           {/* Top Right: Featured Badge or Gallery Count */}
           <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 pointer-events-none">
             {project.featured && (
-              <Badge variant="outline" className="gap-1 border-amber-500/30 bg-amber-500/20 text-amber-400 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider">
-                <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
+              <span className="inline-flex items-center gap-1 rounded-lg bg-amber-400 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-950 shadow-xs border border-amber-300/40">
+                <Star className="h-2.5 w-2.5 fill-neutral-950 text-neutral-950 shrink-0" />
                 Featured
-              </Badge>
+              </span>
             )}
-            <Badge variant="secondary" className="gap-1 backdrop-blur-md px-2 py-0.5 text-[10px] font-mono font-medium text-foreground bg-background/80">
+            <span className="inline-flex items-center gap-1 rounded-lg border border-white/20 bg-neutral-950/85 px-2 py-1 text-[10px] font-medium text-white backdrop-blur-md shadow-xs">
               <Camera className="h-2.5 w-2.5 text-primary" />
               {project.gallery.length}
-            </Badge>
+            </span>
           </div>
 
           {/* Bottom Left: Interactive 3D Model Quick Action */}
@@ -151,7 +152,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {/* Card Body */}
         <div className="flex flex-1 flex-col p-5 gap-3.5 justify-between">
           <div className="space-y-1.5">
-            <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+            <div className="flex items-center justify-between text-xs text-muted-foreground ">
               <span>{project.location ?? "International"}</span>
               <span>{project.yearCompleted ?? "2025"}</span>
             </div>
@@ -164,7 +165,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {/* Structural Typology Details */}
-          <div className="flex items-center justify-between border-t border-border/80 pt-3 text-xs font-mono text-muted-foreground">
+          <div className="flex items-center justify-between border-t border-border/80 pt-3 text-xs text-muted-foreground">
             <span className="truncate max-w-[200px]">{project.buildingType || project.category}</span>
             <span className="text-primary font-bold">{project.bedroomCount || project.siteArea}</span>
           </div>

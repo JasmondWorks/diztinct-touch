@@ -23,7 +23,7 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
             className="flex flex-col justify-between p-4 transition-all hover:border-primary/40"
           >
             <div className="flex items-center justify-between gap-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+              <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">
                 {metric.label}
               </span>
               {metric.changeBadge && (
@@ -33,7 +33,7 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
               )}
             </div>
 
-            <div className="my-3 font-mono text-2xl sm:text-3xl font-black text-foreground-heading tracking-tight">
+            <div className="my-3 text-2xl sm:text-3xl font-black text-foreground-heading tracking-tight">
               {metric.value}
             </div>
 

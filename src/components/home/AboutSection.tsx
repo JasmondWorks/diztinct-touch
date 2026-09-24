@@ -33,7 +33,7 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Philosophy */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
               <HardHat className="h-3.5 w-3.5" />
               <span>DIZTINCT TOUCH HOME DESIGNS</span>
             </div>
@@ -88,7 +88,7 @@ export function AboutSection() {
 
             {/* Software & Construction Systems Matrix */}
             <Card className="p-6 space-y-3">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+              <span className="text-xs font-bold uppercase tracking-wider text-primary">
                 Technical Systems &amp; Construction Methods
               </span>
               <div className="flex flex-wrap gap-2 pt-1">
@@ -107,7 +107,7 @@ export function AboutSection() {
                   <Badge
                     key={item}
                     variant="outline"
-                    className="text-xs font-mono font-medium text-foreground bg-background"
+                    className="text-xs font-medium text-foreground bg-background"
                   >
                     {item}
                   </Badge>

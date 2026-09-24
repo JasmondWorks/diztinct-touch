@@ -24,6 +24,28 @@ export const metadata = {
   title: "About Mayowa & DIZTINCT TOUCH HOME DESIGNS — Architectural Studio",
   description:
     "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS is a registered contemporary architectural design and 3D visualization studio. Remarkable design, long lasting.",
+  openGraph: {
+    title: "About Mayowa & DIZTINCT TOUCH HOME DESIGNS — Architectural Studio",
+    description:
+      "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS is a registered contemporary architectural design and 3D visualization studio. Remarkable design, long lasting.",
+    url: "https://diztincttouch.com/about",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About DIZTINCT TOUCH HOME DESIGNS",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Mayowa & DIZTINCT TOUCH HOME DESIGNS — Architectural Studio",
+    description:
+      "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS is a registered contemporary architectural design and 3D visualization studio. Remarkable design, long lasting.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function AboutPage() {
@@ -108,17 +130,26 @@ export default function AboutPage() {
         <Card className="rounded-3xl p-8 sm:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-4 space-y-4">
-              <Badge variant="gold" className="gap-2 px-3.5 py-1.5 text-xs font-mono font-bold">
+              <div className="relative h-20 w-20 overflow-hidden rounded-2xl bg-brand-navy">
+                <Image
+                  src={siteConfig.logo}
+                  alt={siteConfig.studioName}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </div>
+              <Badge variant="gold" className="gap-2 px-3.5 py-1.5 text-xs font-bold">
                 <User className="h-3.5 w-3.5" />
                 <span>The Designer Behind The Work</span>
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-foreground-heading">
                 Mayowa
               </h2>
-              <p className="text-sm font-mono text-primary font-semibold">
+              <p className="text-sm text-primary font-semibold">
                 Design Lead &amp; Principal • DIZTINCT TOUCH HOME DESIGNS
               </p>
-              <div className="pt-2 text-xs font-mono text-muted-foreground space-y-1">
+              <div className="pt-2 text-xs text-muted-foreground space-y-1">
                 <p>• Registered Architecture &amp; 3D Visualization Studio</p>
                 <p>• Principal Office: New Gbagi Road, Ibadan, Oyo State</p>
                 <p>• Lagos Office: Mosan, Ipaja, Lagos</p>
@@ -184,7 +215,7 @@ export default function AboutPage() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 text-white font-mono text-xs space-y-1.5">
+            <div className="absolute bottom-6 left-6 right-6 text-white text-xs space-y-1.5">
               <Badge variant="primary" className="text-[10px] font-bold">
                 Active Construction Spotlight
               </Badge>
@@ -212,7 +243,7 @@ export default function AboutPage() {
             </p>
 
             {/* Construction Progress Breakdown */}
-            <Card className="p-5 space-y-3 font-mono text-xs">
+            <Card className="p-5 space-y-3 text-xs">
               <div className="font-bold text-foreground uppercase tracking-wider text-[11px] pb-1 border-b border-border/70 flex items-center justify-between">
                 <span>Verified Construction Milestones</span>
                 <span className="text-primary">Current Stage: First Floor</span>
@@ -295,14 +326,14 @@ export default function AboutPage() {
         <Card className="rounded-3xl p-8 sm:p-10 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/80 pb-6">
             <div className="space-y-1">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
+              <span className="text-xs font-bold uppercase tracking-widest text-primary">
                 How Mayowa &amp; DIZTINCT TOUCH Work With You
               </span>
               <h3 className="text-2xl font-bold text-foreground-heading">
                 Our 5-Stage Project Delivery Framework
               </h3>
             </div>
-            <Badge variant="gold" className="text-xs font-mono font-bold py-1.5 px-3.5">
+            <Badge variant="gold" className="text-xs font-bold py-1.5 px-3.5">
               GUARANTEED CLARITY
             </Badge>
           </div>
@@ -313,7 +344,7 @@ export default function AboutPage() {
                 key={step.number}
                 className="p-5 space-y-2.5 flex flex-col justify-between bg-background/60"
               >
-                <div className="font-mono text-2xl font-black text-primary">
+                <div className="text-2xl font-black text-primary">
                   {step.number}
                 </div>
                 <div className="space-y-1">
@@ -332,7 +363,7 @@ export default function AboutPage() {
         {/* Section 5: Why Clients Choose DIZTINCT TOUCH HOME DESIGNS */}
         <Card className="rounded-3xl p-8 sm:p-10 space-y-6">
           <div className="space-y-1 border-b border-border/80 pb-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary">
               The DIZTINCT Difference
             </span>
             <h3 className="text-2xl font-bold text-foreground-heading">
@@ -342,7 +373,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <Card className="space-y-2 bg-background/50 p-5">
-              <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
+              <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase">
                 <FileCheck2 className="h-4 w-4" />
                 <span>Registered Business</span>
               </div>
@@ -355,7 +386,7 @@ export default function AboutPage() {
             </Card>
 
             <Card className="space-y-2 bg-background/50 p-5">
-              <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
+              <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase">
                 <CheckCircle2 className="h-4 w-4" />
                 <span>3D-to-Site Match</span>
               </div>
@@ -368,7 +399,7 @@ export default function AboutPage() {
             </Card>
 
             <Card className="space-y-2 bg-background/50 p-5">
-              <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
+              <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Diaspora Peace of Mind</span>
               </div>

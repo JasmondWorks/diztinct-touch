@@ -28,7 +28,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-12 border-b border-border/80">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
               <Star className="h-3.5 w-3.5 fill-primary text-primary" />
               <span>Featured Projects</span>
             </div>
@@ -66,27 +66,28 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
 
                   {/* Badges on Image */}
                   <div className="absolute top-4 left-4 flex items-center gap-2">
-                    <Badge variant="outline" className="border-rose-500/30 bg-rose-500/20 text-rose-400 backdrop-blur-md font-bold uppercase tracking-wider text-xs">
+                    <span className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-neutral-950/85 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md shadow-xs">
+                      <span className="h-2 w-2 rounded-full shrink-0 bg-primary" />
                       {leadProject.category}
-                    </Badge>
-                    <Badge variant="outline" className="gap-1 border-amber-500/30 bg-amber-500/20 text-amber-400 backdrop-blur-md font-bold uppercase tracking-wider text-xs">
-                      <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-amber-400 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-neutral-950 shadow-xs border border-amber-300/40">
+                      <Star className="h-3.5 w-3.5 fill-neutral-950 text-neutral-950 shrink-0" />
                       Featured Case Study
-                    </Badge>
+                    </span>
                   </div>
 
                   <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                    <Badge variant="secondary" className="gap-1.5 backdrop-blur-md font-mono text-xs text-foreground bg-background/85">
+                    <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/20 bg-neutral-950/85 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md shadow-xs">
                       <Camera className="h-3.5 w-3.5 text-primary" />
                       <span>{leadProject.gallery.length} High-Res Photographs</span>
-                    </Badge>
+                    </span>
                   </div>
                 </div>
 
                 {/* Information Right Column */}
                 <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5 lg:p-10 space-y-6">
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>{leadProject.location}</span>
                       <span>{leadProject.yearCompleted}</span>
                     </div>
@@ -107,7 +108,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                     <div className="grid grid-cols-2 gap-3 border-y border-border/80 py-4">
                       {leadProject.metrics.slice(0, 2).map((metric) => (
                         <div key={metric.label} className="space-y-0.5">
-                          <div className="font-mono text-xl font-black text-foreground-heading">
+                          <div className="text-xl font-black text-foreground-heading">
                             {metric.value}
                           </div>
                           <div className="text-[11px] font-bold uppercase tracking-wider text-primary">
@@ -128,7 +129,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                         <Badge
                           key={tech}
                           variant="secondary"
-                          className="text-[11px] font-mono uppercase tracking-wider"
+                          className="text-[11px] uppercase tracking-wider"
                         >
                           {tech}
                         </Badge>
@@ -194,7 +195,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                   </div>
 
                   <div className="absolute top-3 right-3 flex items-center gap-1.5">
-                    <Badge variant="secondary" className="backdrop-blur-md gap-1 px-2 py-0.5 text-[10px] font-mono bg-background/80">
+                    <Badge variant="secondary" className="backdrop-blur-md gap-1 px-2 py-0.5 text-[10px] bg-background/80">
                       <Camera className="h-2.5 w-2.5 text-primary" />
                       {project.gallery.length} Photos
                     </Badge>
@@ -210,7 +211,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                 {/* Body */}
                 <div className="flex flex-1 flex-col p-5 space-y-3 justify-between">
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>{project.location}</span>
                       <span>{project.yearCompleted}</span>
                     </div>
@@ -229,7 +230,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                   <div className="space-y-3 pt-2">
                     {/* Primary Metric Preview (conditionally rendered) */}
                     {project.metrics && project.metrics[0] && (
-                      <div className="rounded-lg border border-border/70 bg-muted/20 p-2.5 font-mono">
+                      <div className="rounded-lg border border-border/70 bg-muted/20 p-2.5 ">
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] uppercase text-muted-foreground">
                             {project.metrics[0].label}
@@ -255,7 +256,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                           href={project.liveUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-xs font-mono text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
+                          className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
                         >
                           <ExternalLink className="h-3 w-3" />
                           <span>Tour</span>

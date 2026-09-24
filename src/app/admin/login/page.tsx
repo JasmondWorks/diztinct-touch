@@ -23,8 +23,8 @@ export default function AdminLoginPage() {
       <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
 
       {/* Atmospheric Ambient Glow Orbs */}
-      <div className="orb -top-24 -left-24 h-96 w-96 bg-rose-500/10 animate-[glow-pulse_7s_ease-in-out_infinite]" />
-      <div className="orb top-1/3 -right-28 h-96 w-96 bg-amber-500/10 animate-[glow-pulse_9s_ease-in-out_infinite_2s]" />
+      <div className="orb -top-24 -left-24 h-96 w-96 bg-primary/15 animate-[glow-pulse_7s_ease-in-out_infinite]" />
+      <div className="orb top-1/3 -right-28 h-96 w-96 bg-accent/10 animate-[glow-pulse_9s_ease-in-out_infinite_2s]" />
 
       {/* Radial vignette mask */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background))_80%)] pointer-events-none" />

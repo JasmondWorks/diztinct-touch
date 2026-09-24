@@ -30,7 +30,23 @@ export const metadata: Metadata = {
       "Bespoke contemporary residential duplexes, architectural working drawings, 3D photorealistic visualization, and construction-stage site delivery.",
     url: "https://diztincttouch.com",
     siteName: "DIZTINCT TOUCH HOME DESIGNS",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DIZTINCT TOUCH HOME DESIGNS — Remarkable Design, Long Lasting",
+        type: "image/jpeg",
+      },
+    ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DIZTINCT TOUCH HOME DESIGNS — Remarkable Design, Long Lasting",
+    description:
+      "Bespoke contemporary residential duplexes, architectural working drawings, 3D photorealistic visualization, and construction-stage site delivery.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -54,7 +70,7 @@ export default async function HomePage() {
       {/* Closing Call to Action Banner */}
       <section className="border-t border-border bg-card/60 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <Badge variant="outline" className="gap-2 px-4 py-1 text-xs font-mono font-semibold text-primary border-primary/20 bg-primary/5">
+          <Badge variant="outline" className="gap-2 px-4 py-1 text-xs font-semibold text-primary border-primary/20 bg-primary/5">
             <Compass className="h-3.5 w-3.5" />
             <span>Available for New Projects</span>
           </Badge>

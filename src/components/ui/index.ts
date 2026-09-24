@@ -11,3 +11,6 @@ export * from "./dialog";
 export * from "./modal";
 export * from "./skeleton";
 export * from "./empty-state";
+export * from "./table";
+export * from "./data-table";
+export * from "./confirmation-modal";

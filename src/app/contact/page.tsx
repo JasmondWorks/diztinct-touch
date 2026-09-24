@@ -22,6 +22,22 @@ export const metadata: Metadata = {
     description:
       "Discuss site feasibility, drawings, 3D modelling, and on-site oversight with Mayowa and the team.",
     url: "https://diztincttouch.com/contact",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DIZTINCT TOUCH HOME DESIGNS — Initiate Project Consultation",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Initiate Project Consultation | DIZTINCT TOUCH HOME DESIGNS",
+    description:
+      "Discuss site feasibility, drawings, 3D modelling, and on-site oversight with Mayowa and the team.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -47,11 +63,11 @@ export default function ContactPage() {
           {/* Contact Details & Office Coordinates */}
           <div className="lg:col-span-5 space-y-8">
             <Card className="p-6 sm:p-8 space-y-6">
-              <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
                 Office Locations &amp; Direct Contact
               </h3>
 
-              <div className="space-y-4 text-xs font-mono">
+              <div className="space-y-4 text-xs ">
                 {/* Ibadan Head Office */}
                 <div className="flex items-start gap-3">
                   <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -144,7 +160,7 @@ export default function ContactPage() {
             </Card>
 
             <Card className="p-6 space-y-2 bg-card/60">
-              <Badge variant="gold" className="text-xs font-mono font-bold">
+              <Badge variant="gold" className="text-xs font-bold">
                 Current Studio Capacity
               </Badge>
               <p className="text-xs text-muted-foreground leading-relaxed pt-1">

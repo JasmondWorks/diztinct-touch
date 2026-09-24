@@ -14,9 +14,9 @@ export function Hero() {
       <div className="absolute inset-0 dot-grid opacity-70 pointer-events-none" />
 
       {/* Atmospheric Ambient Glow Orbs */}
-      <div className="orb -top-24 -left-24 h-96 w-96 bg-rose-500/10 animate-[glow-pulse_7s_ease-in-out_infinite]" />
-      <div className="orb top-1/3 -right-28 h-96 w-96 bg-amber-500/10 animate-[glow-pulse_9s_ease-in-out_infinite_2s]" />
-      <div className="orb -bottom-20 left-1/3 h-96 w-96 bg-red-600/10 animate-[glow-pulse_8s_ease-in-out_infinite_4s]" />
+      <div className="orb -top-24 -left-24 h-96 w-96 bg-primary/15 animate-[glow-pulse_7s_ease-in-out_infinite]" />
+      <div className="orb top-1/3 -right-28 h-96 w-96 bg-accent/10 animate-[glow-pulse_9s_ease-in-out_infinite_2s]" />
+      <div className="orb -bottom-20 left-1/3 h-96 w-96 bg-primary/10 animate-[glow-pulse_8s_ease-in-out_infinite_4s]" />
 
       {/* Radial vignette mask */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background))_80%)] pointer-events-none" />
@@ -32,8 +32,8 @@ export function Hero() {
           >
             <Badge variant="outline" className="gap-2.5 rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary backdrop-blur-md">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
               <span>{siteConfig.status}</span>
             </Badge>
@@ -98,7 +98,7 @@ export function Hero() {
         >
           {siteConfig.stats.map((stat) => (
             <div key={stat.label} className="space-y-1">
-              <div className="font-mono text-2xl sm:text-3xl font-black text-foreground-heading tracking-tight">
+              <div className="text-2xl sm:text-3xl font-black text-foreground-heading tracking-tight">
                 {stat.value}
               </div>
               <div className="text-xs font-bold uppercase tracking-wider text-primary">
@@ -119,7 +119,7 @@ export function Hero() {
           aria-label="Scroll down to featured projects"
           className="flex flex-col items-center gap-1.5 transition-colors hover:text-primary group"
         >
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground group-hover:text-primary">
+          <span className="text-[10px] uppercase tracking-widest text-muted-foreground group-hover:text-primary">
             Scroll to Discover
           </span>
           <ArrowDown className="h-4 w-4 animate-bounce text-primary" />

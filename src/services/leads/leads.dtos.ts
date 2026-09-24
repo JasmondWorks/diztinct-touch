@@ -20,11 +20,15 @@ export interface UpdateLeadStatusDto {
   notes?: string;
 }
 
-export interface LeadFilterDto {
+import { PaginationParams, PaginatedResult } from "@/types/pagination";
+
+export interface LeadFilterDto extends PaginationParams {
   status?: LeadStatus | "all";
   search?: string;
   limit?: number;
 }
+
+export type PaginatedLeadsDto = PaginatedResult<Lead>;
 
 export interface LeadResponseDto {
   success: boolean;

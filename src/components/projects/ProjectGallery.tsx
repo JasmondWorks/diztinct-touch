@@ -85,10 +85,10 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
       {/* Header and Filter Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/80 pb-4">
         <div className="flex items-center gap-3">
-          <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground-heading">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-foreground-heading">
             Project Gallery &amp; Architectural Photography
           </h3>
-          <Badge variant="secondary" className="font-mono text-xs">
+          <Badge variant="secondary" className="text-xs">
             {images.length} Photos
           </Badge>
         </div>
@@ -113,7 +113,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
                 className="h-8 gap-1 text-xs font-semibold"
               >
                 <span>{cat.label}</span>
-                <span className="opacity-70 font-mono text-[10px]">({count})</span>
+                <span className="opacity-70 text-[10px]">({count})</span>
               </Button>
             );
           })}
@@ -149,7 +149,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
             {/* Category Tag Top Left */}
             <div className="absolute top-3 left-3">
-              <Badge variant="secondary" className="bg-black/60 backdrop-blur-md text-[10px] font-mono uppercase text-white">
+              <Badge variant="secondary" className="bg-black/60 backdrop-blur-md text-[10px] uppercase text-white">
                 {image.category}
               </Badge>
             </div>
@@ -168,7 +168,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
               <div className="text-xs uppercase tracking-widest text-primary font-bold">
                 {title} • {currentImage.category} View
               </div>
-              <div className="font-mono text-xs text-muted-foreground font-normal flex flex-wrap items-center gap-2">
+              <div className="text-xs text-muted-foreground font-normal flex flex-wrap items-center gap-2">
                 <span>
                   Photo {lightboxIndex! + 1} of {filteredImages.length}
                 </span>

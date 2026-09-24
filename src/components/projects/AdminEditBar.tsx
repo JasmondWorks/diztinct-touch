@@ -26,13 +26,13 @@ export function AdminEditBar({ project }: { project: Project }) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 animate-slideUp">
-      <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-2xl p-2.5 sm:px-4 sm:py-2.5 flex items-center gap-3 text-xs font-mono text-foreground">
+      <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-2xl p-2.5 sm:px-4 sm:py-2.5 flex items-center gap-3 text-xs text-foreground">
         <div className="flex items-center gap-2 pr-2 border-r border-border/80">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           <span className="font-semibold text-primary hidden sm:inline">
             ADMIN VIEW
           </span>
-          <Badge variant="outline" className="text-[10px] font-mono border-primary/20 bg-primary/5 text-primary">
+          <Badge variant="outline" className="text-[10px] border-primary/20 bg-primary/5 text-primary">
             {project.projectCode || "DT-PROJ"}
           </Badge>
         </div>
@@ -43,20 +43,20 @@ export function AdminEditBar({ project }: { project: Project }) {
           size="sm"
           onClick={handleToggle}
           disabled={isPending}
-          className="h-6 rounded-full text-[10px] uppercase font-mono px-2.5"
+          className="h-6 rounded-full text-[10px] uppercase px-2.5"
           title="Click to toggle publish status"
         >
           {project.isPublished ? "● Live (Visible)" : "○ Draft (Hidden)"}
         </Button>
 
-        <Button asChild size="sm" className="h-7 text-xs font-mono gap-1.5">
+        <Button asChild size="sm" className="h-7 text-xs gap-1.5">
           <Link href={`/admin/projects/${project.id}/edit`}>
             <Edit3 className="w-3.5 h-3.5" />
             <span>Edit Project</span>
           </Link>
         </Button>
 
-        <Button variant="ghost" size="sm" asChild className="h-7 text-xs font-mono text-muted-foreground hover:text-foreground hidden md:inline-flex">
+        <Button variant="ghost" size="sm" asChild className="h-7 text-xs text-muted-foreground hover:text-foreground hidden md:inline-flex">
           <Link href="/admin">
             Dashboard
           </Link>

@@ -31,7 +31,7 @@ export function DrawingsViewer({
             Architectural Drawings &amp; Blueprints
           </h3>
         </div>
-        <span className="text-xs font-mono text-muted-foreground">
+        <span className="text-xs text-muted-foreground">
           BIM / Computational Geometry
         </span>
       </div>
@@ -40,10 +40,10 @@ export function DrawingsViewer({
       {axonometricUrl && (
         <div className="overflow-hidden rounded-2xl border border-border bg-card/60 p-4 sm:p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">
               Primary Axonometric Section
             </span>
-            <Badge variant="outline" className="text-[10px] font-mono">
+            <Badge variant="outline" className="text-[10px] ">
               SVG Vector Drawing
             </Badge>
           </div>
@@ -71,7 +71,7 @@ export function DrawingsViewer({
           </div>
 
           {axonometricDescription && (
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed italic border-l-2 border-primary pl-3 font-mono">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed italic border-l-2 border-primary pl-3 ">
               {axonometricDescription}
             </p>
           )}
@@ -96,7 +96,7 @@ export function DrawingsViewer({
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute top-2 left-2">
-                  <Badge variant="secondary" className="bg-black/60 text-white backdrop-blur-md uppercase text-[9px] font-mono">
+                  <Badge variant="secondary" className="bg-black/60 text-white backdrop-blur-md uppercase text-[9px] ">
                     {drawing.type} • {drawing.scale ?? "NTS"}
                   </Badge>
                 </div>
@@ -123,7 +123,7 @@ export function DrawingsViewer({
         setIsOpen={(open) => !open && setActiveDrawing(null)}
         size="2xl"
         title={
-          <span className="font-mono text-xs uppercase tracking-wider text-primary font-bold">
+          <span className="text-xs uppercase tracking-wider text-primary font-bold">
             Architectural Technical Drawing Inspection
           </span>
         }

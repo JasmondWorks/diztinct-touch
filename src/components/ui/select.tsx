@@ -20,10 +20,10 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-11 w-full items-center justify-between rounded-xl border bg-card px-3.5 py-2 text-xs font-mono text-foreground transition-all focus:outline-hidden focus:ring-1 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 cursor-pointer select-none",
+      "flex h-11 w-full items-center justify-between rounded-xl border bg-card px-3.5 py-2 text-sm text-foreground transition-colors focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 cursor-pointer select-none",
       error
-        ? "border-destructive focus:ring-destructive/30"
-        : "border-border/80 hover:border-border focus:border-primary",
+        ? "border-destructive focus:ring-destructive/30 focus:border-destructive"
+        : "border-border/80 hover:border-border",
       className
     )}
     {...props}
@@ -110,7 +110,7 @@ const SelectLabel = React.forwardRef<
   <SelectPrimitive.Label
     ref={ref}
     className={cn(
-      "py-1.5 pl-8 pr-2 text-xs font-semibold font-mono text-muted-foreground",
+      "py-1.5 pl-8 pr-2 text-xs font-semibold text-muted-foreground",
       className
     )}
     {...props}
@@ -125,7 +125,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-2 text-xs font-mono outline-hidden focus:bg-muted/70 focus:text-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-colors",
+      "relative flex w-full cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-2 text-sm outline-hidden focus:bg-muted/70 focus:text-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-colors",
       className
     )}
     {...props}

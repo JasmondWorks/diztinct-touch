@@ -15,7 +15,7 @@ export default async function AdminAnalyticsPage() {
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
           Analytics &amp; Conversion Performance
         </h1>
-        <p className="text-xs font-mono text-muted-foreground mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           Detailed site engagement, project interest heatmaps, and prospective client conversion rates.
         </p>
       </div>
@@ -25,7 +25,7 @@ export default async function AdminAnalyticsPage() {
         <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 Total Views
               </span>
               <span className="p-2 rounded-xl bg-primary/10 text-primary">
@@ -35,7 +35,7 @@ export default async function AdminAnalyticsPage() {
             <div className="text-3xl font-bold tracking-tight text-foreground-heading mt-2">
               {summary.totalPageViews}
             </div>
-            <p className="text-[11px] font-mono text-muted-foreground mt-1">
+            <p className="text-[11px] text-muted-foreground mt-1">
               Across homepage &amp; portfolio projects
             </p>
           </CardContent>
@@ -44,7 +44,7 @@ export default async function AdminAnalyticsPage() {
         <Card className="hover:border-emerald-500/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 WhatsApp Clicks
               </span>
               <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
@@ -54,7 +54,7 @@ export default async function AdminAnalyticsPage() {
             <div className="text-3xl font-bold tracking-tight text-foreground-heading mt-2">
               {summary.totalWhatsAppClicks}
             </div>
-            <p className="text-[11px] font-mono text-muted-foreground mt-1">
+            <p className="text-[11px] text-muted-foreground mt-1">
               High-intent direct chats initiated
             </p>
           </CardContent>
@@ -63,7 +63,7 @@ export default async function AdminAnalyticsPage() {
         <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 Form Inquiries
               </span>
               <span className="p-2 rounded-xl bg-primary/10 text-primary">
@@ -73,7 +73,7 @@ export default async function AdminAnalyticsPage() {
             <div className="text-3xl font-bold tracking-tight text-foreground-heading mt-2">
               {summary.totalInquiries}
             </div>
-            <p className="text-[11px] font-mono text-muted-foreground mt-1">
+            <p className="text-[11px] text-muted-foreground mt-1">
               Submitted consultation requests
             </p>
           </CardContent>
@@ -82,7 +82,7 @@ export default async function AdminAnalyticsPage() {
         <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 Total Conversion
               </span>
               <span className="p-2 rounded-xl bg-primary/10 text-primary">
@@ -92,7 +92,7 @@ export default async function AdminAnalyticsPage() {
             <div className="text-3xl font-bold tracking-tight text-foreground-heading mt-2">
               {summary.conversionRate}
             </div>
-            <p className="text-[11px] font-mono text-muted-foreground mt-1">
+            <p className="text-[11px] text-muted-foreground mt-1">
               Inquiries / Views ratio
             </p>
           </CardContent>
@@ -108,14 +108,14 @@ export default async function AdminAnalyticsPage() {
               <BarChart2 className="w-4 h-4 text-primary" />
               <CardTitle className="text-lg">Most Viewed Pages &amp; Projects</CardTitle>
             </div>
-            <CardDescription className="text-xs font-mono">
+            <CardDescription className="text-xs ">
               Identifies which designs and pages attract the highest prospective client engagement
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             {summary.viewsByPath.length === 0 ? (
-              <div className="py-12 text-center text-xs font-mono text-muted-foreground border border-dashed border-border/80 rounded-xl">
+              <div className="py-12 text-center text-xs text-muted-foreground border border-dashed border-border/80 rounded-xl">
                 No page view telemetry recorded yet. Live visits will populate here automatically.
               </div>
             ) : (
@@ -126,7 +126,7 @@ export default async function AdminAnalyticsPage() {
 
                   return (
                     <div key={item.path} className="space-y-1.5">
-                      <div className="flex justify-between text-xs font-mono">
+                      <div className="flex justify-between text-xs ">
                         <span className="text-foreground truncate max-w-[280px]">
                           {idx + 1}. {item.path}
                         </span>
@@ -155,20 +155,20 @@ export default async function AdminAnalyticsPage() {
               <Activity className="w-4 h-4 text-primary" />
               <CardTitle className="text-lg">Live Telemetry Feed</CardTitle>
             </div>
-            <CardDescription className="text-xs font-mono">
+            <CardDescription className="text-xs ">
               Recent visitor actions across the DIZTINCT TOUCH portfolio
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             {summary.recentEvents.length === 0 ? (
-              <div className="py-12 text-center text-xs font-mono text-muted-foreground border border-dashed border-border/80 rounded-xl">
+              <div className="py-12 text-center text-xs text-muted-foreground border border-dashed border-border/80 rounded-xl">
                 No live telemetry recorded yet.
               </div>
             ) : (
               <div className="divide-y divide-border/60">
                 {summary.recentEvents.map((event) => (
-                  <div key={event.id} className="py-3 flex items-center justify-between text-xs font-mono">
+                  <div key={event.id} className="py-3 flex items-center justify-between text-xs ">
                     <div className="flex items-center gap-3">
                       <span
                         className={`w-2 h-2 rounded-full ${

@@ -50,7 +50,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         <div className="flex justify-center">
           <Badge
             variant="outline"
-            className="gap-2 px-3.5 py-1 text-xs font-mono border-destructive/40 bg-destructive/10 text-destructive"
+            className="gap-2 px-3.5 py-1 text-xs border-destructive/40 bg-destructive/10 text-destructive"
           >
             <AlertTriangle className="h-3.5 w-3.5" />
             <span>RENDER EXCEPTION • CODE 500</span>
@@ -74,7 +74,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           <Button
             size="lg"
             onClick={() => reset()}
-            className="gap-2 font-mono text-xs cursor-pointer shadow-xs"
+            className="gap-2 text-xs cursor-pointer shadow-xs"
           >
             <RotateCcw className="h-4 w-4" />
             <span>Re-attempt Rendering</span>
@@ -85,7 +85,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
             asChild
             variant="outline"
             size="lg"
-            className="gap-2 font-mono text-xs cursor-pointer"
+            className="gap-2 text-xs cursor-pointer"
           >
             <Link href="/">
               <ArrowLeft className="h-4 w-4" />
@@ -98,7 +98,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
             asChild
             variant="ghost"
             size="lg"
-            className="gap-2 font-mono text-xs text-muted-foreground hover:text-foreground cursor-pointer"
+            className="gap-2 text-xs text-muted-foreground hover:text-foreground cursor-pointer"
           >
             <Link href="/#projects">
               <Building2 className="h-4 w-4 text-primary" />
@@ -112,7 +112,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           <button
             type="button"
             onClick={() => setShowTechnicalDetails(!showTechnicalDetails)}
-            className="flex items-center justify-between w-full p-3 rounded-xl border border-border/80 bg-card/60 text-xs font-mono text-muted-foreground hover:text-foreground hover:border-border transition-all cursor-pointer"
+            className="flex items-center justify-between w-full p-3 rounded-xl border border-border/80 bg-card/60 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-all cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <Terminal className="h-3.5 w-3.5 text-primary" />
@@ -126,7 +126,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           </button>
 
           {showTechnicalDetails && (
-            <div className="mt-3 p-4 rounded-xl border border-border/80 bg-black/60 backdrop-blur-md space-y-3 font-mono text-xs animate-fadeIn">
+            <div className="mt-3 p-4 rounded-xl border border-border/80 bg-black/60 backdrop-blur-md space-y-3 text-xs animate-fadeIn">
               <div className="flex items-center justify-between border-b border-border/60 pb-2">
                 <span className="text-[11px] text-muted-foreground uppercase tracking-wider">
                   Error Signature
@@ -166,7 +166,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
         {/* Support Consultation Footer */}
         <div className="pt-2">
-          <p className="text-xs font-mono text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Persistent issue? Direct message to lead architect Mayowa via{" "}
             <a
               href={siteConfig.whatsappUrl}
