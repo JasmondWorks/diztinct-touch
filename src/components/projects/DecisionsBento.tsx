@@ -23,7 +23,7 @@ export function DecisionsBento({ decisions }: DecisionsBentoProps) {
             className="flex flex-col p-5 space-y-4 hover:border-primary/40 transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
+              <span className="text-xs font-bold uppercase tracking-wider text-primary">
                 0{idx + 1} // {decision.topic}
               </span>
             </div>

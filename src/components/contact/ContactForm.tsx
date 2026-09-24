@@ -77,13 +77,13 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C9A84C]/10 text-[#C9A84C]">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
           <CheckCircle2 className="h-6 w-6" />
         </div>
-        <h3 className="text-2xl font-serif font-bold text-[#F9F6F0]">
+        <h3 className="text-2xl font-serif font-bold text-foreground-heading">
           Inquiry Received
         </h3>
-        <p className="text-sm text-[#8A8A8A] max-w-md font-mono">
+        <p className="text-sm text-muted-foreground max-w-md ">
           Thank you for contacting DIZTINCT TOUCH HOME DESIGNS. Mayowa and our team will review your project parameters and get in touch within 24 hours.
         </p>
         <Button
@@ -111,7 +111,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono">
+        <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs ">
           {error}
         </div>
       )}

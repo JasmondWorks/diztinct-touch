@@ -5,6 +5,7 @@ import {
   UpdateProjectDto,
   ProjectFilterDto,
   ProjectStatsDto,
+  PaginatedProjectsDto,
 } from "./projects.dtos";
 import { architecturalProjects } from "@/data/projects";
 
@@ -104,6 +105,29 @@ export class ProjectsService {
       console.error("Error fetching projects via Prisma, falling back to static data:", err);
       return architecturalProjects;
     }
+  }
+
+  /**
+   * Fetch backend-paginated projects matching optional filter criteria
+   */
+  static async getPaginated(filter?: ProjectFilterDto): Promise<PaginatedProjectsDto> {
+    const page = Math.max(1, filter?.page ?? 1);
+    const pageSize = Math.max(1, filter?.pageSize ?? 10);
+    const all = await this.getAll(filter);
+    const totalCount = all.length;
+    const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+    const startIndex = (page - 1) * pageSize;
+    const data = all.slice(startIndex, startIndex + pageSize);
+
+    return {
+      data,
+      totalCount,
+      page,
+      pageSize,
+      totalPages,
+      hasNextPage: page < totalPages,
+      hasPreviousPage: page > 1,
+    };
   }
 
   /**

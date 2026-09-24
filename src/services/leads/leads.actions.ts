@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 import { revalidatePath } from "next/cache";
 import { Lead } from "./leads.types";
-import { CreateLeadDto, UpdateLeadStatusDto, LeadResponseDto } from "./leads.dtos";
+import { CreateLeadDto, UpdateLeadStatusDto, LeadResponseDto, LeadFilterDto, PaginatedLeadsDto } from "./leads.dtos";
 import { LeadsService } from "./leads.service";
 import { leadSchema } from "./leads.schemas";
 
@@ -52,6 +52,38 @@ export async function getLeadsAction(): Promise<Lead[]> {
   } catch (err) {
     console.error("Error fetching leads via LeadsService:", err);
     return [];
+  }
+}
+
+export async function getPaginatedLeadsAction(
+  filter?: LeadFilterDto
+): Promise<PaginatedLeadsDto> {
+  const isAuth = await isAdminAuthenticated();
+  if (!isAuth) {
+    return {
+      data: [],
+      totalCount: 0,
+      page: 1,
+      pageSize: 10,
+      totalPages: 1,
+      hasNextPage: false,
+      hasPreviousPage: false,
+    };
+  }
+
+  try {
+    return await LeadsService.getPaginated(filter);
+  } catch (err) {
+    console.error("Error fetching paginated leads via LeadsService:", err);
+    return {
+      data: [],
+      totalCount: 0,
+      page: 1,
+      pageSize: 10,
+      totalPages: 1,
+      hasNextPage: false,
+      hasPreviousPage: false,
+    };
   }
 }
 

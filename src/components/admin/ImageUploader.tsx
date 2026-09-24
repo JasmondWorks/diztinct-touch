@@ -88,11 +88,11 @@ export function ImageUploader({
   return (
     <div className={cn("space-y-2", className)}>
       <div className="flex items-center justify-between">
-        <label className="text-xs font-mono font-bold uppercase text-foreground">
+        <label className="text-xs font-bold uppercase text-foreground">
           {label}
         </label>
         {stats && (
-          <Badge variant="success" className="gap-1 text-[10px] font-mono">
+          <Badge variant="success" className="gap-1 text-[10px] ">
             <CheckCircle2 className="h-3 w-3" />
             <span>
               {stats.originalKb}KB ➔ {stats.optimizedKb}KB ({stats.savedPercent}% saved)
@@ -139,7 +139,7 @@ export function ImageUploader({
             </Button>
           </div>
           <div className="absolute bottom-2 left-2">
-            <Badge variant="secondary" className="gap-1 bg-black/70 backdrop-blur-md text-[10px] font-mono text-white border-white/10">
+            <Badge variant="secondary" className="gap-1 bg-black/70 backdrop-blur-md text-[10px] text-white border-white/10">
               <CheckCircle2 className="h-3 w-3 text-emerald-400" />
               <span>Stored in Neon S3 (WebP)</span>
             </Badge>
@@ -159,7 +159,7 @@ export function ImageUploader({
               <p className="text-xs font-semibold text-foreground">
                 Optimizing &amp; Uploading to Neon S3...
               </p>
-              <p className="text-[10px] text-muted-foreground font-mono">
+              <p className="text-[10px] text-muted-foreground ">
                 Compressing to progressive WebP (82% quality)
               </p>
             </div>
@@ -180,7 +180,7 @@ export function ImageUploader({
       )}
 
       {error && (
-        <p className="text-xs text-destructive font-mono">{error}</p>
+        <p className="text-xs text-destructive ">{error}</p>
       )}
     </div>
   );

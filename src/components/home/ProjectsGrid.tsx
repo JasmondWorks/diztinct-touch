@@ -103,7 +103,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-8 border-b border-border/80">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
               <Building2 className="h-3.5 w-3.5" />
               <span>Project Portfolio</span>
             </div>
@@ -180,7 +180,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
                   <span>{cat}</span>
                   <Badge
                     variant={isSelected ? "secondary" : "outline"}
-                    className="px-1.5 py-0 text-[10px] font-mono h-4 min-w-4 justify-center"
+                    className="px-1.5 py-0 text-[10px] h-4 min-w-4 justify-center"
                   >
                     {count}
                   </Badge>
@@ -191,7 +191,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
 
           {/* Scope & Architectural Services Filter */}
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mr-1 flex items-center gap-1">
+            <span className="text-[11px] uppercase tracking-wider text-muted-foreground mr-1 flex items-center gap-1">
               <SlidersHorizontal className="h-3 w-3" />
               Scope &amp; Services:
             </span>
@@ -224,7 +224,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
                   <span>{tag}</span>
                   <span
                     className={cn(
-                      "text-[9px] font-mono",
+                      "text-[9px] ",
                       isSelected ? "text-primary-foreground/80 font-bold" : "text-muted-foreground"
                     )}
                   >
@@ -236,7 +236,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
           </div>
 
           {/* Results Count Banner */}
-          <div className="flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground font-mono">
+          <div className="flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground ">
             <span>
               Showing {filteredProjects.length} of {architecturalProjects.length} works
             </span>

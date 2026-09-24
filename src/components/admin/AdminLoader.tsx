@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { siteConfig } from "@/data/siteConfig";
 import { ShieldCheck } from "lucide-react";
 
@@ -27,8 +28,8 @@ export function AdminLoader({
       <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
 
       {/* Atmospheric Ambient Glow Orbs */}
-      <div className="orb -top-20 -left-20 h-64 w-64 bg-rose-500/10 pointer-events-none" />
-      <div className="orb bottom-10 right-10 h-64 w-64 bg-amber-500/10 pointer-events-none" />
+      <div className="orb -top-20 -left-20 h-64 w-64 bg-primary/15 pointer-events-none" />
+      <div className="orb bottom-10 right-10 h-64 w-64 bg-accent/10 pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center max-w-sm">
         {/* Tectonic Precision Spinner: Dual-ring rotation around Studio Monogram */}
@@ -42,22 +43,28 @@ export function AdminLoader({
             style={{ animationDirection: "reverse", animationDuration: "1.5s" }}
           />
 
-          {/* Studio Monogram Heart */}
+          {/* Studio Brand Logo Center */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-xs shadow-md animate-pulse">
-              {siteConfig.monogram}
+            <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg bg-brand-navy">
+              <Image
+                src={siteConfig.logo}
+                alt={siteConfig.studioName}
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
 
         {/* Status Pill Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-mono font-semibold text-primary mb-2">
+        <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-semibold text-primary mb-2">
           <ShieldCheck className="h-3.5 w-3.5" />
           <span>{label}</span>
         </div>
 
         {/* Studio Sublabel */}
-        <span className="text-[11px] font-mono text-muted-foreground tracking-wider uppercase">
+        <span className="text-[11px] text-muted-foreground tracking-wider uppercase">
           {sublabel}
         </span>
       </div>
