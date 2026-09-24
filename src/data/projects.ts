@@ -20,7 +20,12 @@ export const architecturalProjects: Project[] = [
       materialityAndStructure:
         "Reinforced concrete column-and-beam frame with high-tensile suspended deck slab. Ground-floor construction and suspended decking have been successfully completed, with first-floor masonry currently underway.",
     },
-    techStack: [],
+    techStack: [
+      "Architectural Design",
+      "2D Working Drawings",
+      "3D Visualization",
+      "Construction Oversight",
+    ],
     coverImage: "/projects/armity-duplex/cover.jpg",
     featured: true,
     featuredRank: 1,
@@ -70,42 +75,40 @@ export const architecturalProjects: Project[] = [
   },
   {
     id: "contemporary-duplex",
-    title: "The Horizon Contemporary Duplex",
+    title: "The Egbeda Contemporary Duplex",
     slug: "contemporary-duplex",
     category: "Residential",
-    location: "Ibadan, Oyo State, Nigeria",
-    yearCompleted: "2024 (Completed)",
+    location: "Egbeda, Ajia, Ibadan, Oyo State",
+    yearCompleted: "2023 (Completed)",
     shortDescription:
-      "A completed two-storey contemporary duplex featuring double-height atrium living, helical marble staircase, cantilevered wood-clad upper volumes, and stamped concrete compound.",
+      "A completed contemporary residential duplex at Egbeda, Ajia, Ibadan, designed by DIZTINCT TOUCH HOME DESIGN featuring modern architectural massing, suspended decking, and refined exterior finishes.",
     longDescription:
-      "Designed and delivered by DIZTINCT TOUCH HOME DESIGN under our core ethos of 'Remarkable design, long lasting', this contemporary residential duplex demonstrates our seamless transition from 3D architectural visualization to meticulous site execution. From structural column reinforcement and double-height lintel casting to the finished helical marble staircase and custom wood-textured parapet facade, every tectonic element reflects architectural precision and long-lasting durability.",
-    fullCaseStudy: {
-      contextAndChallenge:
-        "Situated on an elevated site overlooking Ibadan, the architectural program called for an imposing two-storey residence balancing security, expansive family entertainment zones, and private bedroom sanctuaries.",
-      designConcept:
-        "The exterior form is characterized by modern rectilinear geometry, accented by deep horizontal eaves, wood-textured cornice fascias, and contrasting textured stone tile masonry. The entrance porch is flanked by an architectural pillar and upper viewing balcony.",
-      materialityAndStructure:
-        "Engineered with cast-in-place reinforced concrete columns, beams, and suspended first-floor slab. High-performance blue tinted solar glass reduces tropical heat gain, while the double-height atrium features a bespoke helical reinforced concrete staircase clad in polished marble with stainless steel railings.",
-    },
-    techStack: [],
+      "Privileged to have designed this contemporary duplex at Egbeda, Ajia, Ibadan, Oyo State. Designed by DIZTINCT TOUCH HOME DESIGN under our core ethos of 'Remarkable design, long lasting'. This project commenced in 2023 and is currently a completed project. The ground-floor and decking stages have been successfully completed, with final touches. Our comprehensive scope spanned architectural design, 2D drawings, 3D modelling/visualization, design development, and construction-stage architectural input.",
+    techStack: [
+      "Architectural Design",
+      "2D Drawings",
+      "3D Modelling & Visualization",
+      "Design Development",
+      "Construction-Stage Architectural Input",
+    ],
     coverImage: "/projects/duplex/cover.jpg",
     featured: true,
     featuredRank: 2,
-    dateStr: "2024-11-15",
+    dateStr: "2023-12-01",
     status: "completed",
-    currentStage: "Completed & Handed Over",
-    buildingType: "Contemporary Residential Duplex",
-    projectCode: "DT-DPX-02",
+    currentStage: "Completed",
+    buildingType: "Residential Duplex",
+    projectCode: "DT-EGB-02",
     isPublished: true,
     gallery: [
       {
         url: "/projects/duplex/cover.jpg",
-        caption: "Completed front facade elevation: Two-storey contemporary duplex featuring wood-textured cornice, blue tinted solar windows, stone accent cladding, and perimeter security gate.",
+        caption: "Completed front facade elevation: Contemporary residential duplex featuring wood-accented upper volumes, modern window detailing, and perimeter security gate.",
         category: "exterior",
       },
       {
         url: "/projects/duplex/3d-concept-visualization.jpg",
-        caption: "Approved 3D architectural concept visualization: DIZTINCT TOUCH HOME DESIGN original 3D render showing proposed cantilevered volumes and landscape integration.",
+        caption: "Approved 3D architectural visualization: DIZTINCT TOUCH HOME DESIGN original 3D render showing proposed massing and external finishes.",
         category: "exterior",
       },
       {
@@ -115,22 +118,22 @@ export const architecturalProjects: Project[] = [
       },
       {
         url: "/projects/duplex/completed-entrance-porch.jpg",
-        caption: "Entrance porch detailing: Polished granite floor, feature column, stone masonry accent wall, upper balcony, and stamped concrete forecourt.",
+        caption: "Entrance porch detailing: Polished granite floor, feature column, stone masonry accent wall, and forecourt paving.",
         category: "exterior",
       },
       {
         url: "/projects/duplex/completed-atrium-living-room.jpg",
-        caption: "Double-height atrium living room: Sweeping helical marble staircase with stainless steel balustrade, polished floor tiles, modern halo chandelier, and bar counter.",
+        caption: "Double-height living space: Sweeping helical staircase with stainless steel balustrade and polished floor finishes.",
         category: "interior",
       },
       {
         url: "/projects/duplex/completed-compound-driveway.jpg",
-        caption: "Compound and side driveway: Stamped concrete paving, exterior perimeter lighting, and clean drainage fall.",
+        caption: "Compound and side driveway: Stamped concrete paving, exterior perimeter lighting, and clean drainage.",
         category: "exterior",
       },
       {
         url: "/projects/duplex/ground-floor-deck-formwork.jpg",
-        caption: "Substructure to decking milestone: Completed ground-floor blockwork, concrete columns, and bamboo formwork propping for first floor suspended slab.",
+        caption: "Ground floor & suspended decking: Completed ground-floor blockwork, concrete columns, and formwork propping for the first floor slab.",
         category: "construction",
       },
       {
@@ -150,12 +153,12 @@ export const architecturalProjects: Project[] = [
       },
       {
         url: "/projects/duplex/atrium-lintel-casting.jpg",
-        caption: "Double-height atrium execution: Scaffolding erected in the stairwell void for beam reinforcement and upper lintel casting.",
+        caption: "Double-height void execution: Scaffolding erected in the stairwell void for beam reinforcement and upper lintel casting.",
         category: "construction",
       },
       {
         url: "/projects/duplex/roof-timber-truss-framing.jpg",
-        caption: "Rooftop carpentry: Hardwood timber roof truss network installation across upper level with panoramic city view.",
+        caption: "Rooftop carpentry: Hardwood timber roof truss network installation across upper level with panoramic views.",
         category: "construction",
       },
     ],

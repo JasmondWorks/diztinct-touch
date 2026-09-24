@@ -373,6 +373,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </h3>
 
               <div className="space-y-3 text-xs font-mono">
+                <div className="flex items-center justify-between border-b border-border/60 pb-2">
+                  <span className="text-muted-foreground">Architect &amp; Designer:</span>
+                  <span className="font-semibold text-primary">DIZTINCT TOUCH</span>
+                </div>
                 {project.client && (
                   <div className="flex items-center justify-between border-b border-border/60 pb-2">
                     <span className="text-muted-foreground">Commission Client:</span>
@@ -433,11 +437,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 )}
               </div>
 
-              {/* Material and Software Systems */}
+              {/* Material and Software Systems / Scope */}
               {project.techStack && project.techStack.length > 0 && (
                 <div className="pt-2 space-y-2">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
-                    Integrated Technologies &amp; Systems
+                    Project Scope &amp; Architectural Input
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {project.techStack.map((tech) => (
