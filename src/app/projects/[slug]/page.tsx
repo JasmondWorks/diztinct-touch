@@ -26,7 +26,6 @@ import {
   CheckCircle2,
   Layers,
   ArrowUpRight,
-  Share2,
 } from "lucide-react";
 
 interface PageProps {

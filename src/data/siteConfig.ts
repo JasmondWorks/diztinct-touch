@@ -107,7 +107,6 @@ export const siteConfig: SiteConfig = {
       url: "https://www.instagram.com/diztincttouchhomedesign?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
       label: "@diztincttouchhomedesign",
     },
-    { name: "LinkedIn", url: "https://linkedin.com", label: "DIZTINCT TOUCH HOME DESIGN" },
     { name: "Portfolio", url: "/#projects", label: "Selected Works" },
   ],
   navLinks: [

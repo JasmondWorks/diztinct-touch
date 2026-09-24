@@ -150,18 +150,20 @@ export function Footer() {
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
               </Button>
-              {siteConfig.socials.map((social) => (
-                <Button key={social.name} asChild variant="outline" size="sm" className="h-7 text-[11px] px-2.5">
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span>{social.name}</span>
-                    <ArrowUpRight className="h-3 w-3" />
-                  </a>
-                </Button>
-              ))}
+              {siteConfig.socials
+                .filter((s) => s.name !== "WhatsApp" && s.name.toLowerCase() !== "linkedin")
+                .map((social) => (
+                  <Button key={social.name} asChild variant="outline" size="sm" className="h-7 text-[11px] px-2.5">
+                    <a
+                      href={social.url}
+                      target={social.url.startsWith("http") ? "_blank" : undefined}
+                      rel={social.url.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      <span>{social.name}</span>
+                      <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  </Button>
+                ))}
             </div>
           </div>
         </div>
