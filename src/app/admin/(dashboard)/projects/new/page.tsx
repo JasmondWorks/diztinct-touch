@@ -1,5 +1,12 @@
-import React from "react";
+import { Metadata } from "next";
 import { MultiStepProjectForm } from "@/components/admin/MultiStepProjectForm";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Create New Project | DIZTINCT TOUCH",
+  description: "Architectural project intake and creation portal.",
+};
 
 export default function NewProjectPage() {
   return (
