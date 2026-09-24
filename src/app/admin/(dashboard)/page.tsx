@@ -48,7 +48,7 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button asChild className="gap-2 font-mono text-xs shadow-sm">
+          <Button asChild className="gap-2 font-mono text-xs">
             <Link href="/admin/projects/new">
               <Plus className="w-4 h-4" />
               <span>Add New Project</span>

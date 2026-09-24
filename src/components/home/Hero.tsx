@@ -67,7 +67,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap items-center gap-4 pt-2"
           >
-            <Button asChild size="lg" className="rounded-xl shadow-lg shadow-primary/20 gap-2">
+            <Button asChild size="lg" className="rounded-xl gap-2">
               <Link href="#featured">
                 <span>Explore Featured Works</span>
                 <ArrowRight className="h-4 w-4" />

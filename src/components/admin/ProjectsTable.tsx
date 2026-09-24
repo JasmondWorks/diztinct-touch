@@ -112,7 +112,7 @@ export function ProjectsTable({ initialProjects }: { initialProjects: Project[] 
             <option value="in-progress">In Construction</option>
           </Select>
 
-          <Button asChild className="gap-1.5 font-mono text-xs h-10 shadow-sm">
+          <Button asChild className="gap-1.5 font-mono text-xs h-10">
             <Link href="/admin/projects/new">
               <Plus className="w-3.5 h-3.5" />
               <span>Create Project</span>

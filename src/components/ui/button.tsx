@@ -1,14 +1,15 @@
 import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-xs font-mono font-medium transition-all focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary/20 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none cursor-pointer",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-xs font-mono font-medium transition-all focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary/20 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none cursor-pointer [&>svg]:shrink-0 [&>svg]:pointer-events-none",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground font-semibold hover:bg-primary/90 shadow-sm",
+          "bg-primary text-primary-foreground font-semibold hover:bg-primary/90",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border",
         outline:
@@ -20,7 +21,7 @@ const buttonVariants = cva(
         link:
           "text-primary underline-offset-4 hover:underline p-0 h-auto",
         emerald:
-          "bg-emerald-500 text-white font-semibold hover:bg-emerald-600 shadow-sm",
+          "bg-emerald-500 text-white font-semibold hover:bg-emerald-600",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -43,9 +44,10 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
     return (
-      <button
+      <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
