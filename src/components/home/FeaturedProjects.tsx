@@ -102,35 +102,39 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                     </p>
                   </div>
 
-                  {/* Key Measurable Results Highlight */}
-                  <div className="grid grid-cols-2 gap-3 border-y border-border/80 py-4">
-                    {leadProject.metrics.slice(0, 2).map((metric) => (
-                      <div key={metric.label} className="space-y-0.5">
-                        <div className="font-mono text-xl font-black text-foreground-heading">
-                          {metric.value}
+                  {/* Key Measurable Results Highlight (conditionally rendered) */}
+                  {leadProject.metrics && leadProject.metrics.length > 0 && (
+                    <div className="grid grid-cols-2 gap-3 border-y border-border/80 py-4">
+                      {leadProject.metrics.slice(0, 2).map((metric) => (
+                        <div key={metric.label} className="space-y-0.5">
+                          <div className="font-mono text-xl font-black text-foreground-heading">
+                            {metric.value}
+                          </div>
+                          <div className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                            {metric.label}
+                          </div>
+                          <div className="text-[10px] text-muted-foreground line-clamp-1">
+                            {metric.description}
+                          </div>
                         </div>
-                        <div className="text-[11px] font-bold uppercase tracking-wider text-primary">
-                          {metric.label}
-                        </div>
-                        <div className="text-[10px] text-muted-foreground line-clamp-1">
-                          {metric.description}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Material & Tool Tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {leadProject.techStack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="secondary"
-                        className="text-[11px] font-mono uppercase tracking-wider"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
+                  {leadProject.techStack && leadProject.techStack.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {leadProject.techStack.map((tech) => (
+                        <Badge
+                          key={tech}
+                          variant="secondary"
+                          className="text-[11px] font-mono uppercase tracking-wider"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
 
                   {/* CTAs */}
                   <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -223,8 +227,8 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
                   </div>
 
                   <div className="space-y-3 pt-2">
-                    {/* Primary Metric Preview */}
-                    {project.metrics[0] && (
+                    {/* Primary Metric Preview (conditionally rendered) */}
+                    {project.metrics && project.metrics[0] && (
                       <div className="rounded-lg border border-border/70 bg-muted/20 p-2.5 font-mono">
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] uppercase text-muted-foreground">

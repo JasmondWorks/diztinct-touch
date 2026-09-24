@@ -36,10 +36,10 @@ export interface ArchitecturalDrawing {
 }
 
 export interface FullCaseStudy {
-  contextAndChallenge: string;
-  designConcept: string;
-  materialityAndStructure: string;
-  environmentalPerformance: string;
+  contextAndChallenge?: string;
+  designConcept?: string;
+  materialityAndStructure?: string;
+  environmentalPerformance?: string;
 }
 
 export interface Project {
@@ -69,8 +69,8 @@ export interface Project {
     description: string;
   };
 
-  engineeringDecisions: ProjectDecision[];
-  metrics: ProjectMetric[];
+  engineeringDecisions?: ProjectDecision[];
+  metrics?: ProjectMetric[];
   futureImprovements?: string[];
   featured?: boolean;
   featuredRank?: number;

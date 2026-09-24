@@ -216,7 +216,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   Exterior View
                 </span>
                 <p className="text-xs sm:text-sm font-medium drop-shadow-md">
-                  {[project.location, project.yearCompleted ? `Completed ${project.yearCompleted}` : null]
+                  {[
+                    project.location,
+                    project.yearCompleted
+                      ? project.yearCompleted.toLowerCase().includes("construction") ||
+                        project.yearCompleted.toLowerCase().includes("completed")
+                        ? project.yearCompleted
+                        : `Completed ${project.yearCompleted}`
+                      : null,
+                  ]
                     .filter(Boolean)
                     .join(" • ")}
                 </p>

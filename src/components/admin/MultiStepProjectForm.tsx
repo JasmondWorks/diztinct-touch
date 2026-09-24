@@ -621,6 +621,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                       <option value="exterior">Exterior View</option>
                       <option value="interior">Interior Space</option>
                       <option value="detail">Construction Detail</option>
+                      <option value="construction">Construction Progress</option>
                     </Select>
                   </Card>
                 ))}
@@ -634,9 +635,12 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
       {currentStep === 4 && (
         <Card className="p-6 sm:p-10 space-y-8">
           <CardHeader className="p-0 border-b border-border/80 pb-4">
-            <CardTitle className="text-xl">4. Measurable Results &amp; Engineering Decisions</CardTitle>
+            <div className="flex items-center gap-2">
+              <CardTitle className="text-xl">4. Measurable Results &amp; Engineering Decisions</CardTitle>
+              <Badge variant="outline" className="text-[10px] font-mono text-muted-foreground">Optional</Badge>
+            </div>
             <CardDescription className="text-xs">
-              Give clients confidence with real numbers (decking strength, GFA, design-to-build accuracy).
+              Leave empty if not provided. Unverified data will be cleanly omitted from the public presentation.
             </CardDescription>
           </CardHeader>
 

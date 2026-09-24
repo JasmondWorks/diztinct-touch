@@ -24,25 +24,25 @@ export const projectDecisionSchema = z.object({
 });
 
 export const projectGalleryImageSchema = z.object({
-  url: z.string().url("Valid image URL required"),
+  url: z.string().min(1, "Image URL or path required"),
   caption: z.string().min(1, "Caption is required"),
-  category: z.enum(["exterior", "interior", "detail", "drawing", "axonometric"]),
+  category: z.enum(["exterior", "interior", "detail", "drawing", "axonometric", "construction"]),
   aspect: z.enum(["16/9", "4/3", "3/2", "1/1"]).optional(),
 });
 
 export const architecturalDrawingSchema = z.object({
   title: z.string().min(1, "Drawing title is required"),
-  url: z.string().url("Valid drawing URL required"),
+  url: z.string().min(1, "Drawing URL or path required"),
   type: z.enum(["Plan", "Section", "Elevation", "Axonometric", "Detail"]),
   scale: z.string().optional(),
   caption: z.string().optional(),
 });
 
 export const fullCaseStudySchema = z.object({
-  contextAndChallenge: z.string().min(1, "Context and challenge narrative required"),
-  designConcept: z.string().min(1, "Design concept description required"),
-  materialityAndStructure: z.string().min(1, "Materiality and structural concept required"),
-  environmentalPerformance: z.string().min(1, "Environmental performance description required"),
+  contextAndChallenge: z.string().optional(),
+  designConcept: z.string().optional(),
+  materialityAndStructure: z.string().optional(),
+  environmentalPerformance: z.string().optional(),
 });
 
 export const projectFormSchema = z.object({

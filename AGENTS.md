@@ -110,4 +110,13 @@ All agents, contributors, and developers working on this codebase must strictly 
     - Verification & Status: `CheckCircle2`, `ShieldCheck`, `Activity`, pulsing status dot indicators.
     - Media & Interaction: `Camera`, `FileText`, `ArrowRight`, `Eye`.
 
+### 9. Zero Falsification & Zero Unverified Mock Data Policy
+- **Constraint:** **Never invent, assume, or inject unverified mock data.**
+  - Never fabricate architectural working drawings, 2D blueprints, or CAD files if not provided by Mayowa/the client.
+  - Never fabricate engineering tradeoffs, structural decisions, or technical compromises if not explicitly provided.
+  - Never invent estimated budgets, unverified site areas, gross floor areas (GFA), bedroom counts, or software tooling stacks.
+  - Any data attribute not explicitly provided must remain `null` or empty (`[]`).
+  - All public and admin UI views must conditionally adapt and omit empty sections without visual clutter or broken layout frames.
+
+
 
