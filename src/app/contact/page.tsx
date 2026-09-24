@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Button, Badge, Card } from "@/components/ui";
-import { Mail, Phone, MapPin, Clock, Compass, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Compass, MessageSquare, Instagram } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Mayowa & Start a Project | DIZTINCT TOUCH HOME DESIGN",
@@ -98,6 +98,22 @@ export default function ContactPage() {
                       className="text-foreground hover:text-primary transition-colors font-semibold"
                     >
                       {siteConfig.phone} ({siteConfig.phoneRaw})
+                    </a>
+                  </div>
+                </div>
+
+                {/* Instagram Channel */}
+                <div className="flex items-start gap-3">
+                  <Instagram className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-foreground block">Instagram Studio Portfolio</span>
+                    <a
+                      href={siteConfig.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors font-semibold"
+                    >
+                      @diztincttouchhomedesign
                     </a>
                   </div>
                 </div>

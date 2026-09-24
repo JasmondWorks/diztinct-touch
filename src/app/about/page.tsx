@@ -17,6 +17,7 @@ import {
   Phone,
   MessageSquare,
   FileCheck2,
+  Instagram,
 } from "lucide-react";
 
 export const metadata = {
@@ -156,6 +157,16 @@ export default function AboutPage() {
                     <Phone className="h-3.5 w-3.5 text-primary" />
                     <span>Request Full Project Consultation</span>
                   </Link>
+                </Button>
+                <Button asChild variant="outline" size="sm">
+                  <a
+                    href={siteConfig.instagramUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Instagram className="h-3.5 w-3.5 text-primary" />
+                    <span>Instagram (@diztincttouchhomedesign)</span>
+                  </a>
                 </Button>
               </div>
             </div>
