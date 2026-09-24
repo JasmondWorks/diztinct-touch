@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ProjectGalleryImage } from "@/types/project";
 import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
@@ -43,19 +43,40 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
     setLightboxIndex(null);
   };
 
-  const nextImage = () => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((lightboxIndex + 1) % filteredImages.length);
-    }
-  };
+  const nextImage = useCallback(() => {
+    setLightboxIndex((curr) =>
+      curr !== null ? (curr + 1) % filteredImages.length : null
+    );
+  }, [filteredImages.length]);
 
-  const prevImage = () => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex(
-        (lightboxIndex - 1 + filteredImages.length) % filteredImages.length
-      );
-    }
-  };
+  const prevImage = useCallback(() => {
+    setLightboxIndex((curr) =>
+      curr !== null
+        ? (curr - 1 + filteredImages.length) % filteredImages.length
+        : null
+    );
+  }, [filteredImages.length]);
+
+  // Keyboard navigation for Lightbox: ArrowLeft, ArrowRight, and Escape
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        nextImage();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prevImage();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        closeLightbox();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex, nextImage, prevImage]);
 
   const currentImage = lightboxIndex !== null ? filteredImages[lightboxIndex] : null;
 
@@ -147,8 +168,14 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
               <div className="text-xs uppercase tracking-widest text-primary font-bold">
                 {title} • {currentImage.category} View
               </div>
-              <div className="font-mono text-xs text-muted-foreground font-normal">
-                Photo {lightboxIndex! + 1} of {filteredImages.length}
+              <div className="font-mono text-xs text-muted-foreground font-normal flex flex-wrap items-center gap-2">
+                <span>
+                  Photo {lightboxIndex! + 1} of {filteredImages.length}
+                </span>
+                <span className="hidden sm:inline text-border">•</span>
+                <span className="hidden sm:inline text-[11px] text-muted-foreground/80">
+                  Use ← → arrow keys to navigate
+                </span>
               </div>
             </div>
           )
@@ -195,8 +222,9 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
               variant="outline"
               size="icon"
               onClick={prevImage}
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background/80 backdrop-blur-md shadow-md"
-              aria-label="Previous image"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background/80 backdrop-blur-md hover:bg-background transition-all"
+              aria-label="Previous image (Left arrow)"
+              title="Previous image (←)"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -217,8 +245,9 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
               variant="outline"
               size="icon"
               onClick={nextImage}
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background/80 backdrop-blur-md shadow-md"
-              aria-label="Next image"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background/80 backdrop-blur-md hover:bg-background transition-all"
+              aria-label="Next image (Right arrow)"
+              title="Next image (→)"
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
