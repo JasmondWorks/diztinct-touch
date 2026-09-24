@@ -46,7 +46,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Details & Office Coordinates */}
           <div className="lg:col-span-5 space-y-8">
-            <Card className="p-6 sm:p-8 space-y-6 shadow-xs">
+            <Card className="p-6 sm:p-8 space-y-6">
               <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
                 Office Locations &amp; Direct Contact
               </h3>
@@ -139,7 +139,7 @@ export default function ContactPage() {
 
           {/* Form Container */}
           <div className="lg:col-span-7">
-            <Card className="p-6 sm:p-10 shadow-sm">
+            <Card className="p-6 sm:p-10">
               <ContactForm />
             </Card>
           </div>

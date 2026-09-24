@@ -228,7 +228,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           />
 
           {/* Slide-over Drawer */}
-          <div className="fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-card border-r border-border shadow-2xl p-5 flex flex-col justify-between z-50 animate-in slide-in-from-left duration-300">
+          <div className="fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-card border-r border-border p-5 flex flex-col justify-between z-50 animate-in slide-in-from-left duration-300">
             <div className="space-y-6">
               {/* Header with Close Button */}
               <div className="flex items-center justify-between pb-5 border-b border-border/80">
@@ -378,14 +378,13 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </Link>
 
             {/* Create new project button */}
-            <Link
-              href="/admin/projects/new"
-              className="text-xs font-mono font-semibold bg-primary text-primary-foreground px-3 sm:px-4 py-1.5 rounded-xl hover:bg-primary/90 transition-all flex items-center gap-1.5 shadow-sm shrink-0"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline sm:inline">New Project</span>
-              <span className="xs:hidden sm:hidden inline">New</span>
-            </Link>
+            <Button asChild size="sm" className="font-mono text-xs gap-1.5 h-8">
+              <Link href="/admin/projects/new">
+                <Plus className="w-3.5 h-3.5" />
+                <span className="hidden xs:inline sm:inline">New Project</span>
+                <span className="xs:hidden sm:hidden inline">New</span>
+              </Link>
+            </Button>
           </div>
         </header>
 

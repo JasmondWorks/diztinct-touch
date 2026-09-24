@@ -31,13 +31,18 @@ const COMMON_TAGS = [
   "Construction Oversight",
 ];
 
-export function ProjectsGrid() {
+interface ProjectsGridProps {
+  initialProjects?: Project[];
+}
+
+export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
+  const projectsList = initialProjects && initialProjects.length > 0 ? initialProjects : architecturalProjects;
   const [selectedCategory, setSelectedCategory] = useState<"All" | ArchitecturalCategory>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const filteredProjects = useMemo(() => {
-    return architecturalProjects.filter((project) => {
+    return projectsList.filter((project) => {
       // Category filter
       if (selectedCategory !== "All" && project.category !== selectedCategory) {
         return false;

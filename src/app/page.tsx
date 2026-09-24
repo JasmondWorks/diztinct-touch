@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/Hero";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { ProjectsGrid } from "@/components/home/ProjectsGrid";
 import { AboutSection } from "@/components/home/AboutSection";
+import { getProjectsAction } from "@/actions/projects";
 import Link from "next/link";
 import { ArrowRight, Compass } from "lucide-react";
 import type { Metadata } from "next";
@@ -33,17 +34,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const projects = await getProjectsAction(false);
+
   return (
     <main className="flex min-h-screen flex-col">
       {/* 100dvh Hero */}
       <Hero />
 
       {/* Featured Projects Section */}
-      <FeaturedProjects />
+      <FeaturedProjects initialProjects={projects} />
 
       {/* Complete Projects Catalog with Typology & Tectonic Filters */}
-      <ProjectsGrid />
+      <ProjectsGrid initialProjects={projects} />
 
       {/* Practice Ethos & Design Pillars */}
       <AboutSection />
@@ -65,7 +68,7 @@ export default function HomePage() {
           </p>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
-            <Button asChild size="lg" className="rounded-xl gap-2 shadow-md">
+            <Button asChild size="lg" className="rounded-xl gap-2">
               <Link href="/contact">
                 <span>Initiate Project Consultation</span>
                 <ArrowRight className="h-4 w-4" />

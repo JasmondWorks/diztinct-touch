@@ -68,7 +68,7 @@ export function AboutSection() {
                 return (
                   <Card
                     key={pillar.title}
-                    className="flex flex-col sm:flex-row items-start gap-4 p-6 shadow-xs transition-all hover:border-primary/40"
+                    className="flex flex-col sm:flex-row items-start gap-4 p-6 transition-all hover:border-primary/40"
                   >
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />

@@ -31,7 +31,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-border/80 bg-background/80 backdrop-blur-md py-3.5 shadow-sm"
+          ? "border-b border-border/80 bg-background/80 backdrop-blur-md py-3.5"
           : "bg-transparent py-5"
       )}
     >
@@ -66,7 +66,7 @@ export function Navbar() {
 
         {/* Right Actions: Commission Status & Theme Toggle */}
         <div className="hidden sm:flex items-center gap-3">
-          <Button asChild size="sm" className="gap-1.5 h-8 text-xs font-semibold shadow-xs">
+          <Button asChild size="sm" className="gap-1.5 h-8 text-xs font-semibold">
             <Link href="/contact">
               <span>Start a Project</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
@@ -92,7 +92,7 @@ export function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden border-b border-border bg-background/95 backdrop-blur-xl px-6 py-6 shadow-xl animate-in slide-in-from-top-4 duration-200">
+        <div className="sm:hidden border-b border-border bg-background/95 backdrop-blur-xl px-6 py-6 animate-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col gap-3">
             {siteConfig.navLinks.map((link) => (
               <Link
@@ -106,7 +106,7 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-3 border-t border-border">
-              <Button asChild className="w-full gap-2 shadow-sm">
+              <Button asChild className="w-full gap-2">
                 <Link
                   href="/contact"
                   onClick={() => setMobileMenuOpen(false)}

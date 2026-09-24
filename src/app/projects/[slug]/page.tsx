@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { architecturalProjects } from "@/data/projects";
 import { getProjectBySlugAction, getProjectsAction } from "@/actions/projects";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 import { trackEventAction } from "@/actions/analytics";
@@ -35,7 +34,8 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return architecturalProjects.map((project) => ({
+  const projects = await getProjectsAction(false);
+  return projects.map((project) => ({
     slug: project.slug,
   }));
 }
@@ -127,14 +127,28 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 Featured Project
               </Badge>
             )}
-            <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-              <MapPin className="h-3.5 w-3.5 text-primary" />
-              {project.location}
-            </span>
-            <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-              <Calendar className="h-3.5 w-3.5 text-primary" />
-              {project.yearCompleted}
-            </span>
+            {project.buildingType && (
+              <Badge variant="outline" className="text-xs py-1 px-3">
+                {project.buildingType}
+              </Badge>
+            )}
+            {project.currentStage && (
+              <Badge variant="outline" className="border-primary/40 text-primary text-xs py-1 px-3">
+                {project.currentStage}
+              </Badge>
+            )}
+            {project.location && (
+              <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5 text-primary" />
+                {project.location}
+              </span>
+            )}
+            {project.yearCompleted && (
+              <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                <Calendar className="h-3.5 w-3.5 text-primary" />
+                {project.yearCompleted}
+              </span>
+            )}
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground-heading leading-tight">
@@ -196,14 +210,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Floating Details Overlay */}
           <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4 text-white">
-            <div className="space-y-1">
-              <span className="font-mono text-xs uppercase tracking-widest text-primary font-bold">
-                Exterior View
-              </span>
-              <p className="text-xs sm:text-sm font-medium drop-shadow-md">
-                {project.location} • Completed {project.yearCompleted}
-              </p>
-            </div>
+            {(project.location || project.yearCompleted) && (
+              <div className="space-y-1">
+                <span className="font-mono text-xs uppercase tracking-widest text-primary font-bold">
+                  Exterior View
+                </span>
+                <p className="text-xs sm:text-sm font-medium drop-shadow-md">
+                  {[project.location, project.yearCompleted ? `Completed ${project.yearCompleted}` : null]
+                    .filter(Boolean)
+                    .join(" • ")}
+                </p>
+              </div>
+            )}
 
             <div className="flex items-center gap-3">
               {project.gfa && (
@@ -221,82 +239,102 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
 
         {/* Measurable Results & Sustainability Metrics */}
-        <div className="py-2">
-          <MetricsGrid metrics={project.metrics} />
-        </div>
+        {project.metrics && project.metrics.length > 0 && (
+          <div className="py-2">
+            <MetricsGrid metrics={project.metrics} />
+          </div>
+        )}
 
         {/* Detailed Project Case Study Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Main 8-Col Editorial Narrative */}
           <div className="lg:col-span-8 space-y-12">
             {/* Case Study Full Narrative */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-2 border-b border-border/80 pb-3">
-                <FileText className="h-4 w-4 text-primary" />
-                <h3 className="text-base font-bold uppercase tracking-wider text-foreground-heading">
-                  Case Study &amp; Design Statement
-                </h3>
+            {(project.longDescription || project.fullCaseStudy) && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 border-b border-border/80 pb-3">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <h3 className="text-base font-bold uppercase tracking-wider text-foreground-heading">
+                    Case Study &amp; Design Statement
+                  </h3>
+                </div>
+
+                <div className="prose prose-invert max-w-none space-y-4 text-muted-foreground leading-relaxed">
+                  {project.longDescription && (
+                    <p className="text-base text-foreground font-medium">
+                      {project.longDescription}
+                    </p>
+                  )}
+
+                  {project.fullCaseStudy && (
+                    <div className="space-y-6 pt-4">
+                      {project.fullCaseStudy.contextAndChallenge && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                            Context &amp; Site Challenges
+                          </h4>
+                          <p className="text-sm">
+                            {project.fullCaseStudy.contextAndChallenge}
+                          </p>
+                        </div>
+                      )}
+
+                      {project.fullCaseStudy.designConcept && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                            Computational Concept &amp; Geometry
+                          </h4>
+                          <p className="text-sm">
+                            {project.fullCaseStudy.designConcept}
+                          </p>
+                        </div>
+                      )}
+
+                      {project.fullCaseStudy.materialityAndStructure && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                            Materiality &amp; Structural Mechanics
+                          </h4>
+                          <p className="text-sm">
+                            {project.fullCaseStudy.materialityAndStructure}
+                          </p>
+                        </div>
+                      )}
+
+                      {project.fullCaseStudy.environmentalPerformance && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                            Environmental &amp; Passive Strategies
+                          </h4>
+                          <p className="text-sm">
+                            {project.fullCaseStudy.environmentalPerformance}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
-
-              <div className="prose prose-invert max-w-none space-y-4 text-muted-foreground leading-relaxed">
-                <p className="text-base text-foreground font-medium">
-                  {project.longDescription}
-                </p>
-
-                {project.fullCaseStudy && (
-                  <div className="space-y-6 pt-4">
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
-                        Context &amp; Site Challenges
-                      </h4>
-                      <p className="text-sm">
-                        {project.fullCaseStudy.contextAndChallenge}
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
-                        Computational Concept &amp; Geometry
-                      </h4>
-                      <p className="text-sm">
-                        {project.fullCaseStudy.designConcept}
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
-                        Materiality &amp; Structural Mechanics
-                      </h4>
-                      <p className="text-sm">
-                        {project.fullCaseStudy.materialityAndStructure}
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
-                        Environmental &amp; Passive Strategies
-                      </h4>
-                      <p className="text-sm">
-                        {project.fullCaseStudy.environmentalPerformance}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
 
             {/* Picture-Heavy Interactive Photo Gallery with Lightbox */}
-            <ProjectGallery title={project.title} images={project.gallery} />
+            {project.gallery && project.gallery.length > 0 && (
+              <ProjectGallery title={project.title} images={project.gallery} />
+            )}
 
             {/* Architectural Drawings & Axonometric Section Blueprint */}
-            <DrawingsViewer
-              drawings={project.drawings}
-              axonometricUrl={project.architecture?.diagramUrl}
-              axonometricDescription={project.architecture?.description}
-            />
+            {((project.drawings && project.drawings.length > 0) || project.architecture?.diagramUrl) && (
+              <DrawingsViewer
+                drawings={project.drawings}
+                axonometricUrl={project.architecture?.diagramUrl}
+                axonometricDescription={project.architecture?.description}
+              />
+            )}
 
             {/* Tectonic & Material Decisions Bento */}
-            <DecisionsBento decisions={project.engineeringDecisions} />
+            {project.engineeringDecisions && project.engineeringDecisions.length > 0 && (
+              <DecisionsBento decisions={project.engineeringDecisions} />
+            )}
 
             {/* Future Phases / Planned Expansions */}
             {project.futureImprovements && project.futureImprovements.length > 0 && (
@@ -322,7 +360,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {/* Sidebar 4-Col Specifications */}
           <div className="lg:col-span-4 space-y-6 sticky top-24">
             {/* Project Specifications Card */}
-            <Card className="p-6 space-y-5 shadow-xs">
+            <Card className="p-6 space-y-5">
               <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
                 Project Overview &amp; Specifications
               </h3>
@@ -338,14 +376,36 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   <span className="text-muted-foreground">Typology:</span>
                   <span className="font-semibold text-primary">{project.category}</span>
                 </div>
-                <div className="flex items-center justify-between border-b border-border/60 pb-2">
-                  <span className="text-muted-foreground">Location:</span>
-                  <span className="font-semibold text-foreground">{project.location}</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-border/60 pb-2">
-                  <span className="text-muted-foreground">Completion:</span>
-                  <span className="font-semibold text-foreground">{project.yearCompleted}</span>
-                </div>
+                {project.buildingType && (
+                  <div className="flex items-center justify-between border-b border-border/60 pb-2">
+                    <span className="text-muted-foreground">Building Type:</span>
+                    <span className="font-semibold text-foreground">{project.buildingType}</span>
+                  </div>
+                )}
+                {project.currentStage && (
+                  <div className="flex items-center justify-between border-b border-border/60 pb-2">
+                    <span className="text-muted-foreground">Current Stage:</span>
+                    <span className="font-semibold text-primary">{project.currentStage}</span>
+                  </div>
+                )}
+                {project.location && (
+                  <div className="flex items-center justify-between border-b border-border/60 pb-2">
+                    <span className="text-muted-foreground">Location:</span>
+                    <span className="font-semibold text-foreground">{project.location}</span>
+                  </div>
+                )}
+                {project.yearCompleted && (
+                  <div className="flex items-center justify-between border-b border-border/60 pb-2">
+                    <span className="text-muted-foreground">Completion:</span>
+                    <span className="font-semibold text-foreground">{project.yearCompleted}</span>
+                  </div>
+                )}
+                {project.bedroomCount && (
+                  <div className="flex items-center justify-between border-b border-border/60 pb-2">
+                    <span className="text-muted-foreground">Bedrooms:</span>
+                    <span className="font-semibold text-foreground">{project.bedroomCount}</span>
+                  </div>
+                )}
                 {project.siteArea && (
                   <div className="flex items-center justify-between border-b border-border/60 pb-2">
                     <span className="text-muted-foreground">Site Area:</span>
@@ -367,22 +427,24 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </div>
 
               {/* Material and Software Systems */}
-              <div className="pt-2 space-y-2">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
-                  Integrated Technologies &amp; Systems
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="outline"
-                      className="text-[10px] bg-muted/40 font-semibold"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
+              {project.techStack && project.techStack.length > 0 && (
+                <div className="pt-2 space-y-2">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+                    Integrated Technologies &amp; Systems
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.techStack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="text-[10px] bg-muted/40 font-semibold"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Direct Inquiry CTA */}
               <div className="pt-4 border-t border-border">
@@ -396,40 +458,42 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </Card>
 
             {/* Related Typology Works */}
-            <Card className="p-6 space-y-4 shadow-xs">
-              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-foreground-heading">
-                Related Architectural Works
-              </h4>
-              <div className="space-y-3">
-                {relatedProjects.map((rel) => (
-                  <Link
-                    key={rel.id}
-                    href={`/projects/${rel.slug}`}
-                    className="group flex items-center gap-3 rounded-xl border border-border/60 p-2.5 hover:border-primary/40 hover:bg-muted/30 transition-all"
-                  >
-                    <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-muted/40">
-                      <Image
-                        src={rel.coverImage}
-                        alt={rel.title}
-                        fill
-                        className="object-cover transition-transform group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="space-y-0.5 min-w-0">
-                      <span className="text-[10px] font-mono text-primary uppercase">
-                        {rel.category}
-                      </span>
-                      <h5 className="text-xs font-bold text-foreground-heading truncate group-hover:text-primary transition-colors">
-                        {rel.title}
-                      </h5>
-                      <span className="text-[10px] font-mono text-muted-foreground">
-                        {rel.location}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </Card>
+            {relatedProjects && relatedProjects.length > 0 && (
+              <Card className="p-6 space-y-4">
+                <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-foreground-heading">
+                  Related Architectural Works
+                </h4>
+                <div className="space-y-3">
+                  {relatedProjects.map((rel) => (
+                    <Link
+                      key={rel.id}
+                      href={`/projects/${rel.slug}`}
+                      className="group flex items-center gap-3 rounded-xl border border-border/60 p-2.5 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                    >
+                      <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-muted/40">
+                        <Image
+                          src={rel.coverImage}
+                          alt={rel.title}
+                          fill
+                          className="object-cover transition-transform group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="space-y-0.5 min-w-0">
+                        <span className="text-[10px] font-mono text-primary uppercase">
+                          {rel.category}
+                        </span>
+                        <h5 className="text-xs font-bold text-foreground-heading truncate group-hover:text-primary transition-colors">
+                          {rel.title}
+                        </h5>
+                        <span className="text-[10px] font-mono text-muted-foreground">
+                          {rel.location}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </Card>
+            )}
           </div>
         </div>
 

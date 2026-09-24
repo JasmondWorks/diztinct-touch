@@ -26,7 +26,7 @@ export function AdminEditBar({ project }: { project: Project }) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 animate-slideUp">
-      <div className="bg-card/95 backdrop-blur-xl border border-primary/40 shadow-2xl rounded-2xl p-2.5 sm:px-4 sm:py-2.5 flex items-center gap-3 text-xs font-mono text-foreground">
+      <div className="bg-card/95 backdrop-blur-xl border border-primary/40 rounded-2xl p-2.5 sm:px-4 sm:py-2.5 flex items-center gap-3 text-xs font-mono text-foreground">
         <div className="flex items-center gap-2 pr-2 border-r border-border/80">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           <span className="font-semibold text-primary hidden sm:inline">
@@ -49,7 +49,7 @@ export function AdminEditBar({ project }: { project: Project }) {
           {project.isPublished ? "● Live (Visible)" : "○ Draft (Hidden)"}
         </Button>
 
-        <Button asChild size="sm" className="h-7 text-xs font-mono gap-1.5 shadow-xs">
+        <Button asChild size="sm" className="h-7 text-xs font-mono gap-1.5">
           <Link href={`/admin/projects/${project.id}/edit`}>
             <Edit3 className="w-3.5 h-3.5" />
             <span>Edit Project</span>

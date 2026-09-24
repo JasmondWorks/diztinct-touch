@@ -10,8 +10,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 
-export function FeaturedProjects() {
-  const featured = architecturalProjects
+interface FeaturedProjectsProps {
+  initialProjects?: Project[];
+}
+
+export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}) {
+  const projectsList = initialProjects && initialProjects.length > 0 ? initialProjects : architecturalProjects;
+  const featured = projectsList
     .filter((p) => p.featured)
     .sort((a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99));
 
@@ -45,7 +50,7 @@ export function FeaturedProjects() {
             transition={{ duration: 0.5 }}
             className="mt-12"
           >
-            <Card className="overflow-hidden rounded-3xl shadow-lg transition-all duration-300 hover:border-primary/40">
+            <Card className="overflow-hidden rounded-3xl transition-all duration-300 hover:border-primary/40">
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 {/* Media Left Column */}
                 <div className="relative aspect-16/10 lg:aspect-auto lg:col-span-7 overflow-hidden bg-muted/40">
@@ -129,7 +134,7 @@ export function FeaturedProjects() {
 
                   {/* CTAs */}
                   <div className="flex flex-wrap items-center gap-3 pt-2">
-                    <Button asChild className="gap-2 shadow-sm">
+                    <Button asChild className="gap-2">
                       <Link href={`/projects/${leadProject.slug}`}>
                         <span>View Full Case Study</span>
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -192,7 +197,7 @@ export function FeaturedProjects() {
                   </div>
 
                   <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white shadow-md">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white">
                       <ArrowRight className="h-3.5 w-3.5" />
                     </div>
                   </div>

@@ -249,7 +249,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
   return (
     <div className="space-y-8">
       {/* Step Progress Bar */}
-      <Card className="p-3 sm:p-4 shadow-xs">
+      <Card className="p-3 sm:p-4">
         <div className="flex items-center justify-between overflow-x-auto pb-1 gap-2">
           {STEPS.map((step) => {
             const isCompleted = currentStep > step.id;
@@ -288,7 +288,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
       {/* Step 1: Identity & Taxonomy */}
       {currentStep === 1 && (
-        <Card className="p-6 sm:p-10 space-y-6 shadow-sm">
+        <Card className="p-6 sm:p-10 space-y-6">
           <CardHeader className="p-0 border-b border-border/80 pb-4">
             <CardTitle className="text-xl">1. Project Identity &amp; Taxonomy</CardTitle>
             <CardDescription className="text-xs">
@@ -423,7 +423,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
       {/* Step 2: Statement & Scope */}
       {currentStep === 2 && (
-        <Card className="p-6 sm:p-10 space-y-6 shadow-sm">
+        <Card className="p-6 sm:p-10 space-y-6">
           <CardHeader className="p-0 border-b border-border/80 pb-4">
             <CardTitle className="text-xl">2. Design Statement &amp; Case Study Narrative</CardTitle>
             <CardDescription className="text-xs">
@@ -543,7 +543,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
       {/* Step 3: Media & Drawings */}
       {currentStep === 3 && (
-        <Card className="p-6 sm:p-10 space-y-8 shadow-sm">
+        <Card className="p-6 sm:p-10 space-y-8">
           <CardHeader className="p-0 border-b border-border/80 pb-4">
             <CardTitle className="text-xl">3. Media, Visual Gallery &amp; Blueprints</CardTitle>
             <CardDescription className="text-xs">
@@ -632,7 +632,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
       {/* Step 4: Metrics & Engineering */}
       {currentStep === 4 && (
-        <Card className="p-6 sm:p-10 space-y-8 shadow-sm">
+        <Card className="p-6 sm:p-10 space-y-8">
           <CardHeader className="p-0 border-b border-border/80 pb-4">
             <CardTitle className="text-xl">4. Measurable Results &amp; Engineering Decisions</CardTitle>
             <CardDescription className="text-xs">
@@ -766,7 +766,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
       {/* Step 5: Review & Publish */}
       {currentStep === 5 && (
-        <Card className="p-6 sm:p-10 space-y-6 shadow-sm">
+        <Card className="p-6 sm:p-10 space-y-6">
           <CardHeader className="p-0 border-b border-border/80 pb-4">
             <CardTitle className="text-xl">5. Review &amp; Publication Settings</CardTitle>
             <CardDescription className="text-xs">
@@ -875,7 +875,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             variant="emerald"
             disabled={saving}
             onClick={handleSubmit}
-            className="gap-2 px-7 shadow-md"
+            className="gap-2 px-7"
           >
             {saving ? (
               <>

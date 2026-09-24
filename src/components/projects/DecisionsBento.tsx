@@ -20,7 +20,7 @@ export function DecisionsBento({ decisions }: DecisionsBentoProps) {
         {decisions.map((decision, idx) => (
           <Card
             key={decision.topic}
-            className="flex flex-col p-5 space-y-4 shadow-xs hover:border-primary/40 transition-colors"
+            className="flex flex-col p-5 space-y-4 hover:border-primary/40 transition-colors"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">

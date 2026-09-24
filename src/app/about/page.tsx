@@ -104,7 +104,7 @@ export default function AboutPage() {
         </div>
 
         {/* Section 1: Meet Mayowa — Principal & Design Lead */}
-        <Card className="rounded-3xl p-8 sm:p-12 shadow-sm">
+        <Card className="rounded-3xl p-8 sm:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-4 space-y-4">
               <Badge variant="gold" className="gap-2 px-3.5 py-1.5 text-xs font-mono font-bold">
