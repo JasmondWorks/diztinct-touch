@@ -91,7 +91,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
       : cleanPhone;
 
     const message = encodeURIComponent(
-      `Hello ${lead.name}, this is Mayowa from DIZTINCT TOUCH HOME DESIGN regarding your inquiry for the ${lead.typology || "architectural design"} project. Let us discuss your requirements.`
+      `Hello ${lead.name}, this is Mayowa from DIZTINCT TOUCH HOME DESIGNS regarding your inquiry for the ${lead.typology || "architectural design"} project. Let us discuss your requirements.`
     );
     return `https://wa.me/${formattedPhone}?text=${message}`;
   };
@@ -276,7 +276,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                             className="h-8 w-8 text-muted-foreground hover:text-foreground"
                             title="Send Email"
                           >
-                            <a href={`mailto:${lead.email}?subject=DIZTINCT TOUCH HOME DESIGN - Architectural Inquiry Response`}>
+                            <a href={`mailto:${lead.email}?subject=DIZTINCT TOUCH HOME DESIGNS - Architectural Inquiry Response`}>
                               <Mail className="w-3.5 h-3.5" />
                             </a>
                           </Button>

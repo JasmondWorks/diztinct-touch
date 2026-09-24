@@ -1,8 +1,8 @@
-# AGENTS.md — DIZTINCT TOUCH HOME DESIGN
+# AGENTS.md — DIZTINCT TOUCH HOME DESIGNS
 
 ## Project Overview
 
-**DIZTINCT TOUCH HOME DESIGN** is a registered contemporary architectural design and 3D visualization practice led by Mayowa. The portfolio web application showcases architectural projects (contemporary duplexes, bespoke villas, bungalows, commercial developments), interactive 3D virtual tours, 2D working drawings, client lead intake, construction site tracking, and an internal administrative management portal.
+**DIZTINCT TOUCH HOME DESIGNS** is a registered contemporary architectural design and 3D visualization practice led by Mayowa. The portfolio web application showcases architectural projects (contemporary duplexes, bespoke villas, bungalows, commercial developments), interactive 3D virtual tours, 2D working drawings, client lead intake, construction site tracking, and an internal administrative management portal.
 
 - **Core Stack:** Next.js 15 (App Router), React 19, TypeScript, Prisma ORM, Neon PostgreSQL, Neon S3 Storage, Sharp, Tailwind CSS v4, Class Variance Authority (CVA), Zod, Radix UI.
 - **Package Manager:** `npm`
@@ -104,7 +104,7 @@ All agents, contributors, and developers working on this codebase must strictly 
 
 ### 8. Strict Iconography & Brand Integrity (No Sparkles Icons)
 - **Constraint:** **Strict ban on all `Sparkles` / `Sparkle` icons.**
-  - Sparkles icons degrade the architectural gravitas of DIZTINCT TOUCH HOME DESIGN and make the practice look like a casual AI wrapper.
+  - Sparkles icons degrade the architectural gravitas of DIZTINCT TOUCH HOME DESIGNS and make the practice look like a casual AI wrapper.
   - Permitted visual metaphors:
     - Structural & Drafting: `Compass`, `Ruler`, `Layers`, `Building2`, `HardHat`.
     - Verification & Status: `CheckCircle2`, `ShieldCheck`, `Activity`, pulsing status dot indicators.

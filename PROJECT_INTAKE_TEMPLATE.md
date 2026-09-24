@@ -8,8 +8,8 @@
 # PART A: REGISTERED PRACTICE & PROFESSIONAL IDENTITY
 
 ## 1. REGISTERED BUSINESS & BRAND IDENTITY
-- **Official Registered Company Name**: DIZTINCT TOUCH HOME DESIGN
-- **Public Studio / Practice Name**: DIZTINCT TOUCH HOME DESIGN
+- **Official Registered Company Name**: DIZTINCT TOUCH HOME DESIGNS
+- **Public Studio / Practice Name**: DIZTINCT TOUCH HOME DESIGNS
 - **Company Registration Number**: *(e.g., Registered Architecture & Design Enterprise)*
 - **Professional Accreditations & Services**: Architectural Design, 2D Working Drawings, 3D Visualization, Construction Oversight
 - **Studio Monogram / Initials**: "DT"

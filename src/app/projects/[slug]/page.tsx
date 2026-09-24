@@ -45,17 +45,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!project) return { title: "Project Not Found | DIZTINCT TOUCH" };
 
   return {
-    title: `${project.title} | DIZTINCT TOUCH HOME DESIGN`,
+    title: `${project.title} | DIZTINCT TOUCH HOME DESIGNS`,
     description: project.shortDescription,
     keywords: [
       project.title,
       project.buildingType || project.category,
       project.location || "Nigeria",
-      "DIZTINCT TOUCH HOME DESIGN",
+      "DIZTINCT TOUCH HOME DESIGNS",
       "Mayowa architect",
     ],
     openGraph: {
-      title: `${project.title} — DIZTINCT TOUCH HOME DESIGN`,
+      title: `${project.title} — DIZTINCT TOUCH HOME DESIGNS`,
       description: project.shortDescription,
       images: project.coverImage ? [{ url: project.coverImage }] : [],
     },

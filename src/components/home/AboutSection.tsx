@@ -35,7 +35,7 @@ export function AboutSection() {
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
               <HardHat className="h-3.5 w-3.5" />
-              <span>DIZTINCT TOUCH HOME DESIGN</span>
+              <span>DIZTINCT TOUCH HOME DESIGNS</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground-heading leading-tight">
@@ -43,7 +43,7 @@ export function AboutSection() {
             </h2>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Led by Mayowa, DIZTINCT TOUCH HOME DESIGN creates contemporary residential and commercial properties where functional spatial planning meets uncompromising structural durability.
+              Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS creates contemporary residential and commercial properties where functional spatial planning meets uncompromising structural durability.
             </p>
 
             <p className="text-sm text-muted-foreground leading-relaxed">

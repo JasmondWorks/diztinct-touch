@@ -5,7 +5,7 @@ import { AdminAuthProvider } from "@/components/admin/AdminAuthProvider";
 import { AdminShell } from "@/components/admin/AdminShell";
 
 export const metadata = {
-  title: "Admin Portal | DIZTINCT TOUCH HOME DESIGN",
+  title: "Admin Portal | DIZTINCT TOUCH HOME DESIGNS",
   robots: {
     index: false,
     follow: false,

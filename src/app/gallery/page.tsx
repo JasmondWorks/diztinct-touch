@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui";
 import { Camera } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Architectural Gallery & Photography | DIZTINCT TOUCH HOME DESIGN",
+  title: "Architectural Gallery & Photography | DIZTINCT TOUCH HOME DESIGNS",
   description:
-    "Explore photorealistic 3D visualization, exterior perspectives, luxury interior layouts, and on-site construction progress across projects by DIZTINCT TOUCH HOME DESIGN.",
+    "Explore photorealistic 3D visualization, exterior perspectives, luxury interior layouts, and on-site construction progress across projects by DIZTINCT TOUCH HOME DESIGNS.",
   keywords: [
     "architectural photography Nigeria",
     "3D rendering gallery",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "construction progress photography",
   ],
   openGraph: {
-    title: "Visual Archive | DIZTINCT TOUCH HOME DESIGN",
+    title: "Visual Archive | DIZTINCT TOUCH HOME DESIGNS",
     description:
       "Curated visual plates capturing contemporary forms, construction stages, and interior detailing.",
     url: "https://diztincttouch.com/gallery",

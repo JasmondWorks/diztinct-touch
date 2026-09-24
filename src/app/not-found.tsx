@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "404 — Blueprint Not Found | DIZTINCT TOUCH HOME DESIGN",
+  title: "404 — Blueprint Not Found | DIZTINCT TOUCH HOME DESIGNS",
   description:
     "The architectural design, drawing, or project page you are searching for does not exist in the studio archives.",
 };

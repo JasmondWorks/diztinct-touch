@@ -43,8 +43,8 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "Mayowa",
   title: "Design Lead & Principal Architect",
-  studioName: "DIZTINCT TOUCH HOME DESIGN",
-  registeredBusinessName: "DIZTINCT TOUCH HOME DESIGN",
+  studioName: "DIZTINCT TOUCH HOME DESIGNS",
+  registeredBusinessName: "DIZTINCT TOUCH HOME DESIGNS",
   registrationNumber: "Registered Architecture & 3D Visualization Studio",
   accreditations: [
     "Architectural Design & Space Planning",
@@ -55,8 +55,8 @@ export const siteConfig: SiteConfig = {
   monogram: "DT",
   headline: "Remarkable design, long lasting.",
   subheadline:
-    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN crafts beautiful, functional, and comfortable contemporary homes—guiding your project from 2D building plans and realistic 3D visuals to active on-site construction oversight.",
-  bio: "DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization studio founded and led by Mayowa. Guided by our foundational philosophy—'Remarkable design, long lasting'—we specialize in crafting homes with careful consideration given to the building's form, proportions, spatial arrangement, and external appearance. From precision 2D working drawings and photorealistic 3D renders to on-site construction supervision (as seen in our flagship ARMITY Estate duplex), we bridge the gap between creative design and lasting structural reality.",
+    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS crafts beautiful, functional, and comfortable contemporary homes—guiding your project from 2D building plans and realistic 3D visuals to active on-site construction oversight.",
+  bio: "DIZTINCT TOUCH HOME DESIGNS is a registered contemporary architectural design and 3D visualization studio founded and led by Mayowa. Guided by our foundational philosophy—'Remarkable design, long lasting'—we specialize in crafting homes with careful consideration given to the building's form, proportions, spatial arrangement, and external appearance. From precision 2D working drawings and photorealistic 3D renders to on-site construction supervision (as seen in our flagship ARMITY Estate duplex), we bridge the gap between creative design and lasting structural reality.",
   coordinates: "New Gbagi Road, Ibadan • Mosan Ipaja, Lagos",
   location: "Ibadan (Head Office) & Lagos, Nigeria",
   ibadanOffice: "Suite 14, Lamlat House, Opp. Bovas Filling Station, New Gbagi Road, Ibadan, Oyo State",

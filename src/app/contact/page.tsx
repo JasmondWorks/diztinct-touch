@@ -6,7 +6,7 @@ import { Button, Badge, Card } from "@/components/ui";
 import { Mail, Phone, MapPin, Clock, Compass, MessageSquare, Instagram } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Mayowa & Start a Project | DIZTINCT TOUCH HOME DESIGN",
+  title: "Contact Mayowa & Start a Project | DIZTINCT TOUCH HOME DESIGNS",
   description:
     "Consult directly with Mayowa regarding contemporary duplex design, 2D architectural drawings, 3D visualization, or construction site supervision in Ibadan, Lagos, and across Nigeria.",
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Ibadan architecture office",
   ],
   openGraph: {
-    title: "Initiate Project Consultation | DIZTINCT TOUCH HOME DESIGN",
+    title: "Initiate Project Consultation | DIZTINCT TOUCH HOME DESIGNS",
     description:
       "Discuss site feasibility, drawings, 3D modelling, and on-site oversight with Mayowa and the team.",
     url: "https://diztincttouch.com/contact",
@@ -132,7 +132,7 @@ export default function ContactPage() {
               <div className="pt-2 border-t border-border/70">
                 <Button asChild variant="emerald" className="w-full">
                   <a
-                    href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGN on an architectural project.")}`}
+                    href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to consult with DIZTINCT TOUCH HOME DESIGNS on an architectural project.")}`}
                     target="_blank"
                     rel="noreferrer"
                   >

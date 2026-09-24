@@ -84,7 +84,7 @@ export function ContactForm() {
           Inquiry Received
         </h3>
         <p className="text-sm text-[#8A8A8A] max-w-md font-mono">
-          Thank you for contacting DIZTINCT TOUCH HOME DESIGN. Mayowa and our team will review your project parameters and get in touch within 24 hours.
+          Thank you for contacting DIZTINCT TOUCH HOME DESIGNS. Mayowa and our team will review your project parameters and get in touch within 24 hours.
         </p>
         <Button
           variant="outline"

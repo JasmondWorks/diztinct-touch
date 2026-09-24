@@ -11,7 +11,7 @@ export const architecturalProjects: Project[] = [
     shortDescription:
       "A contemporary residential duplex featuring a double-height glazed atrium tower, cantilevered upper balcony, and integrated ambient lighting in ARMITY Estate.",
     longDescription:
-      "Privileged to have designed this contemporary duplex at Ejioku Village, ARMITY Estate. Designed by DIZTINCT TOUCH HOME DESIGN under our core ethos of 'Remarkable design, long lasting', the residence pairs an imposing textured dark brickwork tower with a double-height glazed atrium, clean white cantilevered volumes, and protective perimeter security integration. Currently under active construction, the ground floor and decking stages have been successfully completed, with construction progressing at the first-floor level.",
+      "Privileged to have designed this contemporary duplex at Ejioku Village, ARMITY Estate. Designed by DIZTINCT TOUCH HOME DESIGNS under our core ethos of 'Remarkable design, long lasting', the residence pairs an imposing textured dark brickwork tower with a double-height glazed atrium, clean white cantilevered volumes, and protective perimeter security integration. Currently under active construction, the ground floor and decking stages have been successfully completed, with construction progressing at the first-floor level.",
     fullCaseStudy: {
       contextAndChallenge:
         "Located in the serene ARMITY Estate in Ejioku Village, the brief called for a contemporary family residence offering privacy, natural ventilation, and generous spatial flow.",
@@ -81,9 +81,9 @@ export const architecturalProjects: Project[] = [
     location: "Egbeda, Ajia, Ibadan, Oyo State",
     yearCompleted: "2023 (Completed)",
     shortDescription:
-      "A completed contemporary residential duplex at Egbeda, Ajia, Ibadan, designed by DIZTINCT TOUCH HOME DESIGN featuring modern architectural massing, suspended decking, and refined exterior finishes.",
+      "A completed contemporary residential duplex at Egbeda, Ajia, Ibadan, designed by DIZTINCT TOUCH HOME DESIGNS featuring modern architectural massing, suspended decking, and refined exterior finishes.",
     longDescription:
-      "Privileged to have designed this contemporary duplex at Egbeda, Ajia, Ibadan, Oyo State. Designed by DIZTINCT TOUCH HOME DESIGN under our core ethos of 'Remarkable design, long lasting'. This project commenced in 2023 and is currently a completed project. The ground-floor and decking stages have been successfully completed, with final touches. Our comprehensive scope spanned architectural design, 2D drawings, 3D modelling/visualization, design development, and construction-stage architectural input.",
+      "Privileged to have designed this contemporary duplex at Egbeda, Ajia, Ibadan, Oyo State. Designed by DIZTINCT TOUCH HOME DESIGNS under our core ethos of 'Remarkable design, long lasting'. This project commenced in 2023 and is currently a completed project. The ground-floor and decking stages have been successfully completed, with final touches. Our comprehensive scope spanned architectural design, 2D drawings, 3D modelling/visualization, design development, and construction-stage architectural input.",
     techStack: [
       "Architectural Design",
       "2D Drawings",
@@ -108,7 +108,7 @@ export const architecturalProjects: Project[] = [
       },
       {
         url: "/projects/duplex/3d-concept-visualization.jpg",
-        caption: "Approved 3D architectural visualization: DIZTINCT TOUCH HOME DESIGN original 3D render showing proposed massing and external finishes.",
+        caption: "Approved 3D architectural visualization: DIZTINCT TOUCH HOME DESIGNS original 3D render showing proposed massing and external finishes.",
         category: "exterior",
       },
       {

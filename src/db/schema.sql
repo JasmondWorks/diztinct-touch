@@ -1,4 +1,4 @@
--- DIZTINCT TOUCH HOME DESIGN Database Schema
+-- DIZTINCT TOUCH HOME DESIGNS Database Schema
 -- Neon PostgreSQL
 
 CREATE TABLE IF NOT EXISTS projects (

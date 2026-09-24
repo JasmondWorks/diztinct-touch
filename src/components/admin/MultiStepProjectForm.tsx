@@ -488,7 +488,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                 rows={4}
                 value={formData.longDescription}
                 onChange={(e) => setFormData({ ...formData, longDescription: e.target.value })}
-                placeholder="Designed by DIZTINCT TOUCH HOME DESIGN under our core ethos of 'Remarkable design, long lasting'..."
+                placeholder="Designed by DIZTINCT TOUCH HOME DESIGNS under our core ethos of 'Remarkable design, long lasting'..."
               />
             </div>
 

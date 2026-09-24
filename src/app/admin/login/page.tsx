@@ -4,7 +4,7 @@ import { AdminLoginKeypad } from "@/components/admin/AdminLoginKeypad";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export const metadata: Metadata = {
-  title: "Admin Portal Access | DIZTINCT TOUCH HOME DESIGN",
+  title: "Admin Portal Access | DIZTINCT TOUCH HOME DESIGNS",
   robots: {
     index: false,
     follow: false,

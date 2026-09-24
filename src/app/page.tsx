@@ -10,26 +10,26 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
-  title: "DIZTINCT TOUCH HOME DESIGN | Contemporary Architecture & 3D Visualization",
+  title: "DIZTINCT TOUCH HOME DESIGNS | Contemporary Architecture & 3D Visualization",
   description:
-    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a premier registered architectural studio delivering bespoke contemporary residential duplexes, 3D visualization, working drawings, and on-site construction oversight across Nigeria.",
+    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS is a premier registered architectural studio delivering bespoke contemporary residential duplexes, 3D visualization, working drawings, and on-site construction oversight across Nigeria.",
   keywords: [
     "contemporary duplex design",
     "architect in Ibadan",
     "architect in Lagos",
     "Nigerian residential architecture",
     "3D architectural visualization Nigeria",
-    "DIZTINCT TOUCH HOME DESIGN",
+    "DIZTINCT TOUCH HOME DESIGNS",
     "Mayowa architect",
     "duplex construction Ibadan",
     "modern residential duplex",
   ],
   openGraph: {
-    title: "DIZTINCT TOUCH HOME DESIGN — Remarkable Design, Long Lasting",
+    title: "DIZTINCT TOUCH HOME DESIGNS — Remarkable Design, Long Lasting",
     description:
       "Bespoke contemporary residential duplexes, architectural working drawings, 3D photorealistic visualization, and construction-stage site delivery.",
     url: "https://diztincttouch.com",
-    siteName: "DIZTINCT TOUCH HOME DESIGN",
+    siteName: "DIZTINCT TOUCH HOME DESIGNS",
     type: "website",
   },
 };

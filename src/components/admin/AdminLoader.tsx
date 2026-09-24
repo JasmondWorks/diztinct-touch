@@ -12,7 +12,7 @@ interface AdminLoaderProps {
 
 export function AdminLoader({
   label = "Verifying Security Credentials...",
-  sublabel = "DIZTINCT TOUCH HOME DESIGN • Studio Portal",
+  sublabel = "DIZTINCT TOUCH HOME DESIGNS • Studio Portal",
   fullScreen = true,
 }: AdminLoaderProps) {
   return (

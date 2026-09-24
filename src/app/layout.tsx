@@ -5,11 +5,11 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://diztincttouch.com"),
-  title: "DIZTINCT TOUCH HOME DESIGN — Architectural Design & 3D Visualization",
+  title: "DIZTINCT TOUCH HOME DESIGNS — Architectural Design & 3D Visualization",
   description:
     "Contemporary residential & commercial architectural design, 2D drawings, photorealistic 3D visualization, and construction-stage oversight. Remarkable design, long lasting.",
   keywords: [
-    "DIZTINCT TOUCH HOME DESIGN",
+    "DIZTINCT TOUCH HOME DESIGNS",
     "Mayowa",
     "Architectural Design",
     "Residential Duplex",

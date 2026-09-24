@@ -21,9 +21,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "About Mayowa & DIZTINCT TOUCH HOME DESIGN — Architectural Studio",
+  title: "About Mayowa & DIZTINCT TOUCH HOME DESIGNS — Architectural Studio",
   description:
-    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization studio. Remarkable design, long lasting.",
+    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS is a registered contemporary architectural design and 3D visualization studio. Remarkable design, long lasting.",
 };
 
 export default function AboutPage() {
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 Mayowa
               </h2>
               <p className="text-sm font-mono text-primary font-semibold">
-                Design Lead &amp; Principal • DIZTINCT TOUCH HOME DESIGN
+                Design Lead &amp; Principal • DIZTINCT TOUCH HOME DESIGNS
               </p>
               <div className="pt-2 text-xs font-mono text-muted-foreground space-y-1">
                 <p>• Registered Architecture &amp; 3D Visualization Studio</p>
@@ -129,7 +129,7 @@ export default function AboutPage() {
             <div className="lg:col-span-8 space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed border-t lg:border-t-0 lg:border-l border-border/80 pt-6 lg:pt-0 lg:pl-8">
               <p>
                 Mayowa is the founder and design lead of{" "}
-                <strong className="text-foreground">DIZTINCT TOUCH HOME DESIGN</strong>. With a deep passion for contemporary residential form and functional comfort, Mayowa approaches every building project as an enduring legacy for its occupants.
+                <strong className="text-foreground">DIZTINCT TOUCH HOME DESIGNS</strong>. With a deep passion for contemporary residential form and functional comfort, Mayowa approaches every building project as an enduring legacy for its occupants.
               </p>
               <p>
                 Rather than treating architectural design simply as drawing pictures, Mayowa integrates{" "}
@@ -138,13 +138,13 @@ export default function AboutPage() {
                 <strong className="text-foreground">hands-on construction-stage supervision</strong>. His work ensures that what is conceptualized on screen is structurally sound, cost-effective to build, and faithful to the approved design once built on site.
               </p>
               <p>
-                As a registered business, DIZTINCT TOUCH HOME DESIGN operates with professional integrity, transparent milestone stages, and clear client communication—making it the ideal design partner for both local property developers and international diaspora clients building in Nigeria.
+                As a registered business, DIZTINCT TOUCH HOME DESIGNS operates with professional integrity, transparent milestone stages, and clear client communication—making it the ideal design partner for both local property developers and international diaspora clients building in Nigeria.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-3">
                 <Button asChild variant="emerald" size="sm">
                   <a
-                    href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I would like to consult on an architectural project with DIZTINCT TOUCH HOME DESIGN.")}`}
+                    href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I would like to consult on an architectural project with DIZTINCT TOUCH HOME DESIGNS.")}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -178,7 +178,7 @@ export default function AboutPage() {
           <div className="relative aspect-4/3 lg:aspect-auto lg:h-[480px] lg:col-span-6 overflow-hidden rounded-3xl border border-border bg-muted/40">
             <Image
               src="/projects/armity-duplex/cover.jpg"
-              alt="ARMITY Estate Residential Duplex by DIZTINCT TOUCH HOME DESIGN"
+              alt="ARMITY Estate Residential Duplex by DIZTINCT TOUCH HOME DESIGNS"
               fill
               priority
               className="object-cover"
@@ -208,7 +208,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Our flagship 2025 residential duplex at ARMITY Estate, Ejioku Village demonstrates DIZTINCT TOUCH HOME DESIGN's complete end-to-end methodology in action.
+              Our flagship 2025 residential duplex at ARMITY Estate, Ejioku Village demonstrates DIZTINCT TOUCH HOME DESIGNS's complete end-to-end methodology in action.
             </p>
 
             {/* Construction Progress Breakdown */}
@@ -329,7 +329,7 @@ export default function AboutPage() {
           </div>
         </Card>
 
-        {/* Section 5: Why Clients Choose DIZTINCT TOUCH HOME DESIGN */}
+        {/* Section 5: Why Clients Choose DIZTINCT TOUCH HOME DESIGNS */}
         <Card className="rounded-3xl p-8 sm:p-10 space-y-6">
           <div className="space-y-1 border-b border-border/80 pb-4">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary">
@@ -399,7 +399,7 @@ export default function AboutPage() {
             </Button>
             <Button asChild variant="outline" size="lg">
               <a
-                href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to discuss a project with DIZTINCT TOUCH HOME DESIGN.")}`}
+                href={`https://wa.me/2349035011649?text=${encodeURIComponent("Hello Mayowa, I'd like to discuss a project with DIZTINCT TOUCH HOME DESIGNS.")}`}
                 target="_blank"
                 rel="noreferrer"
               >

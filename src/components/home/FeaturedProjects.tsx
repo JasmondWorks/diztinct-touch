@@ -37,7 +37,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
             </h2>
           </div>
           <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
-            Explore selected residential and commercial case studies by DIZTINCT TOUCH HOME DESIGN, led by Mayowa—featuring our active duplex build in ARMITY Estate.
+            Explore selected residential and commercial case studies by DIZTINCT TOUCH HOME DESIGNS, led by Mayowa—featuring our active duplex build in ARMITY Estate.
           </p>
         </div>
 
