@@ -21,13 +21,13 @@ export default async function EditProjectPage({
         <h2 className="text-xl font-bold tracking-tight text-foreground-heading">
           Project Not Found
         </h2>
-        <p className="text-xs font-mono text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           No project matches identifier &ldquo;{id}&rdquo;.
         </p>
         <div>
           <Link
             href="/admin/projects"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Projects Catalog</span>
@@ -42,10 +42,10 @@ export default async function EditProjectPage({
       <div className="pb-4 border-b border-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/20 text-primary font-semibold">
+            <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-primary/5 border border-primary/20 text-primary font-semibold">
               {project.projectCode || "DT-PROJ"}
             </span>
-            <span className="text-xs text-muted-foreground font-mono">
+            <span className="text-xs text-muted-foreground ">
               Editing: {project.title}
             </span>
           </div>
@@ -58,7 +58,7 @@ export default async function EditProjectPage({
           <Link
             href={`/projects/${project.slug}`}
             target="_blank"
-            className="text-xs font-mono text-muted-foreground hover:text-foreground border border-border px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors bg-card/40"
+            className="text-xs text-muted-foreground hover:text-foreground border border-border px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors bg-card/40"
           >
             <span>Live Preview</span>
             <ExternalLink className="w-3.5 h-3.5" />

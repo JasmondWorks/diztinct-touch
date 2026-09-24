@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* ============================================================
-   DESIGN TOKENS – Architectural Carmine & Terracotta Palette
-   Option A (Venetian Carmine & Warm Terracotta)
+   DESIGN TOKENS – DIZTINCT TOUCH Architectural Brand Orange & Amber Palette
+   Sampled directly from authentic 3D brand logo emblem
    ============================================================ */
 :root {
   /* Surfaces */
@@ -16,12 +16,12 @@
   --popover: 0 0% 100%;
   --popover-foreground: 240 10% 12%;
 
-  /* Brand - Architectural Carmine & Terracotta (WCAG AAA compliant on white) */
-  --primary: 354 70% 48%; /* Deep Architectural Carmine / Venetian Red #cc2b43 */
-  --primary-foreground: 0 0% 100%; /* Pure white text on primary background */
+  /* Brand - Architectural Amber Orange (Sampled from logo: HSL ~36 74% 47% / #cd861e) */
+  --primary: 36 90% 44%; /* Architectural Amber Orange #d3780a */
+  --primary-foreground: 0 0% 100%; /* Crisp white text on primary background */
 
-  --accent: 14 78% 50%; /* Architectural Terracotta / Burnt Sienna #db4d24 */
-  --accent-foreground: 240 10% 8%;
+  --accent: 28 90% 48%; /* Warm Architectural Terracotta / Sunset Gold #e25e07 */
+  --accent-foreground: 0 0% 100%;
 
   /* Neutrals */
   --secondary: 240 5% 96%;
@@ -39,15 +39,15 @@
   /* Borders - Soft, visible but low contrast */
   --border: 240 5% 90%; /* Visible light grey */
   --input: 240 5% 90%;
-  --ring: 354 70% 48%;
+  --ring: 36 90% 44%;
 
   /* Geometry */
   --radius: 0.75rem; /* 12px rounded for modern premium feel */
 
-  /* Gradients - Deep Carmine to Venetian Red to Architectural Terracotta */
-  --gradient-1: #9f1239; /* rose-800 / deep garnet */
-  --gradient-2: #be123c; /* rose-700 / carmine crimson */
-  --gradient-3: #c2410c; /* orange-700 / terracotta rust */
+  /* Gradients - Deep Amber to Architectural Orange to Warm Terracotta */
+  --gradient-1: #b45309; /* amber-700 / deep architectural amber */
+  --gradient-2: #d97706; /* amber-600 / brand orange */
+  --gradient-3: #ea580c; /* orange-600 / warm terracotta */
 }
 
 .dark {
@@ -61,7 +61,7 @@
   --popover: 240 5% 9%;
   --popover-foreground: 240 5% 90%;
 
-  --primary: 354 84% 65%; /* Luminous Architectural Carmine-Rose #f25972 */
+  --primary: 36 94% 54%; /* Luminous Architectural Brand Orange #f79d1e */
   --primary-foreground: 0 0% 100%;
 
   --secondary: 240 4% 16%;
@@ -70,7 +70,7 @@
   --muted: 240 4% 12%;
   --muted-foreground: 240 4% 60%;
 
-  --accent: 14 86% 65%; /* Luminous Terracotta Coral #f57b56 */
+  --accent: 28 92% 58%; /* Luminous Sunset Gold-Terracotta #f87d24 */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
@@ -78,12 +78,12 @@
 
   --border: 240 4% 16%;
   --input: 240 4% 16%;
-  --ring: 354 84% 65%;
+  --ring: 36 94% 54%;
 
-  /* Gradients - Luminous Rose-400 to Carmine-Red-400 to Warm Terracotta-400 */
-  --gradient-1: #fb7185; /* rose-400 */
-  --gradient-2: #f87171; /* red-400 */
-  --gradient-3: #fb923c; /* amber-orange-400 terracotta */
+  /* Gradients - Luminous Amber-500 to Brand Orange-500 to Warm Terracotta-400 */
+  --gradient-1: #f59e0b; /* amber-500 */
+  --gradient-2: #f97316; /* orange-500 */
+  --gradient-3: #fb923c; /* orange-400 */
 }
 
 /* ============================================================
@@ -115,6 +115,15 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
+  /* Brand Specific Design Tokens */
+  --color-brand-orange: #d38b21;
+  --color-brand-orange-light: #f5a727;
+  --color-brand-orange-dark: #b55b05;
+  --color-brand-navy: #1b2742;
+
+  --font-sans: var(--font-plus-jakarta-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-plus-jakarta-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -130,7 +139,7 @@ html {
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -155,15 +164,14 @@ body {
 
 /* Selection */
 ::selection {
-  background: hsl(354 84% 65% / 0.25);
+  background: hsl(var(--primary) / 0.25);
   color: white;
 }
 
-/* Focus Ring */
+/* Focus Ring - Preserves original element border-radius */
 :focus-visible {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 /* ============================================================
@@ -219,7 +227,7 @@ body {
   position: absolute;
   inset: -1px;
   border-radius: calc(var(--radius) + 1px);
-  background: linear-gradient(135deg, #f87171, #fb923c, #fb7185);
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -272,8 +280,8 @@ body {
 }
 
 @keyframes status-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45); }
-  50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45); }
+  50% { box-shadow: 0 0 0 6px hsl(var(--primary) / 0); }
 }
 
 @keyframes slide-down {

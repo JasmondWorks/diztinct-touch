@@ -90,12 +90,12 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
                 variant={isSelected ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory(cat.id)}
-                className="h-8 font-mono text-xs font-semibold gap-1.5"
+                className="h-8 text-xs font-semibold gap-1.5"
               >
                 <span>{cat.label}</span>
                 <span
                   className={cn(
-                    "text-[10px] font-mono",
+                    "text-[10px] ",
                     isSelected ? "text-primary-foreground/80 font-bold" : "text-muted-foreground"
                   )}
                 >
@@ -106,7 +106,7 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
           })}
         </div>
 
-        <div className="text-xs font-mono text-muted-foreground">
+        <div className="text-xs text-muted-foreground">
           Displaying {filteredPlates.length} of {initialPlates.length} photos
         </div>
       </div>
@@ -133,7 +133,7 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="absolute top-3 left-3">
-                <Badge variant="secondary" className="bg-black/60 text-white backdrop-blur-md uppercase text-[9px] font-mono">
+                <Badge variant="secondary" className="bg-black/60 text-white backdrop-blur-md uppercase text-[9px] ">
                   {plate.category}
                 </Badge>
               </div>
@@ -154,13 +154,13 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
               <div className="pt-2 border-t border-border/80 flex items-center justify-between text-xs">
                 <Link
                   href={`/projects/${plate.projectSlug}`}
-                  className="font-mono text-[11px] font-bold text-primary hover:underline inline-flex items-center gap-1"
+                  className="text-[11px] font-bold text-primary hover:underline inline-flex items-center gap-1"
                 >
                   <span>{plate.projectTitle}</span>
                   <ArrowUpRight className="h-3 w-3" />
                 </Link>
 
-                <span className="text-[10px] font-mono text-muted-foreground">
+                <span className="text-[10px] text-muted-foreground">
                   {plate.projectLocation}
                 </span>
               </div>
@@ -189,7 +189,7 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
           currentPlate && (
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full pr-8">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-primary font-bold">
+                <span className="text-xs uppercase tracking-widest text-primary font-bold">
                   {currentPlate.projectTitle}
                 </span>
                 <div className="text-xs text-muted-foreground font-normal flex items-center gap-2 mt-0.5">

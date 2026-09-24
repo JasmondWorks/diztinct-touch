@@ -277,7 +277,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
               >
                 <div
                   className={cn(
-                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-md font-mono text-[11px] font-semibold transition-colors",
+                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-[11px] font-semibold transition-colors",
                     isCurrent && "bg-white/20 text-white",
                     isCompleted && "bg-emerald-500/15 text-emerald-500 border border-emerald-500/30",
                     !isCurrent && !isCompleted && "bg-muted/80 text-muted-foreground border border-border/70"
@@ -289,7 +289,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                 {step.id === 4 && (
                   <span
                     className={cn(
-                      "text-[10px] uppercase font-mono px-1.5 py-0.5 rounded",
+                      "text-[10px] uppercase px-1.5 py-0.5 rounded",
                       isCurrent
                         ? "bg-white/20 text-white/90"
                         : "bg-muted/80 text-muted-foreground"
@@ -305,7 +305,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
       </div>
 
       {error && (
-        <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-xs font-mono text-destructive">
+        <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-xs text-destructive">
           {error}
         </div>
       )}
@@ -322,7 +322,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
           <CardContent className="p-0 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-1.5 sm:col-span-2">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Public Project Title *
               </label>
               <Input
@@ -336,7 +336,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 URL Slug *
               </label>
               <Input
@@ -345,12 +345,12 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                 value={formData.slug}
                 onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                 placeholder="e.g. armity-contemporary-duplex"
-                className="text-xs font-mono"
+                className="text-xs "
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Studio Project Code
               </label>
               <Input
@@ -358,12 +358,12 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                 value={formData.projectCode || ""}
                 onChange={(e) => setFormData({ ...formData, projectCode: e.target.value })}
                 placeholder="e.g. DT-25-01"
-                className="text-xs font-mono"
+                className="text-xs "
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Typology Category
               </label>
               <Select
@@ -372,7 +372,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                   setFormData({ ...formData, category: val as ArchitecturalCategory })
                 }
               >
-                <SelectTrigger className="text-xs font-mono">
+                <SelectTrigger className="text-xs ">
                   <SelectValue placeholder="Select typology category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -386,14 +386,14 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Building Sub-Type
               </label>
               <Select
                 value={formData.buildingType || ""}
                 onValueChange={(val) => setFormData({ ...formData, buildingType: val })}
               >
-                <SelectTrigger className="text-xs font-mono">
+                <SelectTrigger className="text-xs ">
                   <SelectValue placeholder="Select building sub-type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -407,7 +407,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Configuration / Bedrooms
               </label>
               <Input
@@ -419,7 +419,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Location &amp; Estate
               </label>
               <Input
@@ -431,7 +431,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Construction Year &amp; Stage
               </label>
               <Input
@@ -443,7 +443,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Gross Floor Area (GFA)
               </label>
               <Input
@@ -469,7 +469,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
           <CardContent className="p-0 space-y-5">
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Short Pitch / Summary (Shows on preview cards) *
               </label>
               <Textarea
@@ -481,7 +481,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-bold uppercase text-foreground">
+              <label className="text-xs font-bold uppercase text-foreground">
                 Comprehensive Design Statement (Monograph intro) *
               </label>
               <Textarea
@@ -494,7 +494,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="space-y-1.5">
-                <label className="text-xs font-mono font-bold uppercase text-primary">
+                <label className="text-xs font-bold uppercase text-primary">
                   Pillar 1: Context &amp; Challenge
                 </label>
                 <Textarea
@@ -514,7 +514,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono font-bold uppercase text-primary">
+                <label className="text-xs font-bold uppercase text-primary">
                   Pillar 2: Design Concept
                 </label>
                 <Textarea
@@ -534,7 +534,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono font-bold uppercase text-primary">
+                <label className="text-xs font-bold uppercase text-primary">
                   Pillar 3: Materiality &amp; Structure
                 </label>
                 <Textarea
@@ -554,7 +554,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono font-bold uppercase text-primary">
+                <label className="text-xs font-bold uppercase text-primary">
                   Pillar 4: Environmental Performance
                 </label>
                 <Textarea
@@ -603,7 +603,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             <div className="space-y-4 border-t border-border/80 pt-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h4 className="text-sm font-bold text-foreground-heading uppercase tracking-wider font-mono">
+                  <h4 className="text-sm font-bold text-foreground-heading uppercase tracking-wider ">
                     Project Photo Gallery ({formData.gallery?.length || 0} images)
                   </h4>
                   <p className="text-xs text-muted-foreground">
@@ -679,7 +679,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
           <CardHeader className="p-0 border-b border-border/80 pb-4">
             <div className="flex items-center gap-2">
               <CardTitle className="text-xl">4. Measurable Results &amp; Engineering Decisions</CardTitle>
-              <Badge variant="outline" className="text-[10px] font-mono text-muted-foreground">Optional</Badge>
+              <Badge variant="outline" className="text-[10px] text-muted-foreground">Optional</Badge>
             </div>
             <CardDescription className="text-xs">
               Leave empty if not provided. Unverified data will be cleanly omitted from the public presentation.
@@ -690,7 +690,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             {/* Metrics Grid */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-sm font-bold text-foreground-heading font-mono uppercase tracking-wider">
+                <h4 className="text-sm font-bold text-foreground-heading uppercase tracking-wider">
                   Measurable Results &amp; Spatial Metrics
                 </h4>
                 <Button
@@ -724,14 +724,14 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                         value={m.label}
                         onChange={(e) => updateMetric(idx, "label", e.target.value)}
                         placeholder="e.g. Design-to-Site Match"
-                        className="font-mono font-bold text-xs"
+                        className="font-bold text-xs"
                       />
                       <Input
                         type="text"
                         value={m.value}
                         onChange={(e) => updateMetric(idx, "value", e.target.value)}
                         placeholder="e.g. 100%"
-                        className="font-mono font-bold text-xs text-primary"
+                        className="font-bold text-xs text-primary"
                       />
                     </div>
 
@@ -750,7 +750,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
             {/* Engineering Decisions Bento */}
             <div className="space-y-4 border-t border-border/80 pt-6">
               <div className="flex items-center justify-between">
-                <h4 className="text-sm font-bold text-foreground-heading font-mono uppercase tracking-wider">
+                <h4 className="text-sm font-bold text-foreground-heading uppercase tracking-wider">
                   Key Engineering &amp; Design Decisions
                 </h4>
                 <Button
@@ -822,7 +822,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
           <CardContent className="p-0 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="rounded-2xl border border-border bg-background p-5 space-y-4">
-              <span className="text-xs font-mono font-bold uppercase text-primary">
+              <span className="text-xs font-bold uppercase text-primary">
                 Publication Controls
               </span>
 
@@ -867,12 +867,12 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
             {/* Quick Preview Card */}
             <div className="rounded-2xl border border-border bg-background p-5 space-y-3">
-              <span className="text-xs font-mono font-bold uppercase text-primary">
+              <span className="text-xs font-bold uppercase text-primary">
                 Summary Preview
               </span>
 
               <div className="space-y-1">
-                <span className="text-xs font-mono text-muted-foreground block">
+                <span className="text-xs text-muted-foreground block">
                   {formData.projectCode || "DT-25-01"} • {formData.buildingType}
                 </span>
                 <h4 className="text-base font-bold text-foreground-heading">
@@ -883,7 +883,7 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
                 </p>
               </div>
 
-              <div className="pt-2 text-[11px] font-mono text-muted-foreground border-t border-border/60 flex items-center justify-between">
+              <div className="pt-2 text-[11px] text-muted-foreground border-t border-border/60 flex items-center justify-between">
                 <span>Location: {formData.location}</span>
                 <span>GFA: {formData.gfa}</span>
               </div>

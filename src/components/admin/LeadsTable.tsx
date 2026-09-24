@@ -3,7 +3,7 @@
 import React, { useState, useTransition } from "react";
 import { Lead, updateLeadStatusAction, deleteLeadAction } from "@/actions/leads";
 import { useRouter } from "next/navigation";
-import { Search, Mail, Trash2, MessageSquare } from "lucide-react";
+import { Search, Mail, Trash2, MessageSquare, AlertTriangle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -16,7 +16,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Modal } from "@/components/ui/modal";
+import { ConfirmationModal } from "@/components/ui/confirmation-modal";
 import { EmptyState } from "@/components/ui/empty-state";
+
+import { DataTable, ColumnDef } from "@/components/ui/data-table";
 
 export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
   const router = useRouter();
@@ -25,6 +28,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
   const [search, setSearch] = useState<string>("");
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [leadNotes, setLeadNotes] = useState<string>("");
+  const [leadToDelete, setLeadToDelete] = useState<Lead | null>(null);
   const [isPending, startTransition] = useTransition();
 
   const filtered = leads.filter((l) => {
@@ -68,14 +72,19 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
     });
   };
 
-  const handleDelete = (id: number, name: string) => {
-    if (!confirm(`Are you sure you want to remove lead from "${name}"?`)) return;
+  const handleDelete = (lead: Lead) => {
+    setLeadToDelete(lead);
+  };
 
+  const confirmDeleteLead = () => {
+    if (!leadToDelete) return;
+    const targetId = leadToDelete.id;
     startTransition(async () => {
-      const res = await deleteLeadAction(id);
+      const res = await deleteLeadAction(targetId);
       if (res.success) {
-        setLeads((prev) => prev.filter((l) => l.id !== id));
-        if (selectedLead?.id === id) setSelectedLead(null);
+        setLeads((prev) => prev.filter((l) => l.id !== targetId));
+        if (selectedLead?.id === targetId) setSelectedLead(null);
+        setLeadToDelete(null);
         router.refresh();
       } else {
         alert("Failed to delete lead.");
@@ -110,6 +119,133 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
         return "outline";
     }
   };
+
+  const columns: ColumnDef<Lead>[] = [
+    {
+      id: "client-info",
+      header: "Client Info",
+      cell: ({ row }) => (
+        <div>
+          <div className="font-sans font-semibold text-foreground-heading text-sm">
+            {row.name}
+          </div>
+          <div className="text-[11px] text-muted-foreground">{row.email}</div>
+          {row.phone && (
+            <div className="text-[10px] text-primary font-medium">{row.phone}</div>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "typology-location",
+      header: "Building Typology",
+      cell: ({ row }) => (
+        <div>
+          <div className="text-foreground font-medium">
+            {row.typology || "Residential Duplex"}
+          </div>
+          {row.location && (
+            <div className="text-[10px] text-muted-foreground">{row.location}</div>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "budget",
+      header: "Estimated Budget",
+      cell: ({ row }) => (
+        <span className="text-muted-foreground">
+          {row.estimatedBudget || "Not specified"}
+        </span>
+      ),
+    },
+    {
+      id: "status",
+      header: "Lead Status",
+      cell: ({ row }) => (
+        <div className="w-36" onClick={(e) => e.stopPropagation()}>
+          <Select
+            value={row.status}
+            onValueChange={(val) =>
+              handleStatusChange(row.id, val as Lead["status"])
+            }
+            disabled={isPending}
+          >
+            <SelectTrigger className="h-8 text-[11px] py-1">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="new">New Inquiry</SelectItem>
+              <SelectItem value="contacted">Contacted</SelectItem>
+              <SelectItem value="site_inspection">Site Inspection</SelectItem>
+              <SelectItem value="contract_signed">Contract Signed</SelectItem>
+              <SelectItem value="archived">Archived</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      ),
+    },
+    {
+      id: "received",
+      header: "Received",
+      cell: ({ row }) => (
+        <span className="text-muted-foreground">
+          {new Date(row.createdAt).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}
+        </span>
+      ),
+    },
+    {
+      id: "actions",
+      header: "Quick Contact",
+      align: "right",
+      cell: ({ row }) => {
+        const waLink = getWhatsAppLink(row);
+        return (
+          <div className="flex items-center justify-end gap-2" onClick={(e) => e.stopPropagation()}>
+            {waLink && (
+              <Button
+                asChild
+                size="icon"
+                variant="outline"
+                className="h-8 w-8 text-emerald-500 border-emerald-500/20 bg-emerald-500/10 hover:bg-emerald-500/20"
+                title="Chat on WhatsApp"
+              >
+                <a href={waLink} target="_blank" rel="noopener noreferrer">
+                  <MessageSquare className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            )}
+
+            <Button
+              asChild
+              size="icon"
+              variant="outline"
+              className="h-8 w-8 text-muted-foreground hover:text-foreground"
+              title="Send Email"
+            >
+              <a href={`mailto:${row.email}?subject=DIZTINCT TOUCH HOME DESIGNS - Architectural Inquiry Response`}>
+                <Mail className="w-3.5 h-3.5" />
+              </a>
+            </Button>
+
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => handleDelete(row)}
+              className="h-8 w-8 text-destructive hover:bg-destructive/10"
+              title="Delete Lead"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+            </Button>
+          </div>
+        );
+      },
+    },
+  ];
 
   return (
     <div className="space-y-6">
@@ -146,160 +282,30 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
         </div>
       </div>
 
-      {/* Main Table */}
-      <div className="rounded-2xl bg-card/60 backdrop-blur-sm border border-border/80 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead>
-              <tr className="border-b border-border/80 bg-muted/40 text-muted-foreground">
-                <th className="py-3.5 px-4 font-normal">Client Info</th>
-                <th className="py-3.5 px-4 font-normal">Building Typology</th>
-                <th className="py-3.5 px-4 font-normal">Estimated Budget</th>
-                <th className="py-3.5 px-4 font-normal">Lead Status</th>
-                <th className="py-3.5 px-4 font-normal">Received</th>
-                <th className="py-3.5 px-4 font-normal text-right">Quick Contact</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/60">
-              {filtered.length === 0 ? (
-                <tr>
-                  <td colSpan={6} className="py-8 px-4">
-                    <EmptyState
-                      compact
-                      icon={Mail}
-                      title="No Inquiries Found"
-                      description={
-                        search
-                          ? `No client inquiries match "${search}". Try resetting your search or status filter.`
-                          : "No prospective client intake records match your active filter."
-                      }
-                      actionLabel="Clear Filters"
-                      onAction={() => {
-                        setSearch("");
-                        setFilterStatus("all");
-                      }}
-                    />
-                  </td>
-                </tr>
-              ) : (
-                filtered.map((lead) => {
-                  const waLink = getWhatsAppLink(lead);
-                  return (
-                    <tr
-                      key={lead.id}
-                      className="hover:bg-muted/20 transition-colors cursor-pointer"
-                      onClick={() => {
-                        setSelectedLead(lead);
-                        setLeadNotes(lead.notes || "");
-                      }}
-                    >
-                      {/* Name & Contact */}
-                      <td className="py-3.5 px-4">
-                        <div className="font-sans font-semibold text-foreground-heading text-sm">
-                          {lead.name}
-                        </div>
-                        <div className="text-[11px] text-muted-foreground">{lead.email}</div>
-                        {lead.phone && (
-                          <div className="text-[10px] text-primary font-medium">{lead.phone}</div>
-                        )}
-                      </td>
-
-                      {/* Typology & Location */}
-                      <td className="py-3.5 px-4">
-                        <div className="text-foreground font-medium">
-                          {lead.typology || "Residential Duplex"}
-                        </div>
-                        {lead.location && (
-                          <div className="text-[10px] text-muted-foreground">{lead.location}</div>
-                        )}
-                      </td>
-
-                      {/* Budget */}
-                      <td className="py-3.5 px-4 text-muted-foreground">
-                        {lead.estimatedBudget || "Not specified"}
-                      </td>
-
-                      {/* Status Dropdown */}
-                      <td className="py-3.5 px-4" onClick={(e) => e.stopPropagation()}>
-                        <div className="w-36">
-                          <Select
-                            value={lead.status}
-                            onValueChange={(val) =>
-                              handleStatusChange(lead.id, val as Lead["status"])
-                            }
-                            disabled={isPending}
-                          >
-                            <SelectTrigger className="h-8 text-[11px] py-1 font-mono">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="new">New Inquiry</SelectItem>
-                              <SelectItem value="contacted">Contacted</SelectItem>
-                              <SelectItem value="site_inspection">Site Inspection</SelectItem>
-                              <SelectItem value="contract_signed">Contract Signed</SelectItem>
-                              <SelectItem value="archived">Archived</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </td>
-
-                      {/* Received Date */}
-                      <td className="py-3.5 px-4 text-muted-foreground">
-                        {new Date(lead.createdAt).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
-                      </td>
-
-                      {/* Actions */}
-                      <td className="py-3.5 px-4 text-right" onClick={(e) => e.stopPropagation()}>
-                        <div className="flex items-center justify-end gap-2">
-                          {waLink && (
-                            <Button
-                              asChild
-                              size="icon"
-                              variant="outline"
-                              className="h-8 w-8 text-emerald-500 border-emerald-500/20 bg-emerald-500/10 hover:bg-emerald-500/20"
-                              title="Chat on WhatsApp"
-                            >
-                              <a href={waLink} target="_blank" rel="noopener noreferrer">
-                                <MessageSquare className="w-3.5 h-3.5" />
-                              </a>
-                            </Button>
-                          )}
-
-                          <Button
-                            asChild
-                            size="icon"
-                            variant="outline"
-                            className="h-8 w-8 text-muted-foreground hover:text-foreground"
-                            title="Send Email"
-                          >
-                            <a href={`mailto:${lead.email}?subject=DIZTINCT TOUCH HOME DESIGNS - Architectural Inquiry Response`}>
-                              <Mail className="w-3.5 h-3.5" />
-                            </a>
-                          </Button>
-
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            onClick={() => handleDelete(lead.id, lead.name)}
-                            className="h-8 w-8 text-destructive hover:bg-destructive/10"
-                            title="Delete Lead"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      {/* Main Leads DataTable */}
+      <DataTable
+        columns={columns}
+        data={filtered}
+        loading={isPending}
+        isPaginated={true}
+        numLoaderRows={5}
+        onRowClick={(lead) => {
+          setSelectedLead(lead);
+          setLeadNotes(lead.notes || "");
+        }}
+        emptyTitle="No Inquiries Found"
+        emptyMessage={
+          search
+            ? `No client inquiries match "${search}". Try resetting your search or status filter.`
+            : "No prospective client intake records match your active filter."
+        }
+        emptyIcon={Mail}
+        emptyActionLabel="Clear Filters"
+        onEmptyAction={() => {
+          setSearch("");
+          setFilterStatus("all");
+        }}
+      />
 
       {/* Reusable Modal encapsulating Dialog components */}
       <Modal
@@ -349,7 +355,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
         }
       >
         {selectedLead && (
-          <div className="space-y-5 text-xs font-mono">
+          <div className="space-y-5 text-xs">
             {/* Meta Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="p-3.5 rounded-xl bg-muted/40 border border-border/80">
@@ -392,7 +398,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
 
             {/* Internal Architect Notes */}
             <div className="space-y-2 pt-1">
-              <label className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider font-semibold">
+              <label className="text-[11px] text-muted-foreground uppercase tracking-wider font-semibold">
                 Internal Architect Notes (Mayowa &amp; Team)
               </label>
               <Textarea
@@ -415,6 +421,33 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
           </div>
         )}
       </Modal>
+
+      {/* Delete Lead Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={!!leadToDelete}
+        setIsOpen={(open) => !open && setLeadToDelete(null)}
+        title="Confirm Lead Removal"
+        subtitle="Are you sure you want to remove this client inquiry? All communication history and architect notes will be permanently erased."
+        icon={AlertTriangle}
+        variant="destructive"
+        confirmLabel={isPending ? "Deleting..." : "Permanently Delete Lead"}
+        isLoading={isPending}
+        onConfirm={confirmDeleteLead}
+      >
+        {leadToDelete && (
+          <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-xs space-y-2 mt-2">
+            <div className="font-semibold text-foreground">
+              Client: <span className="text-destructive font-bold">{leadToDelete.name}</span>
+            </div>
+            <div className="text-muted-foreground">
+              Email: {leadToDelete.email} {leadToDelete.phone ? `• ${leadToDelete.phone}` : ""}
+            </div>
+            <div className="text-muted-foreground">
+              Typology: {leadToDelete.typology || "Residential"} • Location: {leadToDelete.location || "Nigeria"}
+            </div>
+          </div>
+        )}
+      </ConfirmationModal>
     </div>
   );
 }

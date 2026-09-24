@@ -13,7 +13,7 @@ export default async function AdminProjectsPage() {
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
           Projects Catalog
         </h1>
-        <p className="text-xs font-mono text-muted-foreground mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           Manage architectural projects, construction stages, photography, and blueprints.
         </p>
       </div>
