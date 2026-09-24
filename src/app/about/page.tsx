@@ -97,7 +97,7 @@ export default function AboutPage() {
             <span>Registered Architectural Studio • Design Lead: Mayowa</span>
           </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground-heading leading-tight">
-            Remarkable design, long lasting.
+            Remarkable design, long lasting
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             {siteConfig.bio}
