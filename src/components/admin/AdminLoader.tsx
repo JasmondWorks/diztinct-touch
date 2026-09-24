@@ -51,7 +51,7 @@ export function AdminLoader({
         </div>
 
         {/* Status Pill Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-mono font-semibold text-primary mb-2 shadow-xs">
+        <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-mono font-semibold text-primary mb-2">
           <ShieldCheck className="h-3.5 w-3.5" />
           <span>{label}</span>
         </div>

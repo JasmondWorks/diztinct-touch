@@ -140,7 +140,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
       </div>
 
       {/* Main Table */}
-      <div className="rounded-2xl bg-card/60 backdrop-blur-sm border border-border/80 overflow-hidden shadow-xs">
+      <div className="rounded-2xl bg-card/60 backdrop-blur-sm border border-border/80 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
             <thead>

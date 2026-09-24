@@ -183,7 +183,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
 
         {/* Primary Hero Media Feature */}
-        <div className="relative aspect-16/9 sm:aspect-21/9 overflow-hidden rounded-3xl border border-border bg-muted/40 shadow-xl">
+        <div className="relative aspect-16/9 sm:aspect-21/9 overflow-hidden rounded-3xl border border-border bg-muted/40">
           <Image
             src={project.coverImage}
             alt={project.title}

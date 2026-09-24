@@ -47,7 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
       className="group h-full"
     >
       <Card
-        className="relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1.5 shadow-sm hover:shadow-xl cursor-pointer"
+        className="relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1.5 cursor-pointer"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -102,7 +102,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <div className="absolute top-3 left-3 z-20 flex items-center gap-2 pointer-events-none">
             <span
               className={cn(
-                "rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md bg-background/85 shadow-xs",
+                "rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md bg-background/85",
                 CATEGORY_STYLES[project.category]
               )}
             >
@@ -113,7 +113,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {/* Top Right: Featured Badge or Gallery Count */}
           <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 pointer-events-none">
             {project.featured && (
-              <Badge variant="outline" className="gap-1 border-amber-500/30 bg-amber-500/20 text-amber-400 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider shadow-xs">
+              <Badge variant="outline" className="gap-1 border-amber-500/30 bg-amber-500/20 text-amber-400 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider">
                 <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                 Featured
               </Badge>
@@ -132,7 +132,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-background/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-foreground shadow-lg hover:border-primary/40 hover:text-primary transition-all"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-background/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-all"
               >
                 <Compass className="h-3.5 w-3.5 text-primary" />
                 <span>3D Tour</span>

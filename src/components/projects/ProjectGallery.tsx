@@ -25,6 +25,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
   const categories = [
     { id: "all", label: "All Angles" },
     { id: "exterior", label: "Exteriors" },
+    { id: "construction", label: "Construction Progress" },
     { id: "interior", label: "Interiors" },
     { id: "detail", label: "Details" },
   ];
@@ -104,7 +105,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
           <div
             key={image.url + index}
             onClick={() => openLightbox(index)}
-            className="group relative aspect-16/10 cursor-pointer overflow-hidden rounded-2xl border border-border bg-card shadow-xs transition-all duration-300 hover:border-primary/50 hover:shadow-lg"
+            className="group relative aspect-16/10 cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:border-primary/50"
           >
             <Image
               src={image.url}

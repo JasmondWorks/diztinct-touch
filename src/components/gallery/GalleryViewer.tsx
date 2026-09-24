@@ -34,8 +34,9 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
           {[
             { id: "all", label: "All Photos" },
             { id: "exterior", label: "Exterior" },
+            { id: "construction", label: "Construction Progress" },
             { id: "interior", label: "Interior Spaces" },
-            { id: "detail", label: "Construction Details" },
+            { id: "detail", label: "Design Details" },
           ].map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
@@ -62,7 +63,7 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
         {filteredPlates.map((plate, index) => (
           <div
             key={plate.url + index}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 shadow-xs hover:border-primary/50 transition-all duration-300"
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 hover:border-primary/50 transition-all duration-300"
           >
             <div
               onClick={() => setLightboxData(plate)}

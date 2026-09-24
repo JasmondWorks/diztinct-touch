@@ -70,7 +70,7 @@ export default async function AdminDashboardPage() {
       {/* Primary KPI Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Page Views */}
-        <Card className="hover:border-primary/30 transition-all shadow-xs">
+        <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -90,7 +90,7 @@ export default async function AdminDashboardPage() {
         </Card>
 
         {/* WhatsApp Inquiries */}
-        <Card className="hover:border-emerald-500/30 transition-all shadow-xs">
+        <Card className="hover:border-emerald-500/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -110,7 +110,7 @@ export default async function AdminDashboardPage() {
         </Card>
 
         {/* Client Inquiries */}
-        <Card className="hover:border-primary/30 transition-all shadow-xs">
+        <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -135,7 +135,7 @@ export default async function AdminDashboardPage() {
         </Card>
 
         {/* Portfolio Status */}
-        <Card className="hover:border-primary/30 transition-all shadow-xs">
+        <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -345,7 +345,7 @@ export default async function AdminDashboardPage() {
             {projects.slice(0, 6).map((proj) => (
               <Card
                 key={proj.id}
-                className="overflow-hidden hover:border-primary/40 transition-all flex flex-col group shadow-xs hover:shadow-md"
+                className="overflow-hidden hover:border-primary/40 transition-all flex flex-col group"
               >
                 {/* Thumbnail */}
                 <div className="relative aspect-16/10 bg-muted w-full overflow-hidden">

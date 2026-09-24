@@ -20,7 +20,7 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
         {metrics.map((metric) => (
           <Card
             key={metric.label}
-            className="flex flex-col justify-between p-4 transition-all hover:border-primary/40 shadow-xs"
+            className="flex flex-col justify-between p-4 transition-all hover:border-primary/40"
           >
             <div className="flex items-center justify-between gap-2">
               <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">

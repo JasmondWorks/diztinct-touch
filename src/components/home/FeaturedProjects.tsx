@@ -166,7 +166,7 @@ export function FeaturedProjects() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group flex flex-col h-full"
             >
-              <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1.5 shadow-sm hover:shadow-xl">
+              <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1.5">
                 {/* Media Container */}
                 <div className="relative aspect-video overflow-hidden bg-muted/30">
                   <Image

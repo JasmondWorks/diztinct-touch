@@ -22,7 +22,7 @@ export default async function AdminAnalyticsPage() {
 
       {/* High-level KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="hover:border-primary/30 transition-all shadow-xs">
+        <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -41,7 +41,7 @@ export default async function AdminAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="hover:border-emerald-500/30 transition-all shadow-xs">
+        <Card className="hover:border-emerald-500/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -60,7 +60,7 @@ export default async function AdminAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="hover:border-primary/30 transition-all shadow-xs">
+        <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
@@ -79,7 +79,7 @@ export default async function AdminAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="hover:border-primary/30 transition-all shadow-xs">
+        <Card className="hover:border-primary/30 transition-all">
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">

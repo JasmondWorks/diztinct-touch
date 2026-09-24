@@ -70,28 +70,38 @@ export const architecturalProjects: Project[] = [
     gallery: [
       {
         url: "/projects/armity-duplex/cover.jpg",
-        caption: "Hero twilight perspective showing the double-height glazed atrium, cantilevered balcony, and ambient garden lighting.",
+        caption: "Approved 3D architectural visualization: Contemporary duplex design featuring double-height glazed atrium tower, cantilevered upper balcony, and ambient lighting.",
         category: "exterior",
       },
       {
-        url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
-        caption: "Double-height living lounge interior with full daylight penetration and seamless sightlines.",
-        category: "interior",
+        url: "/projects/armity-duplex/foundation-trench-masonry.jpg",
+        caption: "Substructure setting-out: Foundation trench blockwork up to DPC level with column starter cages and integrated plumbing conduits.",
+        category: "construction",
       },
       {
-        url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=85",
-        caption: "First-floor family terrace and cantilever balcony detail with vertical architectural privacy louvers.",
-        category: "detail",
+        url: "/projects/armity-duplex/dpm-membrane-installation.jpg",
+        caption: "Substructure moisture barrier: Laying heavy-duty DPM (Damp Proof Membrane) across compacted hardcore before slab casting.",
+        category: "construction",
       },
       {
-        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=85",
-        caption: "Contemporary kitchen and dining suite with seamless transition into the courtyard.",
-        category: "interior",
+        url: "/projects/armity-duplex/cast-foundation-slab.jpg",
+        caption: "Cast German floor milestone: Successfully completed reinforced concrete ground slab with vertical column reinforcement.",
+        category: "construction",
       },
       {
-        url: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=85",
-        caption: "Textured charcoal brick facade cladding and architectural bronze sconce fixtures.",
-        category: "detail",
+        url: "/projects/armity-duplex/perimeter-level-inspection.jpg",
+        caption: "Precision setting-out: On-site verification of perimeter foundation wall levels using precision spirit level rules.",
+        category: "construction",
+      },
+      {
+        url: "/projects/armity-duplex/site-blueprint-supervision.jpg",
+        caption: "Architectural oversight: Design lead Mayowa reviewing 2D working drawings and structural schedules on site with masons.",
+        category: "construction",
+      },
+      {
+        url: "/projects/armity-duplex/ground-floor-wall-masonry.jpg",
+        caption: "Superstructure progression: Ground-floor perimeter wall masonry and double-height atrium window apertures.",
+        category: "construction",
       },
     ],
     engineeringDecisions: [

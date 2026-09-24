@@ -164,7 +164,7 @@ export default function AboutPage() {
 
         {/* Section 2: Active Project Spotlight — ARMITY Estate Duplex */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="relative aspect-4/3 lg:aspect-auto lg:h-[480px] lg:col-span-6 overflow-hidden rounded-3xl border border-border bg-muted/40 shadow-xl">
+          <div className="relative aspect-4/3 lg:aspect-auto lg:h-[480px] lg:col-span-6 overflow-hidden rounded-3xl border border-border bg-muted/40">
             <Image
               src="/projects/armity-duplex/cover.jpg"
               alt="ARMITY Estate Residential Duplex by DIZTINCT TOUCH HOME DESIGN"

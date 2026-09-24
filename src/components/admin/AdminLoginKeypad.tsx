@@ -139,7 +139,7 @@ export function AdminLoginKeypad() {
             variant="ghost"
             onClick={() => handleDigit(num.toString())}
             disabled={loading}
-            className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-xs cursor-pointer font-semibold"
+            className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center cursor-pointer font-semibold"
           >
             {num}
           </Button>
@@ -158,7 +158,7 @@ export function AdminLoginKeypad() {
           variant="ghost"
           onClick={() => handleDigit("0")}
           disabled={loading}
-          className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center backdrop-blur-sm shadow-xs cursor-pointer font-semibold"
+          className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center cursor-pointer font-semibold"
         >
           0
         </Button>

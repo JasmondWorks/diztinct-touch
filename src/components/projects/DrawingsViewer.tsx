@@ -85,7 +85,7 @@ export function DrawingsViewer({
             <div
               key={drawing.title}
               onClick={() => setActiveDrawing(drawing.url)}
-              className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card p-3 space-y-2 cursor-pointer hover:border-primary/40 transition-all shadow-xs"
+              className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card p-3 space-y-2 cursor-pointer hover:border-primary/40 transition-all"
             >
               <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg bg-muted/30">
                 <Image

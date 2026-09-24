@@ -23,7 +23,7 @@ export interface ProjectDecision {
 export interface ProjectGalleryImage {
   url: string;
   caption: string;
-  category: "exterior" | "interior" | "detail" | "drawing" | "axonometric";
+  category: "exterior" | "interior" | "detail" | "drawing" | "axonometric" | "construction";
   aspect?: "16/9" | "4/3" | "3/2" | "1/1";
 }
 
