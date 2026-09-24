@@ -43,13 +43,17 @@ export interface UpdateProjectDto extends Partial<CreateProjectDto> {
   id?: string;
 }
 
-export interface ProjectFilterDto {
+import { PaginationParams, PaginatedResult } from "@/types/pagination";
+
+export interface ProjectFilterDto extends PaginationParams {
   category?: ArchitecturalCategory | "All";
   status?: "completed" | "in-progress" | "all";
   search?: string;
   includeUnpublished?: boolean;
   featuredOnly?: boolean;
 }
+
+export type PaginatedProjectsDto = PaginatedResult<Project>;
 
 export interface ProjectSummaryDto {
   id: string;

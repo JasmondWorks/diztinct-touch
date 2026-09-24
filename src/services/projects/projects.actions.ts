@@ -1,7 +1,7 @@
 "use server";
 
 import { Project } from "./projects.types";
-import { CreateProjectDto, UpdateProjectDto, ProjectResponseDto } from "./projects.dtos";
+import { CreateProjectDto, UpdateProjectDto, ProjectResponseDto, ProjectFilterDto, PaginatedProjectsDto } from "./projects.dtos";
 import { ProjectsService } from "./projects.service";
 import { isAdminAuthenticated } from "@/lib/auth-session";
 import { revalidatePath } from "next/cache";
@@ -13,6 +13,12 @@ export async function getProjectsAction(
     typeof options === "boolean" ? options : !!options?.includeUnpublished;
 
   return await ProjectsService.getAll({ includeUnpublished });
+}
+
+export async function getPaginatedProjectsAction(
+  filter?: ProjectFilterDto
+): Promise<PaginatedProjectsDto> {
+  return await ProjectsService.getPaginated(filter);
 }
 
 export async function getProjectBySlugAction(slug: string): Promise<Project | null> {
