@@ -10,3 +10,4 @@ export * from "./textarea-field";
 export * from "./dialog";
 export * from "./modal";
 export * from "./skeleton";
+export * from "./empty-state";

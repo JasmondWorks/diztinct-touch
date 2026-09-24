@@ -18,6 +18,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Modal } from "@/components/ui/modal";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Building2 } from "lucide-react";
 
 export function ProjectsTable({ initialProjects }: { initialProjects: Project[] }) {
   const router = useRouter();
@@ -146,8 +148,23 @@ export function ProjectsTable({ initialProjects }: { initialProjects: Project[] 
             <tbody className="divide-y divide-border/60">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-muted-foreground">
-                    No projects found matching your criteria.
+                  <td colSpan={6} className="py-8 px-4">
+                    <EmptyState
+                      compact
+                      icon={Building2}
+                      title="No Projects Found"
+                      description={
+                        search
+                          ? `No projects matched "${search}". Try resetting your search or filters.`
+                          : "No projects match your current category or status filter."
+                      }
+                      actionLabel="Clear Filters"
+                      onAction={() => {
+                        setSearch("");
+                        setFilterType("all");
+                        setFilterStatus("all");
+                      }}
+                    />
                   </td>
                 </tr>
               ) : (

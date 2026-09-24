@@ -9,26 +9,16 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { EmptyState } from "@/components/ui/empty-state";
 
 const CATEGORIES: ("All" | ArchitecturalCategory)[] = [
   "All",
-  "Civic & Cultural",
   "Residential",
   "Commercial",
+  "Civic & Cultural",
   "Adaptive Reuse",
   "Urban & Masterplan",
   "Competitions",
-];
-
-const COMMON_TAGS = [
-  "2D Architectural Drawings",
-  "3D Visualization",
-  "Concrete Decking",
-  "Textured Brick",
-  "Cantilever Balcony",
-  "Revit (BIM)",
-  "AutoCAD",
-  "Construction Oversight",
 ];
 
 interface ProjectsGridProps {
@@ -41,6 +31,28 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
+  // Dynamically derive available service tags from active projects
+  const availableTags = useMemo(() => {
+    const set = new Set<string>();
+    projectsList.forEach((p) => {
+      if (Array.isArray(p.techStack)) {
+        p.techStack.forEach((t) => {
+          if (t && t.trim()) set.add(t.trim());
+        });
+      }
+    });
+
+    if (set.size === 0) {
+      return [
+        "Architectural Design",
+        "2D Working Drawings",
+        "3D Visualization",
+        "Construction Oversight",
+      ];
+    }
+    return Array.from(set);
+  }, [projectsList]);
+
   const filteredProjects = useMemo(() => {
     return projectsList.filter((project) => {
       // Category filter
@@ -48,9 +60,25 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
         return false;
       }
 
-      // Tag filter
-      if (selectedTag && !project.techStack.includes(selectedTag)) {
-        return false;
+      // Tag filter with flexible, normalized matching
+      if (selectedTag) {
+        const normSelected = selectedTag.toLowerCase().trim();
+        const hasTag = project.techStack?.some((t) => {
+          const normT = t.toLowerCase().trim();
+          return (
+            normT === normSelected ||
+            normT.includes(normSelected) ||
+            normSelected.includes(normT) ||
+            (normSelected.includes("2d") && normT.includes("2d")) ||
+            (normSelected.includes("3d") && normT.includes("3d")) ||
+            (normSelected.includes("oversight") && normT.includes("oversight")) ||
+            (normSelected.includes("design") && normT.includes("design"))
+          );
+        });
+
+        if (!hasTag) {
+          return false;
+        }
       }
 
       // Search Query filter (matches title, location, category, techStack, etc.)
@@ -67,7 +95,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
 
       return true;
     });
-  }, [selectedCategory, selectedTag, searchQuery]);
+  }, [selectedCategory, selectedTag, searchQuery, projectsList]);
 
   return (
     <section id="projects" className="relative scroll-mt-24 py-20 sm:py-28">
@@ -161,23 +189,47 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
             })}
           </div>
 
-          {/* Materials & Systems Tag Pills */}
+          {/* Scope & Architectural Services Filter */}
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
             <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mr-1 flex items-center gap-1">
               <SlidersHorizontal className="h-3 w-3" />
-              Materials &amp; Systems:
+              Scope &amp; Services:
             </span>
-            {COMMON_TAGS.map((tag) => {
+            {availableTags.map((tag) => {
               const isSelected = selectedTag === tag;
+              const tagCount = projectsList.filter((p) => {
+                const normSelected = tag.toLowerCase().trim();
+                return p.techStack?.some((t) => {
+                  const normT = t.toLowerCase().trim();
+                  return (
+                    normT === normSelected ||
+                    normT.includes(normSelected) ||
+                    normSelected.includes(normT) ||
+                    (normSelected.includes("2d") && normT.includes("2d")) ||
+                    (normSelected.includes("3d") && normT.includes("3d")) ||
+                    (normSelected.includes("oversight") && normT.includes("oversight")) ||
+                    (normSelected.includes("design") && normT.includes("design"))
+                  );
+                });
+              }).length;
+
               return (
                 <Button
                   key={tag}
                   variant={isSelected ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedTag(isSelected ? null : tag)}
-                  className="h-6 px-2.5 text-[11px] font-medium rounded-full"
+                  className="h-6 px-2.5 text-[11px] font-medium rounded-full gap-1.5"
                 >
-                  {tag}
+                  <span>{tag}</span>
+                  <span
+                    className={cn(
+                      "text-[9px] font-mono",
+                      isSelected ? "text-primary-foreground/80 font-bold" : "text-muted-foreground"
+                    )}
+                  >
+                    ({tagCount})
+                  </span>
                 </Button>
               );
             })}
@@ -204,24 +256,25 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border py-20 text-center">
-            <p className="text-base font-semibold text-foreground-heading">
-              No architectural projects match the selected parameters.
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Try selecting a different typology category or resetting your search query.
-            </p>
-            <Button
-              onClick={() => {
-                setSelectedCategory("All");
-                setSelectedTag(null);
-                setSearchQuery("");
-              }}
-              className="mt-4"
-            >
-              Clear All Filters
-            </Button>
-          </div>
+          <EmptyState
+            icon={Building2}
+            title="No Architectural Projects Found"
+            description={
+              searchQuery
+                ? `No projects matched your search for "${searchQuery}". Try a different location, design style, or clearing active filters.`
+                : `No projects found for the selected ${
+                    selectedTag ? `service "${selectedTag}"` : ""
+                  }${selectedTag && selectedCategory !== "All" ? " and " : ""}${
+                    selectedCategory !== "All" ? `category "${selectedCategory}"` : ""
+                  }.`
+            }
+            actionLabel="Clear All Filters"
+            onAction={() => {
+              setSelectedCategory("All");
+              setSelectedTag(null);
+              setSearchQuery("");
+            }}
+          />
         )}
       </div>
     </section>

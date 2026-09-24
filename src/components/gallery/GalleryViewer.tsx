@@ -3,10 +3,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ZoomIn, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ZoomIn, ArrowUpRight, ChevronLeft, ChevronRight, Camera } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Modal } from "@/components/ui/modal";
+import { EmptyState } from "@/components/ui/empty-state";
 
 export interface GalleryPlate {
   url: string;
@@ -16,6 +18,14 @@ export interface GalleryPlate {
   projectSlug: string;
   projectLocation?: string;
 }
+
+const CATEGORIES = [
+  { id: "all", label: "All Photos" },
+  { id: "exterior", label: "Exterior" },
+  { id: "construction", label: "Construction Progress" },
+  { id: "interior", label: "Interior Spaces" },
+  { id: "detail", label: "Design Details" },
+];
 
 export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -67,35 +77,43 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
       {/* Filter Controls */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap gap-2">
-          {[
-            { id: "all", label: "All Photos" },
-            { id: "exterior", label: "Exterior" },
-            { id: "construction", label: "Construction Progress" },
-            { id: "interior", label: "Interior Spaces" },
-            { id: "detail", label: "Design Details" },
-          ].map((cat) => {
+          {CATEGORIES.map((cat) => {
+            const count =
+              cat.id === "all"
+                ? initialPlates.length
+                : initialPlates.filter((p) => p.category === cat.id).length;
             const isSelected = selectedCategory === cat.id;
+
             return (
               <Button
                 key={cat.id}
                 variant={isSelected ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory(cat.id)}
-                className="h-8 font-mono text-xs font-semibold"
+                className="h-8 font-mono text-xs font-semibold gap-1.5"
               >
-                {cat.label}
+                <span>{cat.label}</span>
+                <span
+                  className={cn(
+                    "text-[10px] font-mono",
+                    isSelected ? "text-primary-foreground/80 font-bold" : "text-muted-foreground"
+                  )}
+                >
+                  ({count})
+                </span>
               </Button>
             );
           })}
         </div>
 
         <div className="text-xs font-mono text-muted-foreground">
-          Displaying {filteredPlates.length} photos
+          Displaying {filteredPlates.length} of {initialPlates.length} photos
         </div>
       </div>
 
-      {/* Picture-Heavy Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Picture-Heavy Gallery Grid or Empty State */}
+      {filteredPlates.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredPlates.map((plate, index) => (
           <div
             key={plate.url + index}
@@ -149,7 +167,18 @@ export function GalleryViewer({ initialPlates }: { initialPlates: GalleryPlate[]
             </div>
           </div>
         ))}
-      </div>
+        </div>
+      ) : (
+        <EmptyState
+          icon={Camera}
+          title="No Visual Assets Found"
+          description={`There are currently no photographs tagged under "${
+            CATEGORIES.find((c) => c.id === selectedCategory)?.label ?? selectedCategory
+          }". Our visual archive is regularly updated as project construction progresses.`}
+          actionLabel="View All Photos"
+          onAction={() => setSelectedCategory("all")}
+        />
+      )}
 
       {/* Lightbox Reusable Modal */}
       <Modal

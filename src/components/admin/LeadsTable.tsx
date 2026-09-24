@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Modal } from "@/components/ui/modal";
+import { EmptyState } from "@/components/ui/empty-state";
 
 export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
   const router = useRouter();
@@ -162,8 +163,22 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
             <tbody className="divide-y divide-border/60">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-muted-foreground">
-                    No client inquiries found matching your filter.
+                  <td colSpan={6} className="py-8 px-4">
+                    <EmptyState
+                      compact
+                      icon={Mail}
+                      title="No Inquiries Found"
+                      description={
+                        search
+                          ? `No client inquiries match "${search}". Try resetting your search or status filter.`
+                          : "No prospective client intake records match your active filter."
+                      }
+                      actionLabel="Clear Filters"
+                      onAction={() => {
+                        setSearch("");
+                        setFilterStatus("all");
+                      }}
+                    />
                   </td>
                 </tr>
               ) : (
