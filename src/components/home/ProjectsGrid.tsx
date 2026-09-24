@@ -206,7 +206,7 @@ export function ProjectsGrid({ initialProjects }: ProjectsGridProps = {}) {
         ) : (
           <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border py-20 text-center">
             <p className="text-base font-semibold text-foreground-heading">
-              No architectural commissions match the selected parameters.
+              No architectural projects match the selected parameters.
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
               Try selecting a different typology category or resetting your search query.

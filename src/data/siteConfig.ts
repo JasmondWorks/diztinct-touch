@@ -70,7 +70,7 @@ export const siteConfig: SiteConfig = {
   phoneRaw: "09035011649",
   whatsappUrl: "https://wa.me/2349035011649",
   instagramUrl: "https://www.instagram.com/diztincttouchhomedesign?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
-  status: "Available for Architectural Design, 3D Visualization & Construction Commissions",
+  status: "Available for Architectural Design, 3D Visualization & Building Projects",
   services: [
     "Architectural Concept & Spatial Design",
     "2D Working Drawings & Approval Documentation",

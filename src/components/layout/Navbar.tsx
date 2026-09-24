@@ -64,7 +64,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Right Actions: Commission Status & Theme Toggle */}
+        {/* Right Actions: Project CTA & Theme Toggle */}
         <div className="hidden sm:flex items-center gap-3">
           <Button asChild size="sm" className="gap-1.5 h-8 text-xs font-semibold">
             <Link href="/contact">

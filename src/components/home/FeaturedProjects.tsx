@@ -30,7 +30,7 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps = {}
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-primary">
               <Star className="h-3.5 w-3.5 fill-primary text-primary" />
-              <span>Flagship Commissions</span>
+              <span>Featured Projects</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground-heading">
               Featured Case Studies

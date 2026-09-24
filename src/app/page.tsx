@@ -56,7 +56,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <Badge variant="outline" className="gap-2 px-4 py-1 text-xs font-mono font-semibold text-primary border-primary/20 bg-primary/5">
             <Compass className="h-3.5 w-3.5" />
-            <span>Open for Commissions</span>
+            <span>Available for New Projects</span>
           </Badge>
 
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground-heading max-w-2xl mx-auto">
@@ -70,7 +70,7 @@ export default async function HomePage() {
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
             <Button asChild size="lg" className="rounded-xl gap-2">
               <Link href="/contact">
-                <span>Initiate Project Consultation</span>
+                <span>Book Design Consultation</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

@@ -39,7 +39,7 @@ export default function ContactPage() {
             Start a Project with Mayowa
           </h1>
           <p className="text-base text-muted-foreground leading-relaxed">
-            We welcome residential, commercial, and private commissions across Nigeria and from international diaspora clients. Mayowa and our team are available to discuss site feasibility, 2D working drawings, 3D visualization, and on-site construction oversight.
+            We welcome residential, commercial, and private building projects across Nigeria and from international diaspora clients. Mayowa and our team are available to discuss site feasibility, 2D working drawings, 3D visualization, and on-site construction oversight.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export default function ContactPage() {
                 Current Studio Capacity
               </Badge>
               <p className="text-xs text-muted-foreground leading-relaxed pt-1">
-                We are actively onboarding new residential duplexes, private residences, and commercial commissions. Initial design reviews and 3D concept consultations are scheduled within 24-48 hours.
+                We are actively onboarding new residential duplexes, private residences, and commercial developments. Initial design reviews and 3D concept consultations are scheduled within 24-48 hours.
               </p>
             </Card>
           </div>

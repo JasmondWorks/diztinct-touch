@@ -188,7 +188,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             <Button asChild variant="outline">
               <Link href="/contact">
-                <span>Inquire Commission</span>
+                <span>Request Project Consultation</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </Button>
@@ -379,7 +379,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
                 {project.client && (
                   <div className="flex items-center justify-between border-b border-border/60 pb-2">
-                    <span className="text-muted-foreground">Commission Client:</span>
+                    <span className="text-muted-foreground">Client:</span>
                     <span className="font-semibold text-foreground text-right">{project.client}</span>
                   </div>
                 )}
@@ -461,7 +461,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <div className="pt-4 border-t border-border">
                 <Button asChild variant="default" className="w-full">
                   <Link href="/contact">
-                    <span>Inquire Regarding Similar Site</span>
+                    <span>Discuss Your Building Project</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </Button>
