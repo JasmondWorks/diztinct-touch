@@ -9,3 +9,4 @@ export * from "./textarea";
 export * from "./textarea-field";
 export * from "./dialog";
 export * from "./modal";
+export * from "./skeleton";
