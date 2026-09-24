@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { siteConfig } from "@/data/siteConfig";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X, ArrowUpRight, Compass } from "lucide-react";
@@ -36,16 +37,23 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Studio Monogram & Brand */}
+        {/* Studio Brand Logo & Title */}
         <Link href="/" className="group flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-sm shadow-md transition-transform duration-300 group-hover:scale-105">
-            {siteConfig.monogram}
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-brand-navy transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src={siteConfig.logo}
+              alt={siteConfig.studioName}
+              fill
+              sizes="40px"
+              className="object-cover"
+              priority
+            />
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-sm tracking-tight text-foreground-heading transition-colors group-hover:text-primary">
               {siteConfig.studioName}
             </span>
-            <span className="text-[10px] uppercase font-mono tracking-widest text-muted-foreground">
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
               Architectural Design &amp; 3D Visualization
             </span>
           </div>

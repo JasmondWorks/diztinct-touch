@@ -42,10 +42,10 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
           {...props}
         />
         {helperText && !errorMessage && (
-          <p className="text-[11px] font-mono text-[#666]">{helperText}</p>
+          <p className="text-xs text-muted-foreground">{helperText}</p>
         )}
         {errorMessage && (
-          <p className="text-[11px] font-mono text-red-400 animate-fadeIn">
+          <p className="text-xs text-destructive animate-fadeIn">
             {errorMessage}
           </p>
         )}

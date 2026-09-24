@@ -6,6 +6,9 @@ export interface SiteConfig {
   registrationNumber?: string;
   accreditations?: string[];
   monogram: string;
+  logo: string;
+  logoOnly: string;
+  ogImage: string;
   headline: string;
   subheadline: string;
   bio: string;
@@ -53,6 +56,9 @@ export const siteConfig: SiteConfig = {
     "Construction-Stage Site Oversight",
   ],
   monogram: "DT",
+  logo: "/brand-logo.jpg",
+  logoOnly: "/brand-logo-only.png",
+  ogImage: "/og-image.jpg",
   headline: "Remarkable design, long lasting.",
   subheadline:
     "Led by Mayowa, DIZTINCT TOUCH HOME DESIGNS crafts beautiful, functional, and comfortable contemporary homes—guiding your project from 2D building plans and realistic 3D visuals to active on-site construction oversight.",

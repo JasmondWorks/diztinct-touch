@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
-import { logoutAdminAction } from "@/actions/auth";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   LayoutDashboard,
@@ -23,9 +23,12 @@ import {
   ChevronRight,
   PanelLeftClose,
   PanelLeftOpen,
+  Lock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAdminAuth } from "./AdminAuthProvider";
+import { ConfirmationModal } from "@/components/ui/confirmation-modal";
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -51,10 +54,23 @@ function getActiveNavHref(pathname: string, navItems: typeof NAV_ITEMS): string 
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { logout } = useAdminAuth();
   const activeNavHref = getActiveNavHref(pathname, NAV_ITEMS);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopCollapsed, setDesktopCollapsed] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isLockModalOpen, setIsLockModalOpen] = useState(false);
+  const [isLocking, setIsLocking] = useState(false);
+
+  const handleConfirmLock = async () => {
+    setIsLocking(true);
+    try {
+      await logout();
+    } finally {
+      setIsLocking(false);
+      setIsLockModalOpen(false);
+    }
+  };
 
   // Load saved desktop collapse state
   useEffect(() => {
@@ -107,15 +123,21 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             )}
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-sm shadow-md">
-                {siteConfig.monogram}
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-brand-navy">
+                <Image
+                  src={siteConfig.logo}
+                  alt={siteConfig.studioName}
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
               </div>
               {!desktopCollapsed && (
                 <div className="flex flex-col min-w-0">
                   <span className="font-bold text-sm tracking-tight text-foreground-heading truncate">
                     Studio Admin
                   </span>
-                  <span className="text-[10px] uppercase font-mono tracking-wider text-primary flex items-center gap-1">
+                  <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1">
                     <ShieldCheck className="h-3 w-3 shrink-0" />
                     <span className="truncate">Mayowa • Verified</span>
                   </span>
@@ -212,20 +234,19 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </Link>
 
           {/* Logout button */}
-          <form action={logoutAdminAction}>
-            <Button
-              type="submit"
-              variant="ghost"
-              title={desktopCollapsed ? "Lock Admin" : undefined}
-              className={cn(
-                "w-full text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive transition-all",
-                desktopCollapsed ? "justify-center p-2.5 h-10" : "justify-start gap-2.5 px-3.5 py-2"
-              )}
-            >
-              <LogOut className="h-4 w-4 shrink-0" />
-              {!desktopCollapsed && <span>Lock Admin</span>}
-            </Button>
-          </form>
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => setIsLockModalOpen(true)}
+            title={desktopCollapsed ? "Lock Admin" : undefined}
+            className={cn(
+              "w-full text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive transition-all",
+              desktopCollapsed ? "justify-center p-2.5 h-10" : "justify-start gap-2.5 px-3.5 py-2"
+            )}
+          >
+            <LogOut className="h-4 w-4 shrink-0" />
+            {!desktopCollapsed && <span>Lock Admin</span>}
+          </Button>
         </div>
       </aside>
 
@@ -246,14 +267,20 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               {/* Header with Close Button */}
               <div className="flex items-center justify-between pb-5 border-b border-border/80">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-sm shadow-md">
-                    {siteConfig.monogram}
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-brand-navy">
+                    <Image
+                      src={siteConfig.logo}
+                      alt={siteConfig.studioName}
+                      fill
+                      sizes="40px"
+                      className="object-cover"
+                    />
                   </div>
                   <div className="flex flex-col">
                     <span className="font-bold text-sm tracking-tight text-foreground-heading">
                       Studio Admin
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-primary flex items-center gap-1">
+                    <span className="text-[10px] uppercase tracking-wider text-primary flex items-center gap-1">
                       <ShieldCheck className="h-3 w-3" />
                       Mayowa • Verified
                     </span>
@@ -315,16 +342,18 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 <span>View Public Site</span>
               </Link>
 
-              <form action={logoutAdminAction}>
-                <Button
-                  type="submit"
-                  variant="ghost"
-                  className="w-full justify-start gap-2.5 px-4 py-2.5 text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive"
-                >
-                  <LogOut className="h-4 w-4" />
-                  <span>Lock Admin</span>
-                </Button>
-              </form>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setIsLockModalOpen(true);
+                }}
+                className="w-full justify-start gap-2.5 px-4 py-2.5 text-xs font-medium text-destructive hover:bg-destructive/10 hover:text-destructive"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Lock Admin</span>
+              </Button>
             </div>
           </div>
         </div>
@@ -352,8 +381,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
             {/* Mobile Brand indicator */}
             <div className="md:hidden flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-xs shadow-xs">
-                {siteConfig.monogram}
+              <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-lg bg-brand-navy">
+                <Image
+                  src={siteConfig.logo}
+                  alt={siteConfig.studioName}
+                  fill
+                  sizes="28px"
+                  className="object-cover"
+                />
               </div>
               <span className="font-bold text-xs tracking-tight text-foreground-heading truncate">
                 Admin
@@ -362,11 +397,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
             {/* Desktop breadcrumb */}
             <div className="hidden md:flex items-center gap-3">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 Management Portal
               </span>
               <span className="text-xs text-border">•</span>
-              <span className="text-xs font-mono text-primary font-medium">
+              <span className="text-xs text-primary font-medium">
                 Lead Architect: Mayowa
               </span>
             </div>
@@ -381,7 +416,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors inline-flex flex-row items-center gap-1.5 border border-border px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-card/40 whitespace-nowrap shrink-0"
+              className="text-xs text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors inline-flex flex-row items-center gap-1.5 border border-border px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-card/40 whitespace-nowrap shrink-0"
               title="View Public Portfolio"
             >
               <span className="hidden sm:inline whitespace-nowrap">Public Site</span>
@@ -389,7 +424,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </Link>
 
             {/* Create new project button */}
-            <Button asChild size="sm" className="font-mono text-xs h-8 px-3 shrink-0 whitespace-nowrap">
+            <Button asChild size="sm" className="text-xs h-8 px-3 shrink-0 whitespace-nowrap">
               <Link
                 href="/admin/projects/new"
                 className="inline-flex flex-row items-center gap-1.5 whitespace-nowrap shrink-0"
@@ -406,6 +441,20 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
+
+      {/* Lock Admin Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={isLockModalOpen}
+        setIsOpen={setIsLockModalOpen}
+        title="Lock Administrative Console"
+        subtitle="Are you sure you want to end your administrative session? You will need your security PIN to regain access."
+        icon={Lock}
+        variant="warning"
+        confirmLabel={isLocking ? "Locking..." : "Lock Console"}
+        cancelLabel="Stay Signed In"
+        isLoading={isLocking}
+        onConfirm={handleConfirmLock}
+      />
     </div>
   );
 }

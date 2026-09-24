@@ -30,7 +30,7 @@ export default function NotFound() {
         <div className="flex justify-center">
           <Badge
             variant="outline"
-            className="gap-2 px-3.5 py-1 text-xs font-mono border-primary/30 bg-primary/5 text-primary"
+            className="gap-2 px-3.5 py-1 text-xs border-primary/30 bg-primary/5 text-primary"
           >
             <Compass className="h-3.5 w-3.5" />
             <span>COORDINATE ERROR • ELEVATION 404m</span>
@@ -39,7 +39,7 @@ export default function NotFound() {
 
         {/* Large Architectural 404 Display */}
         <div className="space-y-3">
-          <div className="font-mono text-7xl sm:text-9xl font-black tracking-tighter text-foreground-heading select-none opacity-90">
+          <div className="text-7xl sm:text-9xl font-black tracking-tighter text-foreground-heading select-none opacity-90">
             404
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
@@ -53,21 +53,21 @@ export default function NotFound() {
 
         {/* Primary Recovery Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <Button asChild size="lg" className="gap-2 font-mono text-xs">
+          <Button asChild size="lg" className="gap-2 text-xs">
             <Link href="/">
               <ArrowLeft className="h-4 w-4" />
               <span>Return to Studio Homepage</span>
             </Link>
           </Button>
 
-          <Button asChild variant="outline" size="lg" className="gap-2 font-mono text-xs">
+          <Button asChild variant="outline" size="lg" className="gap-2 text-xs">
             <Link href="/#projects">
               <Building2 className="h-4 w-4 text-primary" />
               <span>Explore Verified Projects</span>
             </Link>
           </Button>
 
-          <Button asChild variant="ghost" size="lg" className="gap-2 font-mono text-xs text-muted-foreground hover:text-foreground">
+          <Button asChild variant="ghost" size="lg" className="gap-2 text-xs text-muted-foreground hover:text-foreground">
             <Link href="/gallery">
               <Camera className="h-4 w-4" />
               <span>Photo Gallery</span>
@@ -77,7 +77,7 @@ export default function NotFound() {
 
         {/* Architectural Quick-Jump Recovery Cards */}
         <div className="pt-6 border-t border-border/80 text-left space-y-3">
-          <div className="flex items-center justify-between text-xs font-mono text-muted-foreground uppercase tracking-wider">
+          <div className="flex items-center justify-between text-xs text-muted-foreground uppercase tracking-wider">
             <span>Verified Studio Duplexes</span>
             <span>Direct Fast-Track</span>
           </div>
@@ -88,10 +88,10 @@ export default function NotFound() {
               className="group p-4 rounded-2xl border border-border/80 bg-card/60 hover:border-primary/50 transition-all block"
             >
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-mono text-primary font-semibold">
+                <span className="text-xs text-primary font-semibold">
                   DT-ARM-01
                 </span>
-                <Badge variant="outline" className="text-[10px] uppercase font-mono border-amber-500/30 text-amber-400">
+                <Badge variant="warning">
                   In Progress
                 </Badge>
               </div>
@@ -109,10 +109,10 @@ export default function NotFound() {
               className="group p-4 rounded-2xl border border-border/80 bg-card/60 hover:border-primary/50 transition-all block"
             >
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-mono text-primary font-semibold">
+                <span className="text-xs text-primary font-semibold">
                   DT-DPX-02
                 </span>
-                <Badge variant="outline" className="text-[10px] uppercase font-mono border-emerald-500/30 text-emerald-400">
+                <Badge variant="success">
                   Completed
                 </Badge>
               </div>
@@ -129,7 +129,7 @@ export default function NotFound() {
 
         {/* Direct Architectural Consultation Link */}
         <div className="pt-2">
-          <p className="text-xs font-mono text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Looking for bespoke architectural consultation or 3D visualization?{" "}
             <Link
               href="/contact"

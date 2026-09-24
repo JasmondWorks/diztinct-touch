@@ -5,6 +5,7 @@ import {
   UpdateLeadStatusDto,
   LeadFilterDto,
   LeadStatsDto,
+  PaginatedLeadsDto,
 } from "./leads.dtos";
 
 function prismaToLead(r: any): Lead {
@@ -76,6 +77,53 @@ export class LeadsService {
     });
 
     return rows.map(prismaToLead);
+  }
+
+  /**
+   * Fetch backend-paginated leads matching filter criteria
+   */
+  static async getPaginated(filter?: LeadFilterDto): Promise<PaginatedLeadsDto> {
+    const page = Math.max(1, filter?.page ?? 1);
+    const pageSize = Math.max(1, filter?.pageSize ?? 10);
+    const where: any = {};
+
+    if (filter?.status && filter.status !== "all") {
+      where.status = filter.status;
+    }
+
+    if (filter?.search) {
+      const q = filter.search.toLowerCase();
+      where.OR = [
+        { name: { contains: q, mode: "insensitive" } },
+        { email: { contains: q, mode: "insensitive" } },
+        { message: { contains: q, mode: "insensitive" } },
+        { location: { contains: q, mode: "insensitive" } },
+      ];
+    }
+
+    const filterWhere = Object.keys(where).length > 0 ? where : undefined;
+
+    const [totalCount, rows] = await Promise.all([
+      prisma.lead.count({ where: filterWhere }),
+      prisma.lead.findMany({
+        where: filterWhere,
+        orderBy: { createdAt: "desc" },
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+      }),
+    ]);
+
+    const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+
+    return {
+      data: rows.map(prismaToLead),
+      totalCount,
+      page,
+      pageSize,
+      totalPages,
+      hasNextPage: page < totalPages,
+      hasPreviousPage: page > 1,
+    };
   }
 
   /**

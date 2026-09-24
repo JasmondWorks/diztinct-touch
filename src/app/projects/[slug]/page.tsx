@@ -56,8 +56,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ],
     openGraph: {
       title: `${project.title} — DIZTINCT TOUCH HOME DESIGNS`,
+      images: project.coverImage ? [{ url: project.coverImage }] : [{ url: "/og-image.jpg" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — DIZTINCT TOUCH HOME DESIGNS`,
       description: project.shortDescription,
-      images: project.coverImage ? [{ url: project.coverImage }] : [],
+      images: [project.coverImage || "/og-image.jpg"],
     },
   };
 }
@@ -101,7 +106,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <div className="min-h-screen pt-24 pb-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center gap-2 text-xs font-mono text-muted-foreground pt-4">
+        <nav className="flex items-center gap-2 text-xs text-muted-foreground pt-4">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
           </Link>
@@ -118,11 +123,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         {/* Project Hero Header */}
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-3">
-            <Badge variant="gold" className="text-xs py-1 px-3">
+            <Badge variant="primary" className="text-xs py-1 px-3">
               {project.category}
             </Badge>
             {project.featured && (
-              <Badge variant="warning" className="text-xs py-1 px-3">
+              <Badge variant="gold" className="text-xs py-1 px-3">
                 Featured Project
               </Badge>
             )}
@@ -137,13 +142,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </Badge>
             )}
             {project.location && (
-              <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <MapPin className="h-3.5 w-3.5 text-primary" />
                 {project.location}
               </span>
             )}
             {project.yearCompleted && (
-              <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Calendar className="h-3.5 w-3.5 text-primary" />
                 {project.yearCompleted}
               </span>
@@ -211,7 +216,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4 text-white">
             {(project.location || project.yearCompleted) && (
               <div className="space-y-1">
-                <span className="font-mono text-xs uppercase tracking-widest text-primary font-bold">
+                <span className="text-xs uppercase tracking-widest text-primary font-bold">
                   Exterior View
                 </span>
                 <p className="text-xs sm:text-sm font-medium drop-shadow-md">
@@ -232,12 +237,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             <div className="flex items-center gap-3">
               {project.gfa && (
-                <Badge variant="outline" className="bg-black/60 backdrop-blur-md border-white/20 text-white font-mono text-xs">
+                <Badge variant="outline" className="bg-black/60 backdrop-blur-md border-white/20 text-white text-xs">
                   GFA: {project.gfa}
                 </Badge>
               )}
               {project.budget && (
-                <Badge variant="outline" className="bg-black/60 backdrop-blur-md border-white/20 text-white font-mono text-xs">
+                <Badge variant="outline" className="bg-black/60 backdrop-blur-md border-white/20 text-white text-xs">
                   Budget: {project.budget}
                 </Badge>
               )}
@@ -277,7 +282,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     <div className="space-y-6 pt-4">
                       {project.fullCaseStudy.contextAndChallenge && (
                         <div className="space-y-2">
-                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading ">
                             Context &amp; Site Challenges
                           </h4>
                           <p className="text-sm">
@@ -288,7 +293,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                       {project.fullCaseStudy.designConcept && (
                         <div className="space-y-2">
-                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading ">
                             Computational Concept &amp; Geometry
                           </h4>
                           <p className="text-sm">
@@ -299,7 +304,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                       {project.fullCaseStudy.materialityAndStructure && (
                         <div className="space-y-2">
-                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading ">
                             Materiality &amp; Structural Mechanics
                           </h4>
                           <p className="text-sm">
@@ -310,7 +315,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                       {project.fullCaseStudy.environmentalPerformance && (
                         <div className="space-y-2">
-                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading font-mono">
+                          <h4 className="text-sm font-bold uppercase tracking-wider text-foreground-heading ">
                             Environmental &amp; Passive Strategies
                           </h4>
                           <p className="text-sm">
@@ -368,11 +373,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <div className="lg:col-span-4 space-y-6 sticky top-24">
             {/* Project Specifications Card */}
             <Card className="p-6 space-y-5">
-              <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-primary border-b border-border/80 pb-3">
                 Project Overview &amp; Specifications
               </h3>
 
-              <div className="space-y-3 text-xs font-mono">
+              <div className="space-y-3 text-xs ">
                 <div className="flex items-center justify-between border-b border-border/60 pb-2">
                   <span className="text-muted-foreground">Architect &amp; Designer:</span>
                   <span className="font-semibold text-primary">DIZTINCT TOUCH</span>
@@ -440,7 +445,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               {/* Material and Software Systems / Scope */}
               {project.techStack && project.techStack.length > 0 && (
                 <div className="pt-2 space-y-2">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+                  <span className="text-[11px] uppercase tracking-wider text-muted-foreground">
                     Project Scope &amp; Architectural Input
                   </span>
                   <div className="flex flex-wrap gap-1.5">
@@ -471,7 +476,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {/* Related Typology Works */}
             {relatedProjects && relatedProjects.length > 0 && (
               <Card className="p-6 space-y-4">
-                <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-foreground-heading">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-foreground-heading">
                   Related Architectural Works
                 </h4>
                 <div className="space-y-3">
@@ -490,13 +495,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                         />
                       </div>
                       <div className="space-y-0.5 min-w-0">
-                        <span className="text-[10px] font-mono text-primary uppercase">
+                        <span className="text-[10px] text-primary uppercase">
                           {rel.category}
                         </span>
                         <h5 className="text-xs font-bold text-foreground-heading truncate group-hover:text-primary transition-colors">
                           {rel.title}
                         </h5>
-                        <span className="text-[10px] font-mono text-muted-foreground">
+                        <span className="text-[10px] text-muted-foreground">
                           {rel.location}
                         </span>
                       </div>
@@ -518,7 +523,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <ChevronLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
                 Previous Project
               </span>
               <p className="text-xs sm:text-sm font-bold text-foreground-heading group-hover:text-primary transition-colors line-clamp-1">
@@ -532,7 +537,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             className="group flex items-center gap-3 text-right"
           >
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
                 Next Project
               </span>
               <p className="text-xs sm:text-sm font-bold text-foreground-heading group-hover:text-primary transition-colors line-clamp-1">

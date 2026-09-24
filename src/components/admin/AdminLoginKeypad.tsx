@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { verifyPinAction } from "@/actions/auth";
 import { tokenStorage } from "@/lib/tokenStorage";
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/data/siteConfig";
 import { ShieldCheck, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -93,8 +94,15 @@ export function AdminLoginKeypad() {
       {/* Header */}
       <div className="text-center mb-8">
         <Link href="/" className="inline-block group mb-4">
-          <div className="flex h-12 w-12 mx-auto items-center justify-center rounded-2xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-base shadow-md group-hover:scale-105 transition-transform">
-            {siteConfig.monogram}
+          <div className="relative h-16 w-16 mx-auto overflow-hidden rounded-2xl bg-brand-navy transition-transform group-hover:scale-105">
+            <Image
+              src={siteConfig.logo}
+              alt={siteConfig.studioName}
+              fill
+              sizes="64px"
+              className="object-cover"
+              priority
+            />
           </div>
         </Link>
         <Badge variant="outline" className="gap-1.5 border-primary/20 bg-primary/5 text-primary mb-3">
@@ -104,7 +112,7 @@ export function AdminLoginKeypad() {
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground-heading">
           Studio Access
         </h1>
-        <p className="text-xs text-muted-foreground mt-1 font-mono tracking-wider">
+        <p className="text-xs text-muted-foreground mt-1 tracking-wider">
           ENTER 4-DIGIT SECURITY PIN
         </p>
       </div>
@@ -125,7 +133,7 @@ export function AdminLoginKeypad() {
 
       {/* Error message */}
       {error && (
-        <div className="mb-6 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs text-center font-mono animate-fadeIn">
+        <div className="mb-6 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs text-center animate-fadeIn">
           {error}
         </div>
       )}
@@ -139,7 +147,7 @@ export function AdminLoginKeypad() {
             variant="ghost"
             onClick={() => handleDigit(num.toString())}
             disabled={loading}
-            className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center cursor-pointer font-semibold"
+            className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center cursor-pointer font-semibold"
           >
             {num}
           </Button>
@@ -149,7 +157,7 @@ export function AdminLoginKeypad() {
           variant="ghost"
           onClick={handleClear}
           disabled={loading}
-          className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+          className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
         >
           Clear
         </Button>
@@ -158,7 +166,7 @@ export function AdminLoginKeypad() {
           variant="ghost"
           onClick={() => handleDigit("0")}
           disabled={loading}
-          className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl font-mono text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center cursor-pointer font-semibold"
+          className="h-16 rounded-2xl bg-card/60 hover:bg-primary/10 border border-border/80 hover:border-primary/40 text-xl text-foreground hover:text-primary active:scale-95 transition-all flex items-center justify-center cursor-pointer font-semibold"
         >
           0
         </Button>
@@ -167,7 +175,7 @@ export function AdminLoginKeypad() {
           variant="ghost"
           onClick={handleDelete}
           disabled={loading}
-          className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+          className="h-16 rounded-2xl bg-card/40 hover:bg-muted/60 border border-border/60 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground active:scale-95 transition-all flex items-center justify-center cursor-pointer"
         >
           Del
         </Button>
@@ -177,7 +185,7 @@ export function AdminLoginKeypad() {
       <div className="text-center">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors "
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Return to Public Portfolio</span>
