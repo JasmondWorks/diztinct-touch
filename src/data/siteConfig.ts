@@ -45,7 +45,7 @@ export const siteConfig: SiteConfig = {
   title: "Design Lead & Principal Architect",
   studioName: "DIZTINCT TOUCH HOME DESIGN",
   registeredBusinessName: "DIZTINCT TOUCH HOME DESIGN",
-  registrationNumber: "Registered Architecture & 3D Visualization Practice",
+  registrationNumber: "Registered Architecture & 3D Visualization Studio",
   accreditations: [
     "Architectural Design & Space Planning",
     "Photorealistic 3D Visualization",
@@ -56,7 +56,7 @@ export const siteConfig: SiteConfig = {
   headline: "Remarkable design, long lasting.",
   subheadline:
     "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN crafts functional, comfortable, and aesthetically appealing residential & commercial architecture—from 2D drawings and 3D visualization to active construction oversight.",
-  bio: "DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization practice founded and led by Mayowa. Guided by our foundational philosophy—'Remarkable design, long lasting'—we specialize in crafting homes with careful consideration given to the building's form, proportions, spatial arrangement, and external appearance. From precision 2D working drawings and photorealistic 3D renders to on-site construction supervision (as seen in our flagship ARMITY Estate duplex), we bridge the gap between creative design and lasting structural reality.",
+  bio: "DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization studio founded and led by Mayowa. Guided by our foundational philosophy—'Remarkable design, long lasting'—we specialize in crafting homes with careful consideration given to the building's form, proportions, spatial arrangement, and external appearance. From precision 2D working drawings and photorealistic 3D renders to on-site construction supervision (as seen in our flagship ARMITY Estate duplex), we bridge the gap between creative design and lasting structural reality.",
   coordinates: "New Gbagi Road, Ibadan • Mosan Ipaja, Lagos",
   location: "Ibadan (Head Office) & Lagos, Nigeria",
   ibadanOffice: "Suite 14, Lamlat House, Opp. Bovas Filling Station, New Gbagi Road, Ibadan, Oyo State",

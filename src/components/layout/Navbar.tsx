@@ -46,7 +46,7 @@ export function Navbar() {
               {siteConfig.studioName}
             </span>
             <span className="text-[10px] uppercase font-mono tracking-widest text-muted-foreground">
-              Architecture &amp; Design Practice
+              Architectural Design &amp; 3D Visualization
             </span>
           </div>
         </Link>

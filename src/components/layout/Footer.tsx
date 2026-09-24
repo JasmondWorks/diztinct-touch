@@ -89,7 +89,7 @@ export function Footer() {
                   href="/about"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  About Our Practice
+                  About Our Studio
                 </Link>
               </li>
               <li>
@@ -184,7 +184,7 @@ export function Footer() {
             </p>
             <Badge variant="outline" className="gap-2 text-[11px] py-1 px-2.5 font-normal">
               <Compass className="h-3.5 w-3.5 text-primary" />
-              <span>Registered Architectural Practice</span>
+              <span>Registered Architectural Studio</span>
             </Badge>
           </div>
           {siteConfig.accreditations && siteConfig.accreditations.length > 0 && (

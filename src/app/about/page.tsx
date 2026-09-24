@@ -21,9 +21,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "About Mayowa & DIZTINCT TOUCH HOME DESIGN — Registered Practice",
+  title: "About Mayowa & DIZTINCT TOUCH HOME DESIGN — Architectural Studio",
   description:
-    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization practice. Remarkable design, long lasting.",
+    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a registered contemporary architectural design and 3D visualization studio. Remarkable design, long lasting.",
 };
 
 export default function AboutPage() {
@@ -94,7 +94,7 @@ export default function AboutPage() {
         <div className="max-w-3xl space-y-4 border-b border-border/80 pb-8">
           <Badge variant="outline" className="gap-2 text-xs py-1 px-3">
             <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-            <span>Registered Architectural Practice • Design Lead: Mayowa</span>
+            <span>Registered Architectural Studio • Design Lead: Mayowa</span>
           </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground-heading leading-tight">
             Remarkable design, long lasting.
@@ -119,7 +119,7 @@ export default function AboutPage() {
                 Design Lead &amp; Principal • DIZTINCT TOUCH HOME DESIGN
               </p>
               <div className="pt-2 text-xs font-mono text-muted-foreground space-y-1">
-                <p>• Registered Architecture &amp; 3D Visualization Practice</p>
+                <p>• Registered Architecture &amp; 3D Visualization Studio</p>
                 <p>• Principal Office: New Gbagi Road, Ibadan, Oyo State</p>
                 <p>• Lagos Office: Mosan, Ipaja, Lagos</p>
                 <p>• Direct: +234 903 501 1649 • diztincttouch7@gmail.com</p>

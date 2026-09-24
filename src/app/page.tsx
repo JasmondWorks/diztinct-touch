@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 export const metadata: Metadata = {
   title: "DIZTINCT TOUCH HOME DESIGN | Contemporary Architecture & 3D Visualization",
   description:
-    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a premier registered architectural practice delivering bespoke contemporary residential duplexes, 3D visualization, working drawings, and on-site construction oversight across Nigeria.",
+    "Led by Mayowa, DIZTINCT TOUCH HOME DESIGN is a premier registered architectural studio delivering bespoke contemporary residential duplexes, 3D visualization, working drawings, and on-site construction oversight across Nigeria.",
   keywords: [
     "contemporary duplex design",
     "architect in Ibadan",
@@ -48,7 +48,7 @@ export default async function HomePage() {
       {/* Complete Projects Catalog with Typology & Tectonic Filters */}
       <ProjectsGrid initialProjects={projects} />
 
-      {/* Practice Ethos & Design Pillars */}
+      {/* Studio Ethos & Design Pillars */}
       <AboutSection />
 
       {/* Closing Call to Action Banner */}

@@ -53,7 +53,7 @@ export function AboutSection() {
             <div className="pt-2">
               <Button asChild variant="outline" className="gap-2 text-xs font-bold text-primary border-primary/30 bg-primary/10 hover:bg-primary hover:text-white">
                 <Link href="/about">
-                  <span>Learn More About Our Practice</span>
+                  <span>Learn More About Our Studio</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </Button>
