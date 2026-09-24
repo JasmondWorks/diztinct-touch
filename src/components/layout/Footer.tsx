@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { Button, Badge } from "@/components/ui";
@@ -30,17 +31,23 @@ export function Footer() {
     <footer className="border-t border-border bg-card/40 pt-16 pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4 lg:gap-12">
-          {/* Col 1: Studio Monogram & Identity */}
+          {/* Col 1: Studio Brand Identity */}
           <div className="space-y-4 md:col-span-2">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-[#9f1239] via-[#cc2b43] to-[#db4d24] text-white font-bold text-sm shadow-md">
-                {siteConfig.monogram}
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-brand-navy">
+                <Image
+                  src={siteConfig.logo}
+                  alt={siteConfig.studioName}
+                  fill
+                  sizes="48px"
+                  className="object-cover"
+                />
               </div>
               <div>
                 <h3 className="text-base font-bold tracking-tight text-foreground-heading">
                   {siteConfig.studioName}
                 </h3>
-                <p className="text-xs text-muted-foreground font-mono">
+                <p className="text-xs text-muted-foreground ">
                   {siteConfig.title}
                 </p>
               </div>
@@ -48,7 +55,7 @@ export function Footer() {
             <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
               {siteConfig.bio}
             </p>
-            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 text-primary" />
               <span>{siteConfig.coordinates}</span>
             </div>
@@ -135,7 +142,7 @@ export function Footer() {
                   {siteConfig.phone}
                 </a>
               </p>
-              <p className="text-[11px] text-muted-foreground/80 font-mono">
+              <p className="text-[11px] text-muted-foreground/80 ">
                 Hours: {siteConfig.workingHours}
               </p>
             </div>
@@ -169,7 +176,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col gap-3 border-t border-border/80 pt-6 text-xs text-muted-foreground font-mono">
+        <div className="mt-12 flex flex-col gap-3 border-t border-border/80 pt-6 text-xs text-muted-foreground ">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <p>
               <Link
