@@ -46,8 +46,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground-heading leading-[1.08]"
           >
-            Designing structures where{" "}
-            <span className="gradient-text-animated">geometry meets material permanence</span>.
+            Designing remarkable homes,{" "}
+            <span className="gradient-text-animated">built to stand the test of time</span>.
           </motion.h1>
 
           {/* Subheadline & Brief Statement */}
