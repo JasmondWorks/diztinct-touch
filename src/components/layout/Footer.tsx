@@ -1,13 +1,27 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { Button, Badge } from "@/components/ui";
 import { ArrowUpRight, Compass, MapPin } from "lucide-react";
 
 export function Footer() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Cmd+Shift+A (Mac) or Ctrl+Shift+A (Windows/Linux) to access admin portal
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === "a" || e.key === "A")) {
+        e.preventDefault();
+        router.push("/admin");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [router]);
 
   if (pathname.startsWith("/admin")) {
     return null;
@@ -156,7 +170,14 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-3 border-t border-border/80 pt-6 text-xs text-muted-foreground font-mono">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <p>
-              © {new Date().getFullYear()} {siteConfig.registeredBusinessName ?? siteConfig.studioName}
+              <Link
+                href="/admin"
+                className="hover:text-foreground transition-colors cursor-default select-none"
+                title="Management Portal"
+              >
+                ©
+              </Link>{" "}
+              {new Date().getFullYear()} {siteConfig.registeredBusinessName ?? siteConfig.studioName}
               {siteConfig.registrationNumber && ` (Reg: ${siteConfig.registrationNumber})`}. All rights reserved.
             </p>
             <Badge variant="outline" className="gap-2 text-[11px] py-1 px-2.5 font-normal">

@@ -249,36 +249,54 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
   return (
     <div className="space-y-8">
       {/* Step Progress Bar */}
-      <Card className="p-3 sm:p-4">
-        <div className="flex items-center justify-between overflow-x-auto pb-1 gap-2">
+      <div className="rounded-2xl border border-border/80 bg-card/60 p-1.5 sm:p-2 backdrop-blur-sm">
+        <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar">
           {STEPS.map((step) => {
             const isCompleted = currentStep > step.id;
             const isCurrent = currentStep === step.id;
 
             return (
-              <Button
+              <button
                 key={step.id}
                 type="button"
-                variant={isCurrent ? "default" : isCompleted ? "emerald" : "ghost"}
                 onClick={() => setCurrentStep(step.id)}
-                className="gap-2.5 rounded-xl px-3.5 h-10 text-xs font-semibold whitespace-nowrap cursor-pointer"
+                className={cn(
+                  "group flex items-center gap-2.5 rounded-xl px-3 sm:px-3.5 py-2 text-xs font-medium whitespace-nowrap transition-all duration-200 cursor-pointer select-none shrink-0",
+                  isCurrent
+                    ? "bg-primary text-primary-foreground font-semibold shadow-xs"
+                    : isCompleted
+                    ? "text-foreground hover:bg-muted/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                )}
               >
                 <div
                   className={cn(
-                    "flex h-6 w-6 items-center justify-center rounded-lg text-[11px] font-bold font-mono",
+                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-md font-mono text-[11px] font-semibold transition-colors",
                     isCurrent && "bg-white/20 text-white",
-                    isCompleted && "bg-white/20 text-white",
-                    !isCurrent && !isCompleted && "bg-muted text-muted-foreground"
+                    isCompleted && "bg-emerald-500/15 text-emerald-500 border border-emerald-500/30",
+                    !isCurrent && !isCompleted && "bg-muted/80 text-muted-foreground border border-border/70"
                   )}
                 >
-                  {isCompleted ? <Check className="h-3.5 w-3.5" /> : step.id}
+                  {isCompleted ? <Check className="h-3 w-3 text-emerald-500 stroke-[2.5]" /> : step.id}
                 </div>
                 <span>{step.title}</span>
-              </Button>
+                {step.id === 4 && (
+                  <span
+                    className={cn(
+                      "text-[10px] uppercase font-mono px-1.5 py-0.5 rounded",
+                      isCurrent
+                        ? "bg-white/20 text-white/90"
+                        : "bg-muted/80 text-muted-foreground"
+                    )}
+                  >
+                    Opt
+                  </span>
+                )}
+              </button>
             );
           })}
         </div>
-      </Card>
+      </div>
 
       {error && (
         <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-xs font-mono text-destructive">

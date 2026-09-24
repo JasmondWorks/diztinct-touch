@@ -373,7 +373,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Right section: Theme + Quick actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 flex-nowrap">
             <ThemeToggle />
 
             {/* View public portfolio */}
@@ -381,19 +381,21 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors flex items-center gap-1.5 border border-border px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-card/40"
+              className="text-xs font-mono text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors inline-flex flex-row items-center gap-1.5 border border-border px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-card/40 whitespace-nowrap shrink-0"
               title="View Public Portfolio"
             >
-              <span className="hidden sm:inline">Public Site</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline whitespace-nowrap">Public Site</span>
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
             </Link>
 
             {/* Create new project button */}
-            <Button asChild size="sm" className="font-mono text-xs gap-1.5 h-8">
-              <Link href="/admin/projects/new">
-                <Plus className="w-3.5 h-3.5" />
-                <span className="hidden xs:inline sm:inline">New Project</span>
-                <span className="xs:hidden sm:hidden inline">New</span>
+            <Button asChild size="sm" className="font-mono text-xs h-8 px-3 shrink-0 whitespace-nowrap">
+              <Link
+                href="/admin/projects/new"
+                className="inline-flex flex-row items-center gap-1.5 whitespace-nowrap shrink-0"
+              >
+                <Plus className="w-3.5 h-3.5 shrink-0" />
+                <span className="whitespace-nowrap">New Project</span>
               </Link>
             </Button>
           </div>
