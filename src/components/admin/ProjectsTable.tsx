@@ -8,7 +8,13 @@ import { togglePublishAction, deleteProjectAction } from "@/actions/projects";
 import { useRouter } from "next/navigation";
 import { Search, Plus, ExternalLink, Edit3, Trash2, AlertTriangle } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Modal } from "@/components/ui/modal";
@@ -90,26 +96,28 @@ export function ProjectsTable({ initialProjects }: { initialProjects: Project[] 
 
         {/* Filters & Add button */}
         <div className="flex flex-wrap items-center gap-3">
-          <Select
-            value={filterType}
-            onChange={(e) => setFilterType(e.target.value)}
-            className="w-auto h-10 font-mono text-xs"
-          >
-            <option value="all">All Categories</option>
-            <option value="residential">Residential</option>
-            <option value="commercial">Commercial</option>
-            <option value="mixed-use">Mixed-Use</option>
-            <option value="interior">Interior</option>
+          <Select value={filterType} onValueChange={setFilterType}>
+            <SelectTrigger className="w-[160px] h-10 font-mono text-xs">
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Categories</SelectItem>
+              <SelectItem value="residential">Residential</SelectItem>
+              <SelectItem value="commercial">Commercial</SelectItem>
+              <SelectItem value="mixed-use">Mixed-Use</SelectItem>
+              <SelectItem value="interior">Interior</SelectItem>
+            </SelectContent>
           </Select>
 
-          <Select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-            className="w-auto h-10 font-mono text-xs"
-          >
-            <option value="all">All Statuses</option>
-            <option value="completed">Completed</option>
-            <option value="in-progress">In Construction</option>
+          <Select value={filterStatus} onValueChange={setFilterStatus}>
+            <SelectTrigger className="w-[160px] h-10 font-mono text-xs">
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Statuses</SelectItem>
+              <SelectItem value="completed">Completed</SelectItem>
+              <SelectItem value="in-progress">In Construction</SelectItem>
+            </SelectContent>
           </Select>
 
           <Button asChild className="gap-1.5 font-mono text-xs h-10">

@@ -21,7 +21,13 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -362,13 +368,20 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
               </label>
               <Select
                 value={formData.category}
-                onChange={(e) => setFormData({ ...formData, category: e.target.value as ArchitecturalCategory })}
+                onValueChange={(val) =>
+                  setFormData({ ...formData, category: val as ArchitecturalCategory })
+                }
               >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
+                <SelectTrigger className="text-xs font-mono">
+                  <SelectValue placeholder="Select typology category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {CATEGORIES.map((cat) => (
+                    <SelectItem key={cat} value={cat}>
+                      {cat}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
               </Select>
             </div>
 
@@ -378,13 +391,18 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
               </label>
               <Select
                 value={formData.buildingType || ""}
-                onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
+                onValueChange={(val) => setFormData({ ...formData, buildingType: val })}
               >
-                {BUILDING_TYPES.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
+                <SelectTrigger className="text-xs font-mono">
+                  <SelectValue placeholder="Select building sub-type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {BUILDING_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
               </Select>
             </div>
 
@@ -633,13 +651,19 @@ export function MultiStepProjectForm({ initialProject, isEditMode = false }: Mul
 
                     <Select
                       value={img.category}
-                      onChange={(e) => updateGalleryImage(idx, "category", e.target.value)}
-                      className="h-8 text-[11px]"
+                      onValueChange={(val) =>
+                        updateGalleryImage(idx, "category", val as ProjectGalleryImage["category"])
+                      }
                     >
-                      <option value="exterior">Exterior View</option>
-                      <option value="interior">Interior Space</option>
-                      <option value="detail">Construction Detail</option>
-                      <option value="construction">Construction Progress</option>
+                      <SelectTrigger className="h-8 text-[11px]">
+                        <SelectValue placeholder="Image Category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="exterior">Exterior View</SelectItem>
+                        <SelectItem value="interior">Interior Space</SelectItem>
+                        <SelectItem value="detail">Construction Detail</SelectItem>
+                        <SelectItem value="construction">Construction Progress</SelectItem>
+                      </SelectContent>
                     </Select>
                   </Card>
                 ))}

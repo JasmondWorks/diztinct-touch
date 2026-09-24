@@ -5,7 +5,13 @@ import { Lead, updateLeadStatusAction, deleteLeadAction } from "@/actions/leads"
 import { useRouter } from "next/navigation";
 import { Search, Mail, Trash2, MessageSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
@@ -203,17 +209,21 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                         <div className="w-36">
                           <Select
                             value={lead.status}
-                            onChange={(e) =>
-                              handleStatusChange(lead.id, e.target.value as Lead["status"])
+                            onValueChange={(val) =>
+                              handleStatusChange(lead.id, val as Lead["status"])
                             }
                             disabled={isPending}
-                            className="h-8 text-[10px] py-1"
                           >
-                            <option value="new">New Inquiry</option>
-                            <option value="contacted">Contacted</option>
-                            <option value="site_inspection">Site Inspection</option>
-                            <option value="contract_signed">Contract Signed</option>
-                            <option value="archived">Archived</option>
+                            <SelectTrigger className="h-8 text-[11px] py-1 font-mono">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="new">New Inquiry</SelectItem>
+                              <SelectItem value="contacted">Contacted</SelectItem>
+                              <SelectItem value="site_inspection">Site Inspection</SelectItem>
+                              <SelectItem value="contract_signed">Contract Signed</SelectItem>
+                              <SelectItem value="archived">Archived</SelectItem>
+                            </SelectContent>
                           </Select>
                         </div>
                       </td>

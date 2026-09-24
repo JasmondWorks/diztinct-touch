@@ -160,7 +160,7 @@ export function ContactForm() {
         <SelectField
           label="Project Typology"
           value={formData.typology}
-          onChange={(e) => handleChange("typology", e.target.value)}
+          onValueChange={(val) => handleChange("typology", val)}
           errorMessage={fieldErrors.typology}
           options={[
             { value: "Contemporary Residential Duplex", label: "Contemporary Residential Duplex" },
